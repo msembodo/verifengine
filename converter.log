@@ -1,0 +1,4190 @@
+definedDF: ['3F00', '3F007F10', '3F007F105F3A', '3F007F105FFF', '3F007F20', '3F007FBB', '3F007FBC', '3F007FF0', '3F007FF05F3B', '3F007FF05F40']
+shared data tab exist: True
+efid      name                          type rec lgth size content
+3F00      MF                            MF   0   0         
+2F06/06   ARR                           LF   8   27   216  Rec. 1: 80 01 01 90 00 80 01 1A A4 06 83 01 0A 95 01 08 84 01 D4 A4 06 83 01 0A 95 01 08
+                                                           Rec. 2: 80 01 06 A4 06 83 01 0A 95 01 08 80 01 40 97 00 FF(11x)
+                                                           Rec. 3: 80 01 01 90 00 80 01 1A A4 06 83 01 0A 95 01 08 FF(11x)
+                                                           Rec. 4: 80 01 01 90 00 80 01 02 A4 06 83 01 01 95 01 08 80 01 18 A4 06 83 01 0A 95 01 08
+                                                           Rec. 5: 80 01 01 90 00 80 01 02 97 00 80 01 18 A4 06 83 01 0A 95 01 08 FF(6x)
+                                                           Rec. 6: 80 01 01 90 00 FF(22x)
+                                                           Rec. 7: 80 01 01 A4 06 83 01 01 95 01 08 80 01 1A A4 06 83 01 0A 95 01 08 FF(5x)
+                                                           Rec. 8: 80 01 06 A4 06 83 01 0A 95 01 08 FF(16x)
+2F00/1E   DIR                           LF   2   60   120  Rec. 1: 61 12 4F 10 A0 00 00 00 87 10 02 FF FF FF FF 89 06 04 00 FF(41x)
+                                                           Rec. 2: FF(60x)
+2FE2/02   ICCID                         T    0   0    10   [Var-ICCID, 10 bytes]
+2F05/05   PL                            T    0   0    8    69 74 65 6E FF FF FF FF
+2FE4      TIN                           T    0   0    35   [CardDescriptionGUID, 16 bytes][Var-TIN, 19 bytes]
+2FE6      ARR Proprietry Files: High SecurityLF   2   27   54   Rec. 1: 80 01 01 90 00 FF(22x)
+                                                           Rec. 2: FF(27x)
+2FFE      TIM Serial                    T    0   0    8    [VarTIM Serial, 8 bytes]
+7F10      TELECOM                       DF   0   0         
+6F4F      EF ECCP                       LF   5   15   75   Rec. 1 - 5: FF(15x)
+6F4A      EXT1                          LF   3   13   39   Rec. 1 - 3: 00 FF(12x)
+6F3A      ADN                           LF   250 28   7000 Rec. 1 - 250: FF(28x)
+6F49      SDN                           LF   12  28   336  Rec. 1 - 12: FF(28x)
+6F4B      EXT2                          LF   3   13   39   Rec. 1 - 3: 00 FF(12x)
+6F43      SMSS                          T    0   0    2    FF FF 
+6F42      SMSP                          LF   2   42   84   Rec. 1: 53 65 72 76 20 43 65 6E 74 20 41 64 64 FF FD FF FF FF FF FF FF FF FF FF FF FF FF 07 91 93 33 85 19 01 00 FF(7x)
+                                                           Rec. 2: FF(42x)
+6F40      MSISDN                        LF   1   28   28   Rec. 1: [Var-MSISDN,28 bytes]
+6F3C      SMS                           LF   30  176  5280 Rec. 1 - 30: 00 FF(175x)
+6F3B      FDN                           LF   50  28   1400 Rec. 1 - 50: FF(28x)
+6F54      SUME                          T    0   0    22   05 00 FF(20x)
+6F44      LND                           C    3   28   84   Rec. 1 - 3: FF(28x)
+6F06      ARR                           LF   14  34   476  Rec. 1: 80 01 01 90 00 80 01 1A A4 06 83 01 0A 95 01 08 84 01 D4 A4 06 83 01 0A 95 01 08 FF(7x)
+                                                           Rec. 2: 80 01 06 A4 06 83 01 0A 95 01 08 80 01 40 97 00 FF(18x)
+                                                           Rec. 3: FF(34x)
+                                                           Rec. 4 - 6: 80 01 03 A4 06 83 01 01 95 01 08 80 01 18 A4 06 83 01 0A 95 01 08 FF(12x)
+                                                           Rec. 7: 80 01 01 A4 06 83 01 01 95 01 08 80 01 1A A4 06 83 01 0A 95 01 08 FF(12x)
+                                                           Rec. 8 - 9: 80 01 01 A4 06 83 01 01 95 01 08 80 01 02 A4 06 83 01 81 95 01 08 80 01 18 A4 06 83 01 0A 95 01 08 FF
+                                                           Rec. 10: 80 01 1B A4 06 83 01 0A 95 01 08 FF(23x)
+                                                           Rec. 11: 80 01 1B A4 06 83 01 0B 95 01 08 FF(23x)
+                                                           Rec. 12: 80 01 06 A4 06 83 01 0B 95 01 08 80 01 40 97 00 FF(18x)
+                                                           Rec. 13: 80 01 03 A4 06 83 01 01 95 01 08 80 01 18 A4 06 83 01 81 95 01 08 FF(12x)
+                                                           Rec. 14: FF(34x)
+5F3A      PHONEBOOK                     DF   0   0         
+4F25/07   IAP                           LF   250 2    500  Rec. 1 - 250: FF FF
+4F24/0D   PUID [UAH]                    T    0   0    2    00 00
+4F23/0C   CC                            T    0   0    2    00 00
+4F22/0B   PSC                           T    0   0    4    00(4x)
+4F3D/09   CCP1                          LF   5   15   75   Rec. 1 - 5: FF(15x)
+4F4C/16   GAS                           LF   5   14   70   Rec. 1 - 5: FF(14x)
+4F4B/15   AAS                           LF   5   14   70   Rec. 1 - 5: FF(14x)
+4F4A/03   EXT1                          LF   3   13   39   Rec. 1 - 3: 00 FF(12x)
+4F50/0E   EMAIL                         LF   40  52   2080 Rec. 1 - 40: FF(52x)
+4F61/06   ANR                           LF   250 17   4250 Rec. 1 - 250: FF(17x)
+4F21/0A   UID1                          LF   250 2    500  Rec. 1 - 250: 00 00
+4F26/05   GRP1                          LF   250 5    1250 Rec. 1 - 250: 00(5x)
+4F69/04   PBC                           LF   250 2    500  Rec. 1 - 250: 00 00
+4F3A/02   ADN1                          LF   250 28   7000 Rec. 1 - 250: FF(28x)
+4F30      PBR                           LF   1   128  128  Rec. 1: A8 19 C0 03 4F 3A 02 C5 03 4F 69 04 C1 03 4F 25 07 C6 03 4F 26 05 C9 03 4F 21 0A A9 0A C4 03 4F 61 06 CA 03 4F 50 0E AA 14 C2 03 4F 4A 03 C7 03 4F 4B 15 C8 03 4F 4C 16 CB 03 4F 3D 09 FF(67x)
+5FFF      DF TIM (Test)                 DF   0   0         
+1F0C/0C   LA                            LF   50  62   3100 Rec. 1 - 50: FF(62x)
+1F0D/0D   LAindex                       LF   50  13   650  Rec. 1 - 50: FF(13x)
+7F20      GSM                           DF   0   0         
+6F05      LP                            T    0   0    4    02 01 FF FF
+6F07      IMSI                          T    0   0    9    [Var-IMSI, 9 bytes]
+6F20      Kc [UAH]                      T    0   0    9    FF(8x) 07
+6F30      PLMNsel                       T    0   0    105  32 F2 30 02 F6 01 82 F4 50 32 F0 20 32 F8 02 42 F4 19 02 F8 10 62 F2 10 02 F2 10 12 F6 03 72 F2 20 72 F4 11 72 F0 99 72 F8 12 02 F4 61 42 F2 20 62 F0 30 62 F8 60 22 F6 01 32 F1 10 92 F3 14 12 F4 70 42 F0 10 22 F8 20 82 F6 10 32 F4 03 32 F4 33 13 00 94 13 00 62 13 00 52 13 00 42 13 00 02 13 00 72 13 00 13 13 00 61
+6F38      SST                           T    0   0    15   FF 30 FF FF 0F 00 FF 03 00 0C 3C CF 00 00 00
+6F52      KcGPRS [UAH]                  T    0   0    9    FF(8x) 07
+6F74      BCCH [UAH]                    T    0   0    16   FF(16x)
+6F7E      LOCI [UAH]                    T    0   0    11   FF(4x) 22 F2 10 00 00 FF 01
+6FAE      PHASE                         T    0   0    1    03
+6F06      ARR                           LF   11  27   297  Rec. 1: 80 01 01 90 00 80 01 1A A4 06 83 01 0A 95 01 08 84 01 D4 A4 06 83 01 0A 95 01 08
+                                                           Rec. 2: 80 01 03 A4 06 83 01 0A 95 01 08 84 01 D4 A4 06 83 01 0A 95 01 08 FF(5x)
+                                                           Rec. 3: 80 01 11 A4 06 83 01 01 95 01 08 80 01 0A A4 06 83 01 0A 95 01 08 FF(5x)
+                                                           Rec. 4: 80 01 03 A4 06 83 01 01 95 01 08 80 01 18 A4 06 83 01 0A 95 01 08 FF(5x)
+                                                           Rec. 5: 80 01 13 A4 06 83 01 01 95 01 08 80 01 08 A4 06 83 01 0A 95 01 08 FF(5x)
+                                                           Rec. 6: 80 01 01 90 00 80 01 02 A4 06 83 01 01 95 01 08 80 01 18 A4 06 83 01 0A 95 01 08
+                                                           Rec. 7: 80 01 01 90 00 80 01 1A A4 06 83 01 0A 95 01 08 FF(11x)
+                                                           Rec. 8: 80 01 01 A4 06 83 01 01 95 01 08 80 01 1A A4 06 83 01 0A 95 01 08 FF(5x)
+                                                           Rec. 9: 80 01 1B A4 06 83 01 0A 95 01 08 FF(16x)
+                                                           Rec. 10: 80 01 02 A4 06 83 01 0E 95 01 08 84 01 76 A4 06 83 01 0E 95 01 08 FF(5x)
+                                                           Rec. 11: 80 01 1B A4 06 83 01 0B 95 01 08 FF(16x)
+6F54      SUME                          T    0   0    22   05 00 FF(20x)
+C112      Key_K                         T    0   0    16   [Var-K, 16 bytes]
+6F31      HPPLMN                        T    0   0    1    FF
+6F3E      GID1                          T    0   0    9    FF FF FF FF FF 00 0F FF FF
+6F3F      GID2                          T    0   0    9    FF FF FF FF FF FF FF FF FF
+6F45      CBMI                          T    0   0    4    FF FF FF FF
+6F46      SPN                           T    0   0    17   FF FF(16x)
+6F48      CBMID                         T    0   0    6    10 01 FF FF FF FF
+6F53      LOCIGPRS                      T    0   0    14   FF(4x) FF FF FF 22 F2 10 00 00 FF 01
+6F78      ACC                           T    0   0    2    [Var-ACC, 2 bytes]
+6FAD      AD                            T    0   0    4    00 00 00 02
+6F7B      FPLMN                         T    0   0    12   FF FF FF FF FF FF FF FF FF FF FF FF
+CF06      ARR Proprietry Files: High SecurityLF   3   27   81   Rec. 1: 80 01 01 90 00 FF(22x)
+                                                           Rec. 2: FF(27x)
+                                                           Rec. 3: 80 01 02 97 00 FF(22x)
+C111      AkaConfParam                  T    0   0    3    41 01 10
+6F60      PLMNwAcT                      T    0   0    175  32 F2 30 C0 80 02 F6 01 C0 80 82 F4 50 C0 80 32 F0 20 C0 80 32 F8 02 C0 80 42 F4 19 C0 80 02 F8 10 C0 80 62 F2 10 C0 80 02 F2 10 C0 80 12 F6 03 C0 80 72 F2 20 80 80 72 F4 11 C0 80 72 F0 99 C0 80 72 F8 12 C0 80 02 F4 61 C0 80 42 F2 20 C0 80 62 F0 30 C0 80 62 F8 60 C0 80 22 F6 01 C0 80 32 F1 10 C0 80 92 F3 14 C0 80 12 F4 70 C0 80 42 F0 10 C0 80 22 F8 20 C0 80 82 F6 10 C0 80 32 F4 03 C0 80 32 F4 33 C0 80 13 00 94 C0 80 13 00 62 C0 80 13 00 52 C0 80 13 00 42 C0 80 13 00 02 C0 80 13 00 72 C0 80 13 00 13 C0 80 13 00 61 C0 80
+6F62      HPLMNwAcT                     T    0   0    20   22 F2 10 C0 80 FF FF FF 00 00 FF FF FF 00 00 FF FF FF 00 00
+6F63      CPBCCH                        T    0   0    20   FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+C126      Milenage Parameters           T    0   0    101  [Var-OPc, 16 bytes] 00(16x) 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 08 40 00 20 40 60
+7FBB      ADM                           DF   0   0         
+C001      FileSysConf                   T    0   0    1    71
+C002      2G Conf                       T    0   0    2    05 33
+6F35      EFCAT_TP Configuration        T    0   0    14   35 01 02 01 02 00 0F 01 02 00 0A 01 01 00
+6F36      EFCAT_TP Default Parameters   T    0   0    27   05 00 05 00 05 00 05 00 35 07 02 00 00 03 00 00 02 0D 03 54 69 6D 0D 03 54 69 6D
+7FBC      ADS                           DF   0   0         
+C012      KeyConfiguration              LF   7   11   77   Rec. 1: 01 01 00 03 0A 02 03 01 00 00 00
+                                                           Rec. 2: 81 01 01 03 0A 04 05 00 00 00 01
+                                                           Rec. 3: 0A 01 05 0A 00 06 00 00 01 00 00
+                                                           Rec. 4: 0B 01 05 0A 00 07 00 00 02 00 00
+                                                           Rec. 5: 0F 01 05 03 00 01 00 FF(4x)
+                                                           Rec. 6: 0C 01 05 0A 00 08 00 00 04 00 00
+                                                           Rec. 7: 0E 01 05 03 00 09 00 FF(4x)
+C013      KeyStatus                     LF   7   4    28   Rec. 1: [Var-APIN1-Status, 1 byte] FF 03 0A
+                                                           Rec. 2: 00 FF 03 0A
+                                                           Rec. 3: 00 FF 0A 00
+                                                           Rec. 4: 00 FF 0A 00
+                                                           Rec. 5: 00 06 03 00
+                                                           Rec. 6: 00 FF 0A 00
+                                                           Rec. 7: 00 FF 03 00
+C011      KeyTranslationTable           LF   7   4    28   Rec. 1: 01 01 00 01
+                                                           Rec. 2: 81 02 15 02
+                                                           Rec. 3: 0A 0A 1A 05
+                                                           Rec. 4: 0B 0B 16 0D
+                                                           Rec. 5: 0F 12 19 0A
+                                                           Rec. 6: 0C 0C 17 07
+                                                           Rec. 7: 0E 15 18 04
+C010      KeyValue                      LF   9   8    72   Rec. 1: [PP,8 bytes]
+                                                           Rec. 2: [APIN1,8 bytes]
+                                                           Rec. 3: [UAPIN1,8 bytes]
+                                                           Rec. 4: [2APIN1,8 bytes]
+                                                           Rec. 5: [U2APIN1,8 bytes]
+                                                           Rec. 6: [ADM1,8 bytes]
+                                                           Rec. 7: [ADM2,8 bytes]
+                                                           Rec. 8: [ADM3,8 bytes]
+                                                           Rec. 9: [ADM5,8 bytes]
+7FF0      3GPP USIM                     ADF  0   0         
+6F07/07   IMSI                          T    0   0    9    [Var-IMSI, 9 bytes]
+6F08/08   Keys [UAH]                    T    0   0    33   07 FF(16x) FF(16x)
+6F09/09   KeysPS [UAH]                  T    0   0    33   07 FF(16x) FF(16x)
+6F38/04   UST                           T    0   0    12   0E 6A 1F BC 63 04 00 7C 02 00 DF 00
+6F4F/16   CCP2                          LF   5   15   75   Rec. 1 - 5: FF(15x)
+6F56/05   EST                           T    0   0    1    00 
+6F5B/0F   START-HFN [UAH]               T    0   0    6    F0 00 00 F0 00 00
+6F5C/10   THRESHOLD                     T    0   0    3    FF FF FF
+6FC3      Hiddenkey                     T    0   0    4    FF(4x)
+6FC4      NETPAR [UAH]                  T    0   0    256  FF(256x)
+C112      Key_K                         T    0   0    16   [Var-K, 16 bytes]
+6F31/12   HPPLMN                        T    0   0    1    FF
+6F3E      GID1                          T    0   0    9    FF FF FF FF FF 00 0F FF FF
+6F3F      GID2                          T    0   0    9    FF FF FF FF FF FF FF FF FF
+6F45      CBMI                          T    0   0    4    FF FF FF FF
+6F46      SPN                           T    0   0    17   FF FF(16x)
+6F48/0E   CBMID                         T    0   0    6    10 01 FF FF FF FF
+6F73/0C   PSLOCI [UAH]                  T    0   0    14   FF(4x) FF FF FF 22 F2 10 00 00 FF 01
+6F78/06   ACC                           T    0   0    2    [Var-ACC, 2 bytes]
+6FAD/03   AD                            T    0   0    4    00 00 00 02 
+6F7B/0D   FPLMN                         T    0   0    12   FF FF FF FF FF FF FF FF FF FF FF FF
+6F06/17   ARR                           LF   12  34   408  Rec. 1: 80 01 01 90 00 80 01 1A A4 06 83 01 0A 95 01 08 84 01 D4 A4 06 83 01 0A 95 01 08 FF(7x)
+                                                           Rec. 2: 80 01 06 A4 06 83 01 0A 95 01 08 80 01 40 97 00 FF(18x)
+                                                           Rec. 3: 80 01 03 A4 06 83 01 01 95 01 08 80 01 18 A4 06 83 01 0A 95 01 08 FF(12x)
+                                                           Rec. 4: 80 01 1B A4 06 83 01 0A 95 01 08 FF(23x)
+                                                           Rec. 5: 80 01 01 A4 06 83 01 01 95 01 08 80 01 1A A4 06 83 01 0A 95 01 08 FF(12x)
+                                                           Rec. 6: 80 01 01 90 00 80 01 1A A4 06 83 01 0A 95 01 08 FF(18x)
+                                                           Rec. 7: 80 01 01 A4 06 83 01 01 95 01 08 80 01 02 A4 06 83 01 81 95 01 08 80 01 18 A4 06 83 01 0A 95 01 08 FF
+                                                           Rec. 8: 80 01 02 A4 06 83 01 0E 95 01 08 84 01 76 A4 06 83 01 0E 95 01 08 FF(12x)
+                                                           Rec. 9: 80 01 03 A4 06 83 01 0E 95 01 08 FF(23x)
+                                                           Rec. 10: 80 01 01 90 00 80 01 02 A4 06 83 01 01 95 01 08 80 01 18 A4 06 83 01 0A 95 01 08 FF(7x)
+                                                           Rec. 11: 80 01 03 A4 06 83 01 01 95 01 08 80 01 18 A4 06 83 01 0A 95 01 08 FF(12x)
+                                                           Rec. 12: 80 01 01 A4 06 83 01 01 95 01 08 80 01 1A A4 06 83 01 0A 95 01 08 FF(12x)
+6F05/02   LI                            T    0   0    8    69 74 65 6E FF FF FF FF
+6F3B      FDN USIM                      LF   50  28   1400 Rec. 1 - 50: FF(28x)
+6F3C      SMS                           LF   30  176  5280 Rec. 1 - 30: 00 FF(175x)
+6F40      MSISDN USIM                   LF   1   28   28   Rec. 1: [Var-MSISDN,28 bytes]
+6F42      SMSP                          LF   2   42   84   Rec. 1: 53 65 72 76 20 43 65 6E 74 20 41 64 64 FF FD FF FF FF FF FF FF FF FF FF FF FF FF 07 91 93 33 85 19 01 00 FF(7x)
+                                                           Rec. 2: FF(42x)
+6F43      SMSS                          T    0   0    2    FF FF 
+6F4B      EXT2                          LF   3   13   39   Rec. 1 - 3: 00 FF(12x)
+6F49      SDN                           LF   12  28   336  Rec. 1 - 12: FF(28x)
+6F7E/0B   LOCI                          T    0   0    11   FF(4x) 22 F2 10 00 00 FF 01
+6FB7/01   ECC USIM                      LF   2   20   40   Rec. 1: 11 F2 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 01
+                                                           Rec. 2: FF(20x)
+6F62/13   HPLMNwAcT                     T    0   0    20   22 F2 10 C0 80 FF FF FF 00 00 FF FF FF 00 00 FF FF FF 00 00
+6F60/0A   PLMNwAcT                      T    0   0    175  32 F2 30 C0 80 02 F6 01 C0 80 82 F4 50 C0 80 32 F0 20 C0 80 32 F8 02 C0 80 42 F4 19 C0 80 02 F8 10 C0 80 62 F2 10 C0 80 02 F2 10 C0 80 12 F6 03 C0 80 72 F2 20 80 80 72 F4 11 C0 80 72 F0 99 C0 80 72 F8 12 C0 80 02 F4 61 C0 80 42 F2 20 C0 80 62 F0 30 C0 80 62 F8 60 C0 80 22 F6 01 C0 80 32 F1 10 C0 80 92 F3 14 C0 80 12 F4 70 C0 80 42 F0 10 C0 80 22 F8 20 C0 80 82 F6 10 C0 80 32 F4 03 C0 80 32 F4 33 C0 80 13 00 94 C0 80 13 00 62 C0 80 13 00 52 C0 80 13 00 42 C0 80 13 00 02 C0 80 13 00 72 C0 80 13 00 13 C0 80 13 00 61 C0 80
+CF06      ARR Proprietry Files: High SecurityLF   3   27   81   Rec. 1: 80 01 01 90 00 FF(22x)
+                                                           Rec. 2: FF(27x)
+                                                           Rec. 3: 80 01 02 97 00 FF(22x)
+C111      AkaConfParam                  T    0   0    3    41 01 10
+C11C      SQN Data                      T    0   0    193  00 00(192x)
+C126      Milenage Parameters           T    0   0    101  [Var-OPc, 16 bytes] 00(16x) 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 08 40 00 20 40 60
+6FE4/18   EPSNSC                        LF   1   255  255  Rec. 1: FF(255x)
+6FE3/1E   EPSLOCI                       T    0   0    18   FF(12x) 22 F2 10 00 00 01
+5F3B      GSM-ACCESS                    DF   0   0         
+4F63      CPBCCH [UAH]                  T    0   0    20   FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+4F20/01   Kc                            T    0   0    9    FF(8x) 07
+4F52/02   KcGPRS                        T    0   0    9    FF(8x) 07
+5F40      DF WLAN                       DF   0   0         
+4F41/01   Pseudo                        T    0   0    48   00 FF FF(46x)
+4F42/02   UPLMNWLAN                     T    0   0    30   FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+4F43/03   OPLMNWLAN                     T    0   0    108  02 F8 10 12 F4 70 22 F8 30 82 F6 30 82 F6 40 22 F6 01 92 F3 14 12 F6 03 13 00 61 32 F4 01 02 F2 01 62 F2 10 32 F2 30 02 F6 01 82 F4 10 12 F9 10 42 F4 19 02 F4 61 02 F4 02 42 F2 20 92 F5 20 72 F2 20 62 F0 30 62 F8 60 32 F0 10 32 F1 10 42 F0 10 32 F8 02 17 F6 01 27 F4 20 27 F4 30 27 F4 40 27 F2 43 37 F6 20 37 F0 20 FF FF FF
+4F44/04   UWSIDL-ST                     LF   15  31   465  Rec. 1 - 15: 00 FF(30x)
+4F45/05   OWSIDL                        LF   20  31   620  Rec. 1 - 20: 00 FF(30x)
+4F46/06   WRI                           T    0   0    48   FF(48x)
+4F47/07   HWSIDL                        LF   15  2    30   Rec. 1: 00 FF
+                                                           Rec. 2 - 15: FF FF
+4F48/08   WEHPLMNPI                     T    0   0    1    00
+4F49/09   WHPI                          T    0   0    1    00
+4F4A/0A   WLRPLMN                       T    0   0    3    FF FF FF
+4F4B/0B   HPLMNDAI                      T    0   0    1    00
+debug file -- 3F002F06: ARR
+debug file -- 3F002F00: DIR
+debug file -- 3F002FE2: ICCID
+debug file -- 3F002F05: PL
+debug file -- 3F002FE4: TIN
+debug file -- 3F002FE6: ARR Proprietry Files: High Security
+debug file -- 3F002FFE: TIM Serial
+debug file -- 3F007F106F4F: EF ECCP
+debug file -- 3F007F106F4A: EXT1
+debug file -- 3F007F106F3A: ADN
+debug file -- 3F007F106F49: SDN
+debug file -- 3F007F106F4B: EXT2
+debug file -- 3F007F106F43: SMSS
+debug file -- 3F007F106F42: SMSP
+debug file -- 3F007F106F40: MSISDN
+debug file -- 3F007F106F3C: SMS
+debug file -- 3F007F106F3B: FDN
+debug file -- 3F007F106F54: SUME
+debug file -- 3F007F106F44: LND
+debug file -- 3F007F106F06: ARR
+debug file -- 3F007F105F3A4F25: IAP
+debug file -- 3F007F105F3A4F24: PUID [UAH]
+debug file -- 3F007F105F3A4F23: CC
+debug file -- 3F007F105F3A4F22: PSC
+debug file -- 3F007F105F3A4F3D: CCP1
+debug file -- 3F007F105F3A4F4C: GAS
+debug file -- 3F007F105F3A4F4B: AAS
+debug file -- 3F007F105F3A4F4A: EXT1
+debug file -- 3F007F105F3A4F50: EMAIL
+debug file -- 3F007F105F3A4F61: ANR
+debug file -- 3F007F105F3A4F21: UID1
+debug file -- 3F007F105F3A4F26: GRP1
+debug file -- 3F007F105F3A4F69: PBC
+debug file -- 3F007F105F3A4F3A: ADN1
+debug file -- 3F007F105F3A4F30: PBR
+debug file -- 3F007F105FFF1F0C: LA
+debug file -- 3F007F105FFF1F0D: LAindex
+debug file -- 3F007F206F05: LP
+debug file -- 3F007F206F07: IMSI
+debug file -- 3F007F206F20: Kc [UAH]
+debug file -- 3F007F206F30: PLMNsel
+debug file -- 3F007F206F38: SST
+debug file -- 3F007F206F52: KcGPRS [UAH]
+debug file -- 3F007F206F74: BCCH [UAH]
+debug file -- 3F007F206F7E: LOCI [UAH]
+debug file -- 3F007F206FAE: PHASE
+debug file -- 3F007F206F06: ARR
+debug file -- 3F007F206F54: SUME
+debug file -- 3F007F20C112: Key_K
+debug file -- 3F007F206F31: HPPLMN
+debug file -- 3F007F206F3E: GID1
+debug file -- 3F007F206F3F: GID2
+debug file -- 3F007F206F45: CBMI
+debug file -- 3F007F206F46: SPN
+debug file -- 3F007F206F48: CBMID
+debug file -- 3F007F206F53: LOCIGPRS
+debug file -- 3F007F206F78: ACC
+debug file -- 3F007F206FAD: AD
+debug file -- 3F007F206F7B: FPLMN
+debug file -- 3F007F20CF06: ARR Proprietry Files: High Security
+debug file -- 3F007F20C111: AkaConfParam
+debug file -- 3F007F206F60: PLMNwAcT
+debug file -- 3F007F206F62: HPLMNwAcT
+debug file -- 3F007F206F63: CPBCCH
+debug file -- 3F007F20C126: Milenage Parameters
+debug file -- 3F007FBBC001: FileSysConf 
+debug file -- 3F007FBBC002: 2G Conf
+debug file -- 3F007FBB6F35: EFCAT_TP Configuration
+debug file -- 3F007FBB6F36: EFCAT_TP Default Parameters
+debug file -- 3F007FBCC012: KeyConfiguration
+debug file -- 3F007FBCC013: KeyStatus
+debug file -- 3F007FBCC011: KeyTranslationTable
+debug file -- 3F007FBCC010: KeyValue
+debug file -- 3F007FF06F07: IMSI
+debug file -- 3F007FF06F08: Keys [UAH]
+debug file -- 3F007FF06F09: KeysPS [UAH]
+debug file -- 3F007FF06F38: UST
+debug file -- 3F007FF06F4F: CCP2
+debug file -- 3F007FF06F56: EST
+debug file -- 3F007FF06F5B: START-HFN [UAH]
+debug file -- 3F007FF06F5C: THRESHOLD
+debug file -- 3F007FF06FC3: Hiddenkey
+debug file -- 3F007FF06FC4: NETPAR [UAH]
+debug file -- 3F007FF0C112: Key_K
+debug file -- 3F007FF06F31: HPPLMN
+debug file -- 3F007FF06F3E: GID1
+debug file -- 3F007FF06F3F: GID2
+debug file -- 3F007FF06F45: CBMI
+debug file -- 3F007FF06F46: SPN
+debug file -- 3F007FF06F48: CBMID
+debug file -- 3F007FF06F73: PSLOCI [UAH]
+debug file -- 3F007FF06F78: ACC
+debug file -- 3F007FF06FAD: AD
+debug file -- 3F007FF06F7B: FPLMN
+debug file -- 3F007FF06F06: ARR
+debug file -- 3F007FF06F05: LI
+debug file -- 3F007FF06F3B: FDN USIM
+debug file -- 3F007FF06F3C: SMS
+debug file -- 3F007FF06F40: MSISDN USIM
+debug file -- 3F007FF06F42: SMSP
+debug file -- 3F007FF06F43: SMSS
+debug file -- 3F007FF06F4B: EXT2
+debug file -- 3F007FF06F49: SDN
+debug file -- 3F007FF06F7E: LOCI
+debug file -- 3F007FF06FB7: ECC USIM
+debug file -- 3F007FF06F62: HPLMNwAcT
+debug file -- 3F007FF06F60: PLMNwAcT
+debug file -- 3F007FF0CF06: ARR Proprietry Files: High Security
+debug file -- 3F007FF0C111: AkaConfParam
+debug file -- 3F007FF0C11C: SQN Data
+debug file -- 3F007FF0C126: Milenage Parameters
+debug file -- 3F007FF06FE4: EPSNSC
+debug file -- 3F007FF06FE3: EPSLOCI
+debug file -- 3F007FF05F3B4F63: CPBCCH [UAH]
+debug file -- 3F007FF05F3B4F20: Kc
+debug file -- 3F007FF05F3B4F52: KcGPRS
+debug file -- 3F007FF05F404F41: Pseudo
+debug file -- 3F007FF05F404F42: UPLMNWLAN
+debug file -- 3F007FF05F404F43: OPLMNWLAN
+debug file -- 3F007FF05F404F44: UWSIDL-ST
+debug file -- 3F007FF05F404F45: OWSIDL
+debug file -- 3F007FF05F404F46: WRI
+debug file -- 3F007FF05F404F47: HWSIDL
+debug file -- 3F007FF05F404F48: WEHPLMNPI
+debug file -- 3F007FF05F404F49: WHPI
+debug file -- 3F007FF05F404F4A: WLRPLMN
+debug file -- 3F007FF05F404F4B: HPLMNDAI
+
+shared data:
+name                                    link                target
+ACC                                     3F007F206F78        3F007FF06F78
+AD                                      3F007F206FAD        3F007FF06FAD
+ADN                                     3F007F106F3A        3F007F105F3A4F3A
+CBMI                                    3F007F206F45        3F007FF06F45
+CBMID                                   3F007F206F48        3F007FF06F48
+CCP1                                    3F007F106F4F        3F007F105F3A4F3D
+Configuration Parameters                3F007F20C111        3F007FF0C111
+EXT1                                    3F007F106F4A        3F007F105F3A4F4A
+EXT2                                    3F007F106F4B        3F007FF06F4B
+FDN                                     3F007F106F3B        3F007FF06F3B
+FPLMN                                   3F007F206F7B        3F007FF06F7B
+GID1                                    3F007F206F3E        3F007FF06F3E
+GID2                                    3F007F206F3F        3F007FF06F3F
+HPLMNwAcT                               3F007F206F62        3F007FF06F62
+HPPLMN                                  3F007F206F31        3F007FF06F31
+IMSI                                    3F007F206F07        3F007FF06F07
+Kc                                      3F007F206F20        3F007FF05F3B4F20
+KcGPRS                                  3F007F206F52        3F007FF05F3B4F52
+Key_K                                   3F007F20C112        3F007FF0C112
+LOCI                                    3F007F206F7E        3F007FF06F7E
+Milenage Parameters                     3F007F20C126        3F007FF0C126
+MSISDN                                  3F007F106F40        3F007FF06F40
+PL                                      3F002F05            3F007FF06F05
+PLMNwAcT                                3F007F206F60        3F007FF06F60
+PSLOCI                                  3F007F206F53        3F007FF06F73
+SDN                                     3F007F106F49        3F007FF06F49
+SMS                                     3F007F106F3C        3F007FF06F3C
+SMSP                                    3F007F106F42        3F007FF06F42
+SMSS                                    3F007F106F43        3F007FF06F43
+SPN                                     3F007F206F46        3F007FF06F46
+SUME                                    3F007F106F54        3F007F206F54
+
+137 file objects in list:
+
+fileId: 3F00
+fileName: MF
+type: MF
+accActivate: 
+accDeactivate: 
+accDeleteSelf: Never
+accCreateDF: ADM1
+accCreateEF: ADM1
+accDeleteChild: 
+
+fileId: 3F002F06
+fileName: ARR
+type: LF
+recNb: 8
+recSize: 27
+fileSize: 216
+sfi: 06
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: ADM1
+accIncrease: 
+accResize: ADM1
+content:
+1     800101900080011AA40683010A9501088401D4A40683010A950108
+2     800106A40683010A9501088001409700FFFFFFFFFFFFFFFFFFFFFF
+3     800101900080011AA40683010A950108FFFFFFFFFFFFFFFFFFFFFF
+4     8001019000800102A406830101950108800118A40683010A950108
+5     80010190008001029700800118A40683010A950108FFFFFFFFFFFF
+6     8001019000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+7     800101A40683010195010880011AA40683010A950108FFFFFFFFFF
+8     800106A40683010A950108FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F002F00
+fileName: DIR
+type: LF
+recNb: 2
+recSize: 60
+fileSize: 120
+sfi: 1E
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+1     61124F10A0000000871002FFFFFFFF89060400FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F002FE2
+fileName: ICCID
+type: TR
+fileSize: 10
+sfi: 02
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: Never
+accIncrease: 
+accResize: 
+content:
+FF
+
+fileId: 3F002F05
+fileName: PL
+type: Link
+linkto: 3F007FF06F05
+sfi: 05
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F002FE4
+fileName: TIN
+type: TR
+fileSize: 35
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: Always
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+FF
+
+fileId: 3F002FE6
+fileName: ARR Proprietry Files: High Security
+type: LF
+recNb: 2
+recSize: 27
+fileSize: 54
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: Always
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+1     8001019000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F002FFE
+fileName: TIM Serial
+type: TR
+fileSize: 8
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+FF
+
+fileId: 3F007F10
+fileName: TELECOM
+type: DF
+accActivate: 
+accDeactivate: 
+accDeleteSelf: Never
+accCreateDF: ADM1
+accCreateEF: ADM1
+accDeleteChild: 
+
+fileId: 3F007F106F4F
+fileName: EF ECCP
+type: Link
+linkto: 3F007F105F3A4F3D
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F106F4A
+fileName: EXT1
+type: Link
+linkto: 3F007F105F3A4F4A
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F106F3A
+fileName: ADN
+type: Link
+linkto: 3F007F105F3A4F3A
+accActivate: LPIN1
+accDeactivate: LPIN1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F106F49
+fileName: SDN
+type: Link
+linkto: 3F007FF06F49
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F106F4B
+fileName: EXT2
+type: Link
+linkto: 3F007FF06F4B
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: LPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F106F43
+fileName: SMSS
+type: Link
+linkto: 3F007FF06F43
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F106F42
+fileName: SMSP
+type: Link
+linkto: 3F007FF06F42
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F106F40
+fileName: MSISDN
+type: Link
+linkto: 3F007FF06F40
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F106F3C
+fileName: SMS
+type: Link
+linkto: 3F007FF06F3C
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F106F3B
+fileName: FDN
+type: Link
+linkto: 3F007FF06F3B
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: LPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F106F54
+fileName: SUME
+type: Link
+linkto: 3F007F206F54
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: ADM1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F106F44
+fileName: LND
+type: CY
+recNb: 3
+recSize: 28
+fileSize: 84
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F106F06
+fileName: ARR
+type: LF
+recNb: 14
+recSize: 34
+fileSize: 476
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: ADM1
+accIncrease: 
+accResize: ADM1
+content:
+1     800101900080011AA40683010A9501088401D4A40683010A950108FFFFFFFFFFFFFF
+2     800106A40683010A9501088001409700FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     800103A406830101950108800118A40683010A950108FFFFFFFFFFFFFFFFFFFFFFFF
+5     800103A406830101950108800118A40683010A950108FFFFFFFFFFFFFFFFFFFFFFFF
+6     800103A406830101950108800118A40683010A950108FFFFFFFFFFFFFFFFFFFFFFFF
+7     800101A40683010195010880011AA40683010A950108FFFFFFFFFFFFFFFFFFFFFFFF
+8     800101A406830101950108800102A406830181950108800118A40683010A950108FF
+9     800101A406830101950108800102A406830181950108800118A40683010A950108FF
+10    80011BA40683010A950108FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+11    80011BA40683010B950108FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+12    800106A40683010B9501088001409700FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+13    800103A406830101950108800118A406830181950108FFFFFFFFFFFFFFFFFFFFFFFF
+14    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F105F3A
+fileName: PHONEBOOK
+type: DF
+accActivate: 
+accDeactivate: 
+accDeleteSelf: Never
+accCreateDF: ADM1
+accCreateEF: ADM1
+accDeleteChild: 
+
+fileId: 3F007F105F3A4F25
+fileName: IAP
+type: LF
+recNb: 250
+recSize: 2
+fileSize: 500
+sfi: 07
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     FFFF
+2     FFFF
+3     FFFF
+4     FFFF
+5     FFFF
+6     FFFF
+7     FFFF
+8     FFFF
+9     FFFF
+10    FFFF
+11    FFFF
+12    FFFF
+13    FFFF
+14    FFFF
+15    FFFF
+16    FFFF
+17    FFFF
+18    FFFF
+19    FFFF
+20    FFFF
+21    FFFF
+22    FFFF
+23    FFFF
+24    FFFF
+25    FFFF
+26    FFFF
+27    FFFF
+28    FFFF
+29    FFFF
+30    FFFF
+31    FFFF
+32    FFFF
+33    FFFF
+34    FFFF
+35    FFFF
+36    FFFF
+37    FFFF
+38    FFFF
+39    FFFF
+40    FFFF
+41    FFFF
+42    FFFF
+43    FFFF
+44    FFFF
+45    FFFF
+46    FFFF
+47    FFFF
+48    FFFF
+49    FFFF
+50    FFFF
+51    FFFF
+52    FFFF
+53    FFFF
+54    FFFF
+55    FFFF
+56    FFFF
+57    FFFF
+58    FFFF
+59    FFFF
+60    FFFF
+61    FFFF
+62    FFFF
+63    FFFF
+64    FFFF
+65    FFFF
+66    FFFF
+67    FFFF
+68    FFFF
+69    FFFF
+70    FFFF
+71    FFFF
+72    FFFF
+73    FFFF
+74    FFFF
+75    FFFF
+76    FFFF
+77    FFFF
+78    FFFF
+79    FFFF
+80    FFFF
+81    FFFF
+82    FFFF
+83    FFFF
+84    FFFF
+85    FFFF
+86    FFFF
+87    FFFF
+88    FFFF
+89    FFFF
+90    FFFF
+91    FFFF
+92    FFFF
+93    FFFF
+94    FFFF
+95    FFFF
+96    FFFF
+97    FFFF
+98    FFFF
+99    FFFF
+100   FFFF
+101   FFFF
+102   FFFF
+103   FFFF
+104   FFFF
+105   FFFF
+106   FFFF
+107   FFFF
+108   FFFF
+109   FFFF
+110   FFFF
+111   FFFF
+112   FFFF
+113   FFFF
+114   FFFF
+115   FFFF
+116   FFFF
+117   FFFF
+118   FFFF
+119   FFFF
+120   FFFF
+121   FFFF
+122   FFFF
+123   FFFF
+124   FFFF
+125   FFFF
+126   FFFF
+127   FFFF
+128   FFFF
+129   FFFF
+130   FFFF
+131   FFFF
+132   FFFF
+133   FFFF
+134   FFFF
+135   FFFF
+136   FFFF
+137   FFFF
+138   FFFF
+139   FFFF
+140   FFFF
+141   FFFF
+142   FFFF
+143   FFFF
+144   FFFF
+145   FFFF
+146   FFFF
+147   FFFF
+148   FFFF
+149   FFFF
+150   FFFF
+151   FFFF
+152   FFFF
+153   FFFF
+154   FFFF
+155   FFFF
+156   FFFF
+157   FFFF
+158   FFFF
+159   FFFF
+160   FFFF
+161   FFFF
+162   FFFF
+163   FFFF
+164   FFFF
+165   FFFF
+166   FFFF
+167   FFFF
+168   FFFF
+169   FFFF
+170   FFFF
+171   FFFF
+172   FFFF
+173   FFFF
+174   FFFF
+175   FFFF
+176   FFFF
+177   FFFF
+178   FFFF
+179   FFFF
+180   FFFF
+181   FFFF
+182   FFFF
+183   FFFF
+184   FFFF
+185   FFFF
+186   FFFF
+187   FFFF
+188   FFFF
+189   FFFF
+190   FFFF
+191   FFFF
+192   FFFF
+193   FFFF
+194   FFFF
+195   FFFF
+196   FFFF
+197   FFFF
+198   FFFF
+199   FFFF
+200   FFFF
+201   FFFF
+202   FFFF
+203   FFFF
+204   FFFF
+205   FFFF
+206   FFFF
+207   FFFF
+208   FFFF
+209   FFFF
+210   FFFF
+211   FFFF
+212   FFFF
+213   FFFF
+214   FFFF
+215   FFFF
+216   FFFF
+217   FFFF
+218   FFFF
+219   FFFF
+220   FFFF
+221   FFFF
+222   FFFF
+223   FFFF
+224   FFFF
+225   FFFF
+226   FFFF
+227   FFFF
+228   FFFF
+229   FFFF
+230   FFFF
+231   FFFF
+232   FFFF
+233   FFFF
+234   FFFF
+235   FFFF
+236   FFFF
+237   FFFF
+238   FFFF
+239   FFFF
+240   FFFF
+241   FFFF
+242   FFFF
+243   FFFF
+244   FFFF
+245   FFFF
+246   FFFF
+247   FFFF
+248   FFFF
+249   FFFF
+250   FFFF
+
+fileId: 3F007F105F3A4F24
+fileName: PUID [UAH]
+type: TR
+fileSize: 2
+sfi: 0D
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+0000
+
+fileId: 3F007F105F3A4F23
+fileName: CC
+type: TR
+fileSize: 2
+sfi: 0C
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+0000
+
+fileId: 3F007F105F3A4F22
+fileName: PSC
+type: TR
+fileSize: 4
+sfi: 0B
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+00000000
+
+fileId: 3F007F105F3A4F3D
+fileName: CCP1
+type: LF
+recNb: 5
+recSize: 15
+fileSize: 75
+sfi: 09
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F105F3A4F4C
+fileName: GAS
+type: LF
+recNb: 5
+recSize: 14
+fileSize: 70
+sfi: 16
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F105F3A4F4B
+fileName: AAS
+type: LF
+recNb: 5
+recSize: 14
+fileSize: 70
+sfi: 15
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F105F3A4F4A
+fileName: EXT1
+type: LF
+recNb: 3
+recSize: 13
+fileSize: 39
+sfi: 03
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     00FFFFFFFFFFFFFFFFFFFFFFFF
+2     00FFFFFFFFFFFFFFFFFFFFFFFF
+3     00FFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F105F3A4F50
+fileName: EMAIL
+type: LF
+recNb: 40
+recSize: 52
+fileSize: 2080
+sfi: 0E
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+6     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+7     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+8     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+9     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+10    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+11    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+12    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+13    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+14    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+15    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+16    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+17    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+18    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+19    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+20    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+21    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+22    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+23    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+24    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+25    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+26    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+27    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+28    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+29    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+30    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+31    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+32    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+33    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+34    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+35    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+36    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+37    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+38    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+39    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+40    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F105F3A4F61
+fileName: ANR
+type: LF
+recNb: 250
+recSize: 17
+fileSize: 4250
+sfi: 06
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+6     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+7     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+8     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+9     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+10    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+11    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+12    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+13    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+14    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+15    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+16    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+17    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+18    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+19    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+20    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+21    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+22    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+23    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+24    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+25    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+26    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+27    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+28    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+29    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+30    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+31    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+32    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+33    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+34    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+35    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+36    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+37    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+38    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+39    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+40    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+41    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+42    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+43    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+44    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+45    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+46    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+47    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+48    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+49    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+50    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+51    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+52    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+53    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+54    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+55    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+56    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+57    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+58    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+59    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+60    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+61    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+62    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+63    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+64    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+65    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+66    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+67    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+68    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+69    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+70    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+71    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+72    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+73    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+74    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+75    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+76    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+77    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+78    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+79    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+80    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+81    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+82    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+83    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+84    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+85    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+86    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+87    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+88    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+89    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+90    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+91    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+92    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+93    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+94    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+95    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+96    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+97    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+98    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+99    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+100   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+101   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+102   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+103   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+104   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+105   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+106   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+107   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+108   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+109   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+110   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+111   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+112   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+113   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+114   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+115   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+116   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+117   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+118   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+119   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+120   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+121   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+122   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+123   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+124   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+125   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+126   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+127   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+128   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+129   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+130   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+131   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+132   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+133   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+134   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+135   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+136   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+137   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+138   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+139   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+140   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+141   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+142   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+143   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+144   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+145   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+146   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+147   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+148   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+149   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+150   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+151   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+152   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+153   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+154   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+155   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+156   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+157   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+158   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+159   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+160   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+161   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+162   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+163   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+164   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+165   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+166   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+167   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+168   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+169   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+170   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+171   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+172   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+173   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+174   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+175   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+176   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+177   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+178   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+179   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+180   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+181   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+182   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+183   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+184   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+185   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+186   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+187   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+188   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+189   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+190   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+191   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+192   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+193   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+194   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+195   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+196   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+197   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+198   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+199   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+200   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+201   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+202   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+203   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+204   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+205   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+206   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+207   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+208   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+209   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+210   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+211   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+212   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+213   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+214   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+215   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+216   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+217   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+218   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+219   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+220   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+221   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+222   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+223   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+224   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+225   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+226   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+227   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+228   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+229   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+230   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+231   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+232   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+233   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+234   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+235   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+236   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+237   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+238   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+239   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+240   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+241   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+242   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+243   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+244   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+245   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+246   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+247   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+248   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+249   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+250   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F105F3A4F21
+fileName: UID1
+type: LF
+recNb: 250
+recSize: 2
+fileSize: 500
+sfi: 0A
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     0000
+2     0000
+3     0000
+4     0000
+5     0000
+6     0000
+7     0000
+8     0000
+9     0000
+10    0000
+11    0000
+12    0000
+13    0000
+14    0000
+15    0000
+16    0000
+17    0000
+18    0000
+19    0000
+20    0000
+21    0000
+22    0000
+23    0000
+24    0000
+25    0000
+26    0000
+27    0000
+28    0000
+29    0000
+30    0000
+31    0000
+32    0000
+33    0000
+34    0000
+35    0000
+36    0000
+37    0000
+38    0000
+39    0000
+40    0000
+41    0000
+42    0000
+43    0000
+44    0000
+45    0000
+46    0000
+47    0000
+48    0000
+49    0000
+50    0000
+51    0000
+52    0000
+53    0000
+54    0000
+55    0000
+56    0000
+57    0000
+58    0000
+59    0000
+60    0000
+61    0000
+62    0000
+63    0000
+64    0000
+65    0000
+66    0000
+67    0000
+68    0000
+69    0000
+70    0000
+71    0000
+72    0000
+73    0000
+74    0000
+75    0000
+76    0000
+77    0000
+78    0000
+79    0000
+80    0000
+81    0000
+82    0000
+83    0000
+84    0000
+85    0000
+86    0000
+87    0000
+88    0000
+89    0000
+90    0000
+91    0000
+92    0000
+93    0000
+94    0000
+95    0000
+96    0000
+97    0000
+98    0000
+99    0000
+100   0000
+101   0000
+102   0000
+103   0000
+104   0000
+105   0000
+106   0000
+107   0000
+108   0000
+109   0000
+110   0000
+111   0000
+112   0000
+113   0000
+114   0000
+115   0000
+116   0000
+117   0000
+118   0000
+119   0000
+120   0000
+121   0000
+122   0000
+123   0000
+124   0000
+125   0000
+126   0000
+127   0000
+128   0000
+129   0000
+130   0000
+131   0000
+132   0000
+133   0000
+134   0000
+135   0000
+136   0000
+137   0000
+138   0000
+139   0000
+140   0000
+141   0000
+142   0000
+143   0000
+144   0000
+145   0000
+146   0000
+147   0000
+148   0000
+149   0000
+150   0000
+151   0000
+152   0000
+153   0000
+154   0000
+155   0000
+156   0000
+157   0000
+158   0000
+159   0000
+160   0000
+161   0000
+162   0000
+163   0000
+164   0000
+165   0000
+166   0000
+167   0000
+168   0000
+169   0000
+170   0000
+171   0000
+172   0000
+173   0000
+174   0000
+175   0000
+176   0000
+177   0000
+178   0000
+179   0000
+180   0000
+181   0000
+182   0000
+183   0000
+184   0000
+185   0000
+186   0000
+187   0000
+188   0000
+189   0000
+190   0000
+191   0000
+192   0000
+193   0000
+194   0000
+195   0000
+196   0000
+197   0000
+198   0000
+199   0000
+200   0000
+201   0000
+202   0000
+203   0000
+204   0000
+205   0000
+206   0000
+207   0000
+208   0000
+209   0000
+210   0000
+211   0000
+212   0000
+213   0000
+214   0000
+215   0000
+216   0000
+217   0000
+218   0000
+219   0000
+220   0000
+221   0000
+222   0000
+223   0000
+224   0000
+225   0000
+226   0000
+227   0000
+228   0000
+229   0000
+230   0000
+231   0000
+232   0000
+233   0000
+234   0000
+235   0000
+236   0000
+237   0000
+238   0000
+239   0000
+240   0000
+241   0000
+242   0000
+243   0000
+244   0000
+245   0000
+246   0000
+247   0000
+248   0000
+249   0000
+250   0000
+
+fileId: 3F007F105F3A4F26
+fileName: GRP1
+type: LF
+recNb: 250
+recSize: 5
+fileSize: 1250
+sfi: 05
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     0000000000
+2     0000000000
+3     0000000000
+4     0000000000
+5     0000000000
+6     0000000000
+7     0000000000
+8     0000000000
+9     0000000000
+10    0000000000
+11    0000000000
+12    0000000000
+13    0000000000
+14    0000000000
+15    0000000000
+16    0000000000
+17    0000000000
+18    0000000000
+19    0000000000
+20    0000000000
+21    0000000000
+22    0000000000
+23    0000000000
+24    0000000000
+25    0000000000
+26    0000000000
+27    0000000000
+28    0000000000
+29    0000000000
+30    0000000000
+31    0000000000
+32    0000000000
+33    0000000000
+34    0000000000
+35    0000000000
+36    0000000000
+37    0000000000
+38    0000000000
+39    0000000000
+40    0000000000
+41    0000000000
+42    0000000000
+43    0000000000
+44    0000000000
+45    0000000000
+46    0000000000
+47    0000000000
+48    0000000000
+49    0000000000
+50    0000000000
+51    0000000000
+52    0000000000
+53    0000000000
+54    0000000000
+55    0000000000
+56    0000000000
+57    0000000000
+58    0000000000
+59    0000000000
+60    0000000000
+61    0000000000
+62    0000000000
+63    0000000000
+64    0000000000
+65    0000000000
+66    0000000000
+67    0000000000
+68    0000000000
+69    0000000000
+70    0000000000
+71    0000000000
+72    0000000000
+73    0000000000
+74    0000000000
+75    0000000000
+76    0000000000
+77    0000000000
+78    0000000000
+79    0000000000
+80    0000000000
+81    0000000000
+82    0000000000
+83    0000000000
+84    0000000000
+85    0000000000
+86    0000000000
+87    0000000000
+88    0000000000
+89    0000000000
+90    0000000000
+91    0000000000
+92    0000000000
+93    0000000000
+94    0000000000
+95    0000000000
+96    0000000000
+97    0000000000
+98    0000000000
+99    0000000000
+100   0000000000
+101   0000000000
+102   0000000000
+103   0000000000
+104   0000000000
+105   0000000000
+106   0000000000
+107   0000000000
+108   0000000000
+109   0000000000
+110   0000000000
+111   0000000000
+112   0000000000
+113   0000000000
+114   0000000000
+115   0000000000
+116   0000000000
+117   0000000000
+118   0000000000
+119   0000000000
+120   0000000000
+121   0000000000
+122   0000000000
+123   0000000000
+124   0000000000
+125   0000000000
+126   0000000000
+127   0000000000
+128   0000000000
+129   0000000000
+130   0000000000
+131   0000000000
+132   0000000000
+133   0000000000
+134   0000000000
+135   0000000000
+136   0000000000
+137   0000000000
+138   0000000000
+139   0000000000
+140   0000000000
+141   0000000000
+142   0000000000
+143   0000000000
+144   0000000000
+145   0000000000
+146   0000000000
+147   0000000000
+148   0000000000
+149   0000000000
+150   0000000000
+151   0000000000
+152   0000000000
+153   0000000000
+154   0000000000
+155   0000000000
+156   0000000000
+157   0000000000
+158   0000000000
+159   0000000000
+160   0000000000
+161   0000000000
+162   0000000000
+163   0000000000
+164   0000000000
+165   0000000000
+166   0000000000
+167   0000000000
+168   0000000000
+169   0000000000
+170   0000000000
+171   0000000000
+172   0000000000
+173   0000000000
+174   0000000000
+175   0000000000
+176   0000000000
+177   0000000000
+178   0000000000
+179   0000000000
+180   0000000000
+181   0000000000
+182   0000000000
+183   0000000000
+184   0000000000
+185   0000000000
+186   0000000000
+187   0000000000
+188   0000000000
+189   0000000000
+190   0000000000
+191   0000000000
+192   0000000000
+193   0000000000
+194   0000000000
+195   0000000000
+196   0000000000
+197   0000000000
+198   0000000000
+199   0000000000
+200   0000000000
+201   0000000000
+202   0000000000
+203   0000000000
+204   0000000000
+205   0000000000
+206   0000000000
+207   0000000000
+208   0000000000
+209   0000000000
+210   0000000000
+211   0000000000
+212   0000000000
+213   0000000000
+214   0000000000
+215   0000000000
+216   0000000000
+217   0000000000
+218   0000000000
+219   0000000000
+220   0000000000
+221   0000000000
+222   0000000000
+223   0000000000
+224   0000000000
+225   0000000000
+226   0000000000
+227   0000000000
+228   0000000000
+229   0000000000
+230   0000000000
+231   0000000000
+232   0000000000
+233   0000000000
+234   0000000000
+235   0000000000
+236   0000000000
+237   0000000000
+238   0000000000
+239   0000000000
+240   0000000000
+241   0000000000
+242   0000000000
+243   0000000000
+244   0000000000
+245   0000000000
+246   0000000000
+247   0000000000
+248   0000000000
+249   0000000000
+250   0000000000
+
+fileId: 3F007F105F3A4F69
+fileName: PBC
+type: LF
+recNb: 250
+recSize: 2
+fileSize: 500
+sfi: 04
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     0000
+2     0000
+3     0000
+4     0000
+5     0000
+6     0000
+7     0000
+8     0000
+9     0000
+10    0000
+11    0000
+12    0000
+13    0000
+14    0000
+15    0000
+16    0000
+17    0000
+18    0000
+19    0000
+20    0000
+21    0000
+22    0000
+23    0000
+24    0000
+25    0000
+26    0000
+27    0000
+28    0000
+29    0000
+30    0000
+31    0000
+32    0000
+33    0000
+34    0000
+35    0000
+36    0000
+37    0000
+38    0000
+39    0000
+40    0000
+41    0000
+42    0000
+43    0000
+44    0000
+45    0000
+46    0000
+47    0000
+48    0000
+49    0000
+50    0000
+51    0000
+52    0000
+53    0000
+54    0000
+55    0000
+56    0000
+57    0000
+58    0000
+59    0000
+60    0000
+61    0000
+62    0000
+63    0000
+64    0000
+65    0000
+66    0000
+67    0000
+68    0000
+69    0000
+70    0000
+71    0000
+72    0000
+73    0000
+74    0000
+75    0000
+76    0000
+77    0000
+78    0000
+79    0000
+80    0000
+81    0000
+82    0000
+83    0000
+84    0000
+85    0000
+86    0000
+87    0000
+88    0000
+89    0000
+90    0000
+91    0000
+92    0000
+93    0000
+94    0000
+95    0000
+96    0000
+97    0000
+98    0000
+99    0000
+100   0000
+101   0000
+102   0000
+103   0000
+104   0000
+105   0000
+106   0000
+107   0000
+108   0000
+109   0000
+110   0000
+111   0000
+112   0000
+113   0000
+114   0000
+115   0000
+116   0000
+117   0000
+118   0000
+119   0000
+120   0000
+121   0000
+122   0000
+123   0000
+124   0000
+125   0000
+126   0000
+127   0000
+128   0000
+129   0000
+130   0000
+131   0000
+132   0000
+133   0000
+134   0000
+135   0000
+136   0000
+137   0000
+138   0000
+139   0000
+140   0000
+141   0000
+142   0000
+143   0000
+144   0000
+145   0000
+146   0000
+147   0000
+148   0000
+149   0000
+150   0000
+151   0000
+152   0000
+153   0000
+154   0000
+155   0000
+156   0000
+157   0000
+158   0000
+159   0000
+160   0000
+161   0000
+162   0000
+163   0000
+164   0000
+165   0000
+166   0000
+167   0000
+168   0000
+169   0000
+170   0000
+171   0000
+172   0000
+173   0000
+174   0000
+175   0000
+176   0000
+177   0000
+178   0000
+179   0000
+180   0000
+181   0000
+182   0000
+183   0000
+184   0000
+185   0000
+186   0000
+187   0000
+188   0000
+189   0000
+190   0000
+191   0000
+192   0000
+193   0000
+194   0000
+195   0000
+196   0000
+197   0000
+198   0000
+199   0000
+200   0000
+201   0000
+202   0000
+203   0000
+204   0000
+205   0000
+206   0000
+207   0000
+208   0000
+209   0000
+210   0000
+211   0000
+212   0000
+213   0000
+214   0000
+215   0000
+216   0000
+217   0000
+218   0000
+219   0000
+220   0000
+221   0000
+222   0000
+223   0000
+224   0000
+225   0000
+226   0000
+227   0000
+228   0000
+229   0000
+230   0000
+231   0000
+232   0000
+233   0000
+234   0000
+235   0000
+236   0000
+237   0000
+238   0000
+239   0000
+240   0000
+241   0000
+242   0000
+243   0000
+244   0000
+245   0000
+246   0000
+247   0000
+248   0000
+249   0000
+250   0000
+
+fileId: 3F007F105F3A4F3A
+fileName: ADN1
+type: LF
+recNb: 250
+recSize: 28
+fileSize: 7000
+sfi: 02
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+6     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+7     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+8     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+9     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+10    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+11    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+12    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+13    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+14    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+15    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+16    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+17    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+18    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+19    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+20    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+21    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+22    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+23    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+24    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+25    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+26    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+27    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+28    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+29    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+30    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+31    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+32    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+33    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+34    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+35    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+36    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+37    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+38    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+39    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+40    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+41    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+42    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+43    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+44    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+45    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+46    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+47    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+48    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+49    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+50    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+51    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+52    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+53    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+54    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+55    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+56    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+57    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+58    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+59    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+60    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+61    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+62    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+63    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+64    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+65    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+66    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+67    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+68    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+69    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+70    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+71    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+72    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+73    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+74    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+75    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+76    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+77    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+78    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+79    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+80    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+81    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+82    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+83    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+84    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+85    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+86    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+87    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+88    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+89    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+90    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+91    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+92    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+93    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+94    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+95    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+96    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+97    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+98    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+99    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+100   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+101   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+102   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+103   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+104   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+105   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+106   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+107   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+108   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+109   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+110   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+111   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+112   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+113   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+114   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+115   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+116   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+117   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+118   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+119   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+120   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+121   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+122   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+123   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+124   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+125   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+126   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+127   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+128   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+129   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+130   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+131   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+132   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+133   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+134   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+135   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+136   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+137   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+138   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+139   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+140   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+141   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+142   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+143   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+144   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+145   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+146   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+147   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+148   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+149   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+150   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+151   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+152   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+153   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+154   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+155   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+156   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+157   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+158   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+159   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+160   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+161   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+162   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+163   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+164   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+165   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+166   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+167   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+168   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+169   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+170   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+171   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+172   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+173   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+174   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+175   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+176   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+177   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+178   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+179   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+180   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+181   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+182   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+183   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+184   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+185   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+186   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+187   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+188   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+189   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+190   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+191   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+192   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+193   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+194   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+195   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+196   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+197   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+198   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+199   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+200   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+201   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+202   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+203   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+204   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+205   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+206   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+207   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+208   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+209   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+210   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+211   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+212   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+213   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+214   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+215   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+216   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+217   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+218   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+219   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+220   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+221   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+222   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+223   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+224   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+225   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+226   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+227   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+228   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+229   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+230   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+231   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+232   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+233   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+234   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+235   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+236   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+237   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+238   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+239   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+240   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+241   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+242   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+243   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+244   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+245   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+246   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+247   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+248   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+249   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+250   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F105F3A4F30
+fileName: PBR
+type: LF
+recNb: 1
+recSize: 128
+fileSize: 128
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+1     A819C0034F3A02C5034F6904C1034F2507C6034F2605C9034F210AA90AC4034F6106CA034F500EAA14C2034F4A03C7034F4B15C8034F4C16CB034F3D09FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F105FFF
+fileName: DF TIM (Test)
+type: DF
+accActivate: 
+accDeactivate: 
+accDeleteSelf: Never
+accCreateDF: ADM2
+accCreateEF: ADM2
+accDeleteChild: 
+
+fileId: 3F007F105FFF1F0C
+fileName: LA
+type: LF
+recNb: 50
+recSize: 62
+fileSize: 3100
+sfi: 0C
+accActivate: ADM2
+accDeactivate: ADM2
+accDeleteSelf: 
+accRead: ADM2
+accUpdate: ADM2
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+6     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+7     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+8     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+9     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+10    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+11    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+12    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+13    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+14    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+15    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+16    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+17    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+18    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+19    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+20    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+21    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+22    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+23    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+24    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+25    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+26    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+27    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+28    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+29    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+30    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+31    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+32    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+33    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+34    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+35    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+36    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+37    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+38    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+39    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+40    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+41    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+42    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+43    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+44    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+45    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+46    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+47    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+48    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+49    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+50    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F105FFF1F0D
+fileName: LAindex
+type: LF
+recNb: 50
+recSize: 13
+fileSize: 650
+sfi: 0D
+accActivate: ADM2
+accDeactivate: ADM2
+accDeleteSelf: 
+accRead: ADM2
+accUpdate: ADM2
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFF
+4     FFFFFFFFFFFFFFFFFFFFFFFFFF
+5     FFFFFFFFFFFFFFFFFFFFFFFFFF
+6     FFFFFFFFFFFFFFFFFFFFFFFFFF
+7     FFFFFFFFFFFFFFFFFFFFFFFFFF
+8     FFFFFFFFFFFFFFFFFFFFFFFFFF
+9     FFFFFFFFFFFFFFFFFFFFFFFFFF
+10    FFFFFFFFFFFFFFFFFFFFFFFFFF
+11    FFFFFFFFFFFFFFFFFFFFFFFFFF
+12    FFFFFFFFFFFFFFFFFFFFFFFFFF
+13    FFFFFFFFFFFFFFFFFFFFFFFFFF
+14    FFFFFFFFFFFFFFFFFFFFFFFFFF
+15    FFFFFFFFFFFFFFFFFFFFFFFFFF
+16    FFFFFFFFFFFFFFFFFFFFFFFFFF
+17    FFFFFFFFFFFFFFFFFFFFFFFFFF
+18    FFFFFFFFFFFFFFFFFFFFFFFFFF
+19    FFFFFFFFFFFFFFFFFFFFFFFFFF
+20    FFFFFFFFFFFFFFFFFFFFFFFFFF
+21    FFFFFFFFFFFFFFFFFFFFFFFFFF
+22    FFFFFFFFFFFFFFFFFFFFFFFFFF
+23    FFFFFFFFFFFFFFFFFFFFFFFFFF
+24    FFFFFFFFFFFFFFFFFFFFFFFFFF
+25    FFFFFFFFFFFFFFFFFFFFFFFFFF
+26    FFFFFFFFFFFFFFFFFFFFFFFFFF
+27    FFFFFFFFFFFFFFFFFFFFFFFFFF
+28    FFFFFFFFFFFFFFFFFFFFFFFFFF
+29    FFFFFFFFFFFFFFFFFFFFFFFFFF
+30    FFFFFFFFFFFFFFFFFFFFFFFFFF
+31    FFFFFFFFFFFFFFFFFFFFFFFFFF
+32    FFFFFFFFFFFFFFFFFFFFFFFFFF
+33    FFFFFFFFFFFFFFFFFFFFFFFFFF
+34    FFFFFFFFFFFFFFFFFFFFFFFFFF
+35    FFFFFFFFFFFFFFFFFFFFFFFFFF
+36    FFFFFFFFFFFFFFFFFFFFFFFFFF
+37    FFFFFFFFFFFFFFFFFFFFFFFFFF
+38    FFFFFFFFFFFFFFFFFFFFFFFFFF
+39    FFFFFFFFFFFFFFFFFFFFFFFFFF
+40    FFFFFFFFFFFFFFFFFFFFFFFFFF
+41    FFFFFFFFFFFFFFFFFFFFFFFFFF
+42    FFFFFFFFFFFFFFFFFFFFFFFFFF
+43    FFFFFFFFFFFFFFFFFFFFFFFFFF
+44    FFFFFFFFFFFFFFFFFFFFFFFFFF
+45    FFFFFFFFFFFFFFFFFFFFFFFFFF
+46    FFFFFFFFFFFFFFFFFFFFFFFFFF
+47    FFFFFFFFFFFFFFFFFFFFFFFFFF
+48    FFFFFFFFFFFFFFFFFFFFFFFFFF
+49    FFFFFFFFFFFFFFFFFFFFFFFFFF
+50    FFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F20
+fileName: GSM
+type: DF
+accActivate: 
+accDeactivate: 
+accDeleteSelf: Never
+accCreateDF: ADM1
+accCreateEF: ADM1
+accDeleteChild: 
+
+fileId: 3F007F206F05
+fileName: LP
+type: TR
+fileSize: 4
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+0201FFFF
+
+fileId: 3F007F206F07
+fileName: IMSI
+type: Link
+linkto: 3F007FF06F07
+accActivate: GPIN1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F20
+fileName: Kc [UAH]
+type: Link
+linkto: 3F007FF05F3B4F20
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F30
+fileName: PLMNsel
+type: TR
+fileSize: 105
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+32F23002F60182F45032F02032F80242F41902F81062F21002F21012F60372F22072F41172F09972F81202F46142F22062F03062F86022F60132F11092F31412F47042F01022F82082F61032F40332F433130094130062130052130042130002130072130013130061
+
+fileId: 3F007F206F38
+fileName: SST
+type: TR
+fileSize: 15
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+FF30FFFF0F00FF03000C3CCF000000
+
+fileId: 3F007F206F52
+fileName: KcGPRS [UAH]
+type: Link
+linkto: 3F007FF05F3B4F52
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F74
+fileName: BCCH [UAH]
+type: TR
+fileSize: 16
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F206F7E
+fileName: LOCI [UAH]
+type: Link
+linkto: 3F007FF06F7E
+accActivate: GPIN1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206FAE
+fileName: PHASE
+type: TR
+fileSize: 1
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+03
+
+fileId: 3F007F206F06
+fileName: ARR
+type: LF
+recNb: 11
+recSize: 27
+fileSize: 297
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: ADM1
+accIncrease: 
+accResize: ADM1
+content:
+1     800101900080011AA40683010A9501088401D4A40683010A950108
+2     800103A40683010A9501088401D4A40683010A950108FFFFFFFFFF
+3     800111A40683010195010880010AA40683010A950108FFFFFFFFFF
+4     800103A406830101950108800118A40683010A950108FFFFFFFFFF
+5     800113A406830101950108800108A40683010A950108FFFFFFFFFF
+6     8001019000800102A406830101950108800118A40683010A950108
+7     800101900080011AA40683010A950108FFFFFFFFFFFFFFFFFFFFFF
+8     800101A40683010195010880011AA40683010A950108FFFFFFFFFF
+9     80011BA40683010A950108FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+10    800102A40683010E950108840176A40683010E950108FFFFFFFFFF
+11    80011BA40683010B950108FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F206F54
+fileName: SUME
+type: TR
+fileSize: 22
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: ADM1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+0500FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F20C112
+fileName: Key_K
+type: Link
+linkto: 3F007FF0C112
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: Never
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F31
+fileName: HPPLMN
+type: Link
+linkto: 3F007FF06F31
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F3E
+fileName: GID1
+type: Link
+linkto: 3F007FF06F3E
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F3F
+fileName: GID2
+type: Link
+linkto: 3F007FF06F3F
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F45
+fileName: CBMI
+type: Link
+linkto: 3F007FF06F45
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F46
+fileName: SPN
+type: Link
+linkto: 3F007FF06F46
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F48
+fileName: CBMID
+type: Link
+linkto: 3F007FF06F48
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F53
+fileName: LOCIGPRS
+type: Link
+linkto: 3F007FF06F73
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F78
+fileName: ACC
+type: Link
+linkto: 3F007FF06F78
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206FAD
+fileName: AD
+type: Link
+linkto: 3F007FF06FAD
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F7B
+fileName: FPLMN
+type: Link
+linkto: 3F007FF06F7B
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F20CF06
+fileName: ARR Proprietry Files: High Security
+type: LF
+recNb: 3
+recSize: 27
+fileSize: 81
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: Always
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+1     8001019000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     8001029700FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F20C111
+fileName: AkaConfParam
+type: Link
+linkto: 3F007FF0C111
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: Never
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F60
+fileName: PLMNwAcT
+type: Link
+linkto: 3F007FF06F60
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F62
+fileName: HPLMNwAcT
+type: Link
+linkto: 3F007FF06F62
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+
+fileId: 3F007F206F63
+fileName: CPBCCH
+type: TR
+fileSize: 20
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007F20C126
+fileName: Milenage Parameters
+type: Link
+linkto: 3F007FF0C126
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: Never
+accIncrease: 
+accResize: 
+
+fileId: 3F007FBB
+fileName: ADM
+type: DF
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accCreateDF: 
+accCreateEF: 
+accDeleteChild: 
+
+fileId: 3F007FBBC001
+fileName: FileSysConf 
+type: TR
+fileSize: 1
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+71
+
+fileId: 3F007FBBC002
+fileName: 2G Conf
+type: TR
+fileSize: 2
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+0533
+
+fileId: 3F007FBB6F35
+fileName: EFCAT_TP Configuration
+type: TR
+fileSize: 14
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+3501020102000F0102000A010100
+
+fileId: 3F007FBB6F36
+fileName: EFCAT_TP Default Parameters
+type: TR
+fileSize: 27
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+05000500050005003507020000030000020D0354696D0D0354696D
+
+fileId: 3F007FBC
+fileName: ADS
+type: DF
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accCreateDF: 
+accCreateEF: 
+accDeleteChild: 
+
+fileId: 3F007FBCC012
+fileName: KeyConfiguration
+type: LF
+recNb: 7
+recSize: 11
+fileSize: 77
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+1     010100030A020301000000
+2     810101030A040500000001
+3     0A01050A00060000010000
+4     0B01050A00070000020000
+5     0F010503000100FFFFFFFF
+6     0C01050A00080000040000
+7     0E010503000900FFFFFFFF
+
+fileId: 3F007FBCC013
+fileName: KeyStatus
+type: LF
+recNb: 7
+recSize: 4
+fileSize: 28
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+1     FF
+2     00FF030A
+3     00FF0A00
+4     00FF0A00
+5     00060300
+6     00FF0A00
+7     00FF0300
+
+fileId: 3F007FBCC011
+fileName: KeyTranslationTable
+type: LF
+recNb: 7
+recSize: 4
+fileSize: 28
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+1     01010001
+2     81021502
+3     0A0A1A05
+4     0B0B160D
+5     0F12190A
+6     0C0C1707
+7     0E151804
+
+fileId: 3F007FBCC010
+fileName: KeyValue
+type: LF
+recNb: 9
+recSize: 8
+fileSize: 72
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+1     FF
+2     FF
+3     FF
+4     FF
+5     FF
+6     FF
+7     FF
+8     FF
+9     FF
+
+fileId: 3F007FF0
+fileName: 3GPP USIM
+type: DF
+accActivate: 
+accDeactivate: 
+accDeleteSelf: Never
+accCreateDF: ADM1
+accCreateEF: ADM1
+accDeleteChild: 
+
+fileId: 3F007FF06F07
+fileName: IMSI
+type: TR
+fileSize: 9
+sfi: 07
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+FF
+
+fileId: 3F007FF06F08
+fileName: Keys [UAH]
+type: TR
+fileSize: 33
+sfi: 08
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+07FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F09
+fileName: KeysPS [UAH]
+type: TR
+fileSize: 33
+sfi: 09
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+07FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F38
+fileName: UST
+type: TR
+fileSize: 12
+sfi: 04
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+0E6A1FBC6304007C0200DF00
+
+fileId: 3F007FF06F4F
+fileName: CCP2
+type: LF
+recNb: 5
+recSize: 15
+fileSize: 75
+sfi: 16
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F56
+fileName: EST
+type: TR
+fileSize: 1
+sfi: 05
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: LPIN1
+accIncrease: 
+accResize: 
+content:
+00
+
+fileId: 3F007FF06F5B
+fileName: START-HFN [UAH]
+type: TR
+fileSize: 6
+sfi: 0F
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+F00000F00000
+
+fileId: 3F007FF06F5C
+fileName: THRESHOLD
+type: TR
+fileSize: 3
+sfi: 10
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+FFFFFF
+
+fileId: 3F007FF06FC3
+fileName: Hiddenkey
+type: TR
+fileSize: 4
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFF
+
+fileId: 3F007FF06FC4
+fileName: NETPAR [UAH]
+type: TR
+fileSize: 256
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF0C112
+fileName: Key_K
+type: TR
+fileSize: 16
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: Never
+accIncrease: 
+accResize: 
+content:
+FF
+
+fileId: 3F007FF06F31
+fileName: HPPLMN
+type: TR
+fileSize: 1
+sfi: 12
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+FF
+
+fileId: 3F007FF06F3E
+fileName: GID1
+type: TR
+fileSize: 9
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFF000FFFFF
+
+fileId: 3F007FF06F3F
+fileName: GID2
+type: TR
+fileSize: 9
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F45
+fileName: CBMI
+type: TR
+fileSize: 4
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFF
+
+fileId: 3F007FF06F46
+fileName: SPN
+type: TR
+fileSize: 17
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F48
+fileName: CBMID
+type: TR
+fileSize: 6
+sfi: 0E
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+1001FFFFFFFF
+
+fileId: 3F007FF06F73
+fileName: PSLOCI [UAH]
+type: TR
+fileSize: 14
+sfi: 0C
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFF22F2100000FF01
+
+fileId: 3F007FF06F78
+fileName: ACC
+type: TR
+fileSize: 2
+sfi: 06
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+FF
+
+fileId: 3F007FF06FAD
+fileName: AD
+type: TR
+fileSize: 4
+sfi: 03
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+00000002
+
+fileId: 3F007FF06F7B
+fileName: FPLMN
+type: TR
+fileSize: 12
+sfi: 0D
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F06
+fileName: ARR
+type: LF
+recNb: 12
+recSize: 34
+fileSize: 408
+sfi: 17
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: ADM1
+accIncrease: 
+accResize: ADM1
+content:
+1     800101900080011AA40683010A9501088401D4A40683010A950108FFFFFFFFFFFFFF
+2     800106A40683010A9501088001409700FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     800103A406830101950108800118A40683010A950108FFFFFFFFFFFFFFFFFFFFFFFF
+4     80011BA40683010A950108FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     800101A40683010195010880011AA40683010A950108FFFFFFFFFFFFFFFFFFFFFFFF
+6     800101900080011AA40683010A950108FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+7     800101A406830101950108800102A406830181950108800118A40683010A950108FF
+8     800102A40683010E950108840176A40683010E950108FFFFFFFFFFFFFFFFFFFFFFFF
+9     800103A40683010E950108FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+10    8001019000800102A406830101950108800118A40683010A950108FFFFFFFFFFFFFF
+11    800103A406830101950108800118A40683010A950108FFFFFFFFFFFFFFFFFFFFFFFF
+12    800101A40683010195010880011AA40683010A950108FFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F05
+fileName: LI
+type: TR
+fileSize: 8
+sfi: 02
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+6974656EFFFFFFFF
+
+fileId: 3F007FF06F3B
+fileName: FDN USIM
+type: LF
+recNb: 50
+recSize: 28
+fileSize: 1400
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: LPIN1
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+6     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+7     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+8     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+9     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+10    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+11    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+12    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+13    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+14    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+15    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+16    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+17    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+18    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+19    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+20    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+21    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+22    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+23    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+24    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+25    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+26    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+27    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+28    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+29    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+30    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+31    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+32    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+33    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+34    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+35    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+36    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+37    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+38    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+39    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+40    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+41    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+42    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+43    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+44    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+45    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+46    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+47    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+48    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+49    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+50    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F3C
+fileName: SMS
+type: LF
+recNb: 30
+recSize: 176
+fileSize: 5280
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+6     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+7     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+8     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+9     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+10    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+11    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+12    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+13    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+14    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+15    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+16    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+17    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+18    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+19    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+20    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+21    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+22    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+23    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+24    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+25    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+26    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+27    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+28    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+29    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+30    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F40
+fileName: MSISDN USIM
+type: LF
+recNb: 1
+recSize: 28
+fileSize: 28
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     FF
+
+fileId: 3F007FF06F42
+fileName: SMSP
+type: LF
+recNb: 2
+recSize: 42
+fileSize: 84
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     536572762043656E7420416464FFFDFFFFFFFFFFFFFFFFFFFFFFFF0791933385190100FFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F43
+fileName: SMSS
+type: TR
+fileSize: 2
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFF
+
+fileId: 3F007FF06F4B
+fileName: EXT2
+type: LF
+recNb: 3
+recSize: 13
+fileSize: 39
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: LPIN1
+accIncrease: 
+accResize: 
+content:
+1     00FFFFFFFFFFFFFFFFFFFFFFFF
+2     00FFFFFFFFFFFFFFFFFFFFFFFF
+3     00FFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F49
+fileName: SDN
+type: LF
+recNb: 12
+recSize: 28
+fileSize: 336
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+6     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+7     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+8     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+9     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+10    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+11    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+12    FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F7E
+fileName: LOCI
+type: TR
+fileSize: 11
+sfi: 0B
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFF22F2100000FF01
+
+fileId: 3F007FF06FB7
+fileName: ECC USIM
+type: LF
+recNb: 2
+recSize: 20
+fileSize: 40
+sfi: 01
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: Always
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+1     11F2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF01
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06F62
+fileName: HPLMNwAcT
+type: TR
+fileSize: 20
+sfi: 13
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+22F210C080FFFFFF0000FFFFFF0000FFFFFF0000
+
+fileId: 3F007FF06F60
+fileName: PLMNwAcT
+type: TR
+fileSize: 175
+sfi: 0A
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+32F230C08002F601C08082F450C08032F020C08032F802C08042F419C08002F810C08062F210C08002F210C08012F603C08072F220808072F411C08072F099C08072F812C08002F461C08042F220C08062F030C08062F860C08022F601C08032F110C08092F314C08012F470C08042F010C08022F820C08082F610C08032F403C08032F433C080130094C080130062C080130052C080130042C080130002C080130072C080130013C080130061C080
+
+fileId: 3F007FF0CF06
+fileName: ARR Proprietry Files: High Security
+type: LF
+recNb: 3
+recSize: 27
+fileSize: 81
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: Always
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+1     8001019000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     8001029700FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF0C111
+fileName: AkaConfParam
+type: TR
+fileSize: 3
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: Never
+accIncrease: 
+accResize: 
+content:
+410110
+
+fileId: 3F007FF0C11C
+fileName: SQN Data
+type: TR
+fileSize: 193
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: 
+accIncrease: 
+accResize: 
+content:
+00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+fileId: 3F007FF0C126
+fileName: Milenage Parameters
+type: TR
+fileSize: 101
+accActivate: 
+accDeactivate: 
+accDeleteSelf: 
+accRead: 
+accUpdate: Never
+accIncrease: 
+accResize: 
+content:
+FF
+
+fileId: 3F007FF06FE4
+fileName: EPSNSC
+type: LF
+recNb: 1
+recSize: 255
+fileSize: 255
+sfi: 18
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF06FE3
+fileName: EPSLOCI
+type: TR
+fileSize: 18
+sfi: 1E
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFFFFFFFFFFFF22F210000001
+
+fileId: 3F007FF05F3B
+fileName: GSM-ACCESS
+type: DF
+accActivate: 
+accDeactivate: 
+accDeleteSelf: Never
+accCreateDF: ADM1
+accCreateEF: ADM1
+accDeleteChild: 
+
+fileId: 3F007FF05F3B4F63
+fileName: CPBCCH [UAH]
+type: TR
+fileSize: 20
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF05F3B4F20
+fileName: Kc
+type: TR
+fileSize: 9
+sfi: 01
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFFFF07
+
+fileId: 3F007FF05F3B4F52
+fileName: KcGPRS
+type: TR
+fileSize: 9
+sfi: 02
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFFFF07
+
+fileId: 3F007FF05F40
+fileName: DF WLAN
+type: DF
+accActivate: 
+accDeactivate: 
+accDeleteSelf: Never
+accCreateDF: ADM1
+accCreateEF: ADM1
+accDeleteChild: 
+
+fileId: 3F007FF05F404F41
+fileName: Pseudo
+type: TR
+fileSize: 48
+sfi: 01
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF05F404F42
+fileName: UPLMNWLAN
+type: TR
+fileSize: 30
+sfi: 02
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF05F404F43
+fileName: OPLMNWLAN
+type: TR
+fileSize: 108
+sfi: 03
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+02F81012F47022F83082F63082F64022F60192F31412F60313006132F40102F20162F21032F23002F60182F41012F91042F41902F46102F40242F22092F52072F22062F03062F86032F01032F11042F01032F80217F60127F42027F43027F44027F24337F62037F020FFFFFF
+
+fileId: 3F007FF05F404F44
+fileName: UWSIDL-ST
+type: LF
+recNb: 15
+recSize: 31
+fileSize: 465
+sfi: 04
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+1     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+6     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+7     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+8     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+9     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+10    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+11    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+12    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+13    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+14    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+15    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF05F404F45
+fileName: OWSIDL
+type: LF
+recNb: 20
+recSize: 31
+fileSize: 620
+sfi: 05
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+1     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+2     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+3     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+4     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+5     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+6     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+7     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+8     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+9     00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+10    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+11    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+12    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+13    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+14    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+15    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+16    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+17    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+18    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+19    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+20    00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF05F404F46
+fileName: WRI
+type: TR
+fileSize: 48
+sfi: 06
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+fileId: 3F007FF05F404F47
+fileName: HWSIDL
+type: LF
+recNb: 15
+recSize: 2
+fileSize: 30
+sfi: 07
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+1     00FF
+2     FFFF
+3     FFFF
+4     FFFF
+5     FFFF
+6     FFFF
+7     FFFF
+8     FFFF
+9     FFFF
+10    FFFF
+11    FFFF
+12    FFFF
+13    FFFF
+14    FFFF
+15    FFFF
+
+fileId: 3F007FF05F404F48
+fileName: WEHPLMNPI
+type: TR
+fileSize: 1
+sfi: 08
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+00
+
+fileId: 3F007FF05F404F49
+fileName: WHPI
+type: TR
+fileSize: 1
+sfi: 09
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+00
+
+fileId: 3F007FF05F404F4A
+fileName: WLRPLMN
+type: TR
+fileSize: 3
+sfi: 0A
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: GPIN1
+accIncrease: 
+accResize: 
+content:
+FFFFFF
+
+fileId: 3F007FF05F404F4B
+fileName: HPLMNDAI
+type: TR
+fileSize: 1
+sfi: 0B
+accActivate: ADM1
+accDeactivate: ADM1
+accDeleteSelf: 
+accRead: GPIN1
+accUpdate: ADM1
+accIncrease: 
+accResize: 
+content:
+00

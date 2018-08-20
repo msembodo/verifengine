@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<verifConfig chv1Disabled="false" hexRecordNumber="false" hexSfi="true" useAdm2="false" useAdm3="false" useAdm4="false" useVariablesTxt="false">
+    <codeAdm1>933F57845F706921</codeAdm1>
+    <codeAdm2>3232323232323232</codeAdm2>
+    <codeAdm3>933F57845F706921</codeAdm3>
+    <codeAdm4>933F57845F706921</codeAdm4>
+    <codeChv1>30303030FFFFFFFF</codeChv1>
+    <codeChv2>31313131FFFFFFFF</codeChv2>
+    <customApdu>
+        <verify2g>
+            <verify2gAdm1 p1="00" p2="00" p3="08"/>
+            <verify2gAdm2 p1="00" p2="05" p3="08"/>
+            <verify2gAdm3 p1="00" p2="06" p3="08"/>
+            <verify2gAdm4 p1="00" p2="07" p3="08"/>
+            <verify2gChv1 p1="00" p2="01" p3="08"/>
+            <verify2gChv2 p1="00" p2="02" p3="08"/>
+        </verify2g>
+        <verify3g>
+            <verify3gAdm1 p1="00" p2="0A" p3="08"/>
+            <verify3gAdm2 p1="00" p2="0B" p3="08"/>
+            <verify3gAdm3 p1="00" p2="0C" p3="08"/>
+            <verify3gAdm4 p1="00" p2="0D" p3="08"/>
+            <verify3gGlobalPin1 p1="00" p2="01" p3="08"/>
+            <verify3gLocalPin1 p1="00" p2="81" p3="08"/>
+        </verify3g>
+    </customApdu>
+    <pathToCsv>C:\Users\martysem\Documents\Assignments (exported)\218 4183 Telia_FI_mID_VSC15_ IDE02K_FI_Telia_Dot01_C085\fileverif\vc_0.0.3\IDE02K_FI_Telia_Dot01_C085.csv</pathToCsv>
+    <pathToVariablesTxt>C:\Users\martysem\Documents\Assignments (exported)\170 3089 CLO_LTE_2.02_64K_LTE_R6_C1 [TEST]\FileVerification\vc_demo\variables.txt</pathToVariablesTxt>
+    <readerNumber>0</readerNumber>
+    <verifLiterals>
+        <sAccADM1>ADM1</sAccADM1>
+        <sAccADM2>ADM2</sAccADM2>
+        <sAccADM3>ADM3</sAccADM3>
+        <sAccADM4>ADM4</sAccADM4>
+        <sAccADM5>ADM5</sAccADM5>
+        <sAccADM6>ADM6</sAccADM6>
+        <sAccADM7>ADM7</sAccADM7>
+        <sAccADM8>ADM8</sAccADM8>
+        <sAccALW>Always;ALW;ALWAYS</sAccALW>
+        <sAccAND>AND</sAccAND>
+        <sAccCHV1>CHV1;GPIN1</sAccCHV1>
+        <sAccCHV2>CHV2;LPIN1</sAccCHV2>
+        <sAccNEV>Never;NEV;NEVER</sAccNEV>
+        <sAccOR>OR;or</sAccOR>
+        <sFileStructCY>Cyclic;CY;C</sFileStructCY>
+        <sFileStructLF>Linear;LF;L</sFileStructLF>
+        <sFileStructLK>Link;LK</sFileStructLK>
+        <sFileStructTR>Transparent;TR;T</sFileStructTR>
+    </verifLiterals>
+</verifConfig>
