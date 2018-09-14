@@ -1,4 +1,4 @@
-VerifClient-0.0.3-SNAPSHOT.jar
+*.jar
 *.pyc
 *.log
 *.xml
