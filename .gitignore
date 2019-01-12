@@ -1,4 +1,6 @@
 *.jar
-*.pyc
+FileVerif.pyc
+morpho_doc.pyc
+spml2csv.pyc
 *.log
 *.xml
