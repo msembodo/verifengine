@@ -13,6 +13,8 @@ logging.basicConfig(level=logging.INFO,
                     format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
                     datefmt="%H:%M:%S", stream=sys.stdout)
 
+logger = logging.getLogger(__name__)
+
 ############### CONFIGURATION  ################
 
 DEBUG_ON = 0
@@ -45,7 +47,7 @@ FILESIZE_RULE = 1   # When using single field "File Size" for rule
 OPT_FILEID_EF_FULLPATH = 0  # when using only FileID to define the path
                             # 1: EF always defined the full path
 
-OPT_SELECT3G_ADF = 1    # Use this when using POP CTD
+OPT_SELECT3G_ADF = 0    # Use this when using POP CTD
                         # 1: When select ADF_AID for USIM
 
 OPT_CHECK_CONTENT_3G = 0    # when it needed check 3G content
@@ -78,7 +80,7 @@ opt_debugprint_client_variables = False
 
 OPT_USE_VARIABLES = True # use Variables.txt generated from Adv Save
 OPT_CREATE_FULL_SCRIPT = True # create full script
-FILE_VERIF_VERSION = '1.3.0'
+FILE_VERIF_VERSION = '0.0.4'
 
 # list of possible value. Be careful that the list should be mutually exclusive
 # for example, if linear fixed are ['LF', 'L'] but linked file as ['LK',], linked file can be detected as Linear Fixed.
@@ -139,6 +141,7 @@ ADM4 = "933F57845F706921"
 CHV1 = "31323334FFFFFFFF"
 CHV2 = "31323334FFFFFFFF"
 ADF_AID = "A0000000871002FF49FFFF89040B00FF"
+ADF_AID_LENGTH = 0x10
 
 # Update this if the variables are manually provided.
 # Should the variables taken from file Variables.txt, the VarList is generated in the section below
@@ -222,6 +225,7 @@ SELECT3GADF = [0x00, 0xA4, 0x04, 0x04, 0x10]
 def PINVerification2G():
     global OutputFile
 
+    runlog_buffer.append('Verify ADM1..')
     Header = copy.deepcopy(VERIFPIN2G)
     Header[2] = verify2gAdm1p1
     Header[3] = verify2gAdm1p2
@@ -229,6 +233,7 @@ def PINVerification2G():
     SendAPDU(Header, ADM1, None, "9000")
 
     if OPT_USE_ADM2:
+        runlog_buffer.append('Verify ADM2..')
         Header = copy.deepcopy(VERIFPIN2G)
         Header[2] = verify2gAdm2p1
         Header[3] = verify2gAdm2p2
@@ -236,6 +241,7 @@ def PINVerification2G():
         SendAPDU(Header, ADM2, None, "9000")
 
     if OPT_USE_ADM3:
+        runlog_buffer.append('Verify ADM3..')
         Header = copy.deepcopy(VERIFPIN2G)
         Header[2] = verify2gAdm3p1
         Header[3] = verify2gAdm3p2
@@ -243,6 +249,7 @@ def PINVerification2G():
         SendAPDU(Header, ADM3, None, "9000")
 
     if OPT_USE_ADM4:
+        runlog_buffer.append('Verify ADM4..')
         Header = copy.deepcopy(VERIFPIN2G)
         Header[2] = verify2gAdm4p1
         Header[3] = verify2gAdm4p2
@@ -255,6 +262,7 @@ def PINVerification2G():
         # Header = copy.deepcopy(ENABLECHV1)
         # SendAPDU(Header, CHV1, None, "9000")
 
+        runlog_buffer.append('Verify CHV1..')
         Header = copy.deepcopy(VERIFPIN2G)
         Header[2] = verify2gChv1p1
         Header[3] = verify2gChv1p2
@@ -263,6 +271,7 @@ def PINVerification2G():
     else:
         OutputFile.writelines('; CHV1 is disabled. No CHV1 verification required.\n')
 
+    runlog_buffer.append('Verify CHV2..')
     Header = copy.deepcopy(VERIFPIN2G)
     Header[2] = verify2gChv2p1
     Header[3] = verify2gChv2p2
@@ -274,11 +283,36 @@ def PINVerification2G():
 def PINVerification3G():
     global OutputFile
 
+    runlog_buffer.append('Verify ADM1..')
     Header = copy.deepcopy(VERIFPIN3G)
     Header[2] = verify3gAdm1p1
     Header[3] = verify3gAdm1p2
     Header[4] = verify3gAdm1p3
     SendAPDU(Header, ADM1, None, "9000")
+
+    if OPT_USE_ADM2:
+        runlog_buffer.append('Verify ADM2..')
+        Header = copy.deepcopy(VERIFPIN3G)
+        Header[2] = verify3gAdm2p1
+        Header[3] = verify3gAdm2p2
+        Header[4] = verify3gAdm2p3
+        SendAPDU(Header, ADM2, None, "9000")
+
+    if OPT_USE_ADM3:
+        runlog_buffer.append('Verify ADM3..')
+        Header = copy.deepcopy(VERIFPIN3G)
+        Header[2] = verify3gAdm3p1
+        Header[3] = verify3gAdm3p2
+        Header[4] = verify3gAdm3p3
+        SendAPDU(Header, ADM3, None, "9000")
+
+    if OPT_USE_ADM4:
+        runlog_buffer.append('Verify ADM4..')
+        Header = copy.deepcopy(VERIFPIN3G)
+        Header[2] = verify3gAdm4p1
+        Header[3] = verify3gAdm4p2
+        Header[4] = verify3gAdm4p3
+        SendAPDU(Header, ADM4, None, "9000")
 
     if not OPT_CHV1_DISABLED:
         # enable CHV1
@@ -286,6 +320,7 @@ def PINVerification3G():
         # Header = copy.deepcopy(ENABLECHV1)
         # SendAPDU(Header, CHV1, None, "9000")
 
+        runlog_buffer.append('Verify Global PIN..')
         Header = copy.deepcopy(VERIFPIN3G)
         Header[2] = verify3gGlobalPin1p1
         Header[3] = verify3gGlobalPin1p2
@@ -294,32 +329,12 @@ def PINVerification3G():
     else:
         OutputFile.writelines('; GPIN is disabled. No GPIN verification required.\n')
 
+    runlog_buffer.append('Verify Local PIN..')
     Header = copy.deepcopy(VERIFPIN3G)
     Header[2] = verify3gLocalPin1p1
     Header[3] = verify3gLocalPin1p2
     Header[4] = verify3gLocalPin1p3
     SendAPDU(Header, CHV2, None, "9000")
-
-    if OPT_USE_ADM2:
-        Header = copy.deepcopy(VERIFPIN3G)
-        Header[2] = verify3gAdm2p1
-        Header[3] = verify3gAdm2p2
-        Header[4] = verify3gAdm2p3
-        SendAPDU(Header, ADM2, None, "9000")
-
-    if OPT_USE_ADM3:
-        Header = copy.deepcopy(VERIFPIN3G)
-        Header[2] = verify3gAdm3p1
-        Header[3] = verify3gAdm3p2
-        Header[4] = verify3gAdm3p3
-        SendAPDU(Header, ADM3, None, "9000")
-
-    if OPT_USE_ADM4:
-        Header = copy.deepcopy(VERIFPIN3G)
-        Header[2] = verify3gAdm4p1
-        Header[3] = verify3gAdm4p2
-        Header[4] = verify3gAdm4p3
-        SendAPDU(Header, ADM4, None, "9000")
 
     return
 
@@ -334,6 +349,12 @@ def GetVarValue(VarName):
 #Generate VarList from Variables.txt
 if OPT_USE_VARIABLES:   
     VarList = {}
+
+    # create variables.txt in parent folder if doesn't exist
+    if not os.path.isfile(VariablesFileName):
+        f = open(VariablesFileName, 'w')
+        f.close()
+        logger.info('Created Variables.txt')
 
     # Read file
     with open(VariablesFileName, 'r') as f:
@@ -605,7 +626,7 @@ def InitSCard(RNumber):
                 sys.exit()
 
     if OptWrite2File:
-        OutputFile.writelines(".POWER_ON")
+        OutputFile.writelines("\n.POWER_ON")
         OutputFile.writelines('\n')
 
 response = []
@@ -1338,6 +1359,24 @@ def CmdSelect3G(path, expRes, expSw):
     # SendAPDU2(Header,None, expRes, expSw)
     SendAPDU(Header, None, expRes, expSw)
 
+def CmdSelect3G_not_recorded(path, expRes, expSw):
+    # Select the parents, no need to check the result
+    path = FilterHex(path)
+    i = 0
+    while i < (len(path) - 4):
+        Header = copy.deepcopy(SELECT3G)
+        # SendAPDU2(Header,path[i:i+4], None, "61XX")
+        SendAPDU(Header, path[i:i + 4], None, "61XX", NOT_SAVED)
+        i += 4
+    # Select The last one, check the result
+    Header = copy.deepcopy(SELECT3G)
+    # SendAPDU2(Header,path[i:], None, "61xx")
+    SendAPDU(Header, path[i:], None, "61xx", NOT_SAVED)
+    Header = copy.deepcopy(GETRESP3G)
+    Header[4] = sw2
+    # SendAPDU2(Header,None, expRes, expSw)
+    SendAPDU(Header, None, expRes, expSw, NOT_SAVED)
+
 
 SELECT3G = [0x00, 0xA4, 0x00, 0x04, 0x02]
 GETRESP3G = [0x00, 0xC0, 0x00, 0x00, 0x0F]
@@ -1448,9 +1487,10 @@ READBIN3G = [0x00, 0xB0, 0x00, 0x00, 0x00]
 UPDATEREC3G = [0x00, 0xDC, 0x00, 0x00, 0x00]
 READREC3G = [0x00, 0xB2, 0x00, 0x00, 0x00]
 
-def CmdSelect3GADF():
+def CmdSelect3GADF(aid_length):
     # Select the parents, no need to check the result
     Header = copy.deepcopy(SELECT3GADF)
+    Header[4] = aid_length
     SendAPDU(Header, ADF_AID, None, "61XX")
 
 def CmdReadBinary3G(Offset, Le, expRes, expSw, *Condition):
@@ -1625,6 +1665,10 @@ def parseConfigXml():
     global verify3gLocalPin1p1
     global verify3gLocalPin1p2
     global verify3gLocalPin1p3
+    global OPT_SELECT3G_ADF
+    global OPT_CHECK_CONTENT_3G
+    global ADF_AID
+    global ADF_AID_LENGTH
 
     config_file = 'config.xml'
     try:
@@ -1646,6 +1690,15 @@ def parseConfigXml():
         OPT_USE_ADM2 = booleanStrToInt(verifConfig.getAttribute('useAdm2'))
         OPT_USE_ADM3 = booleanStrToInt(verifConfig.getAttribute('useAdm3'))
         OPT_USE_ADM4 = booleanStrToInt(verifConfig.getAttribute('useAdm4'))
+        OPT_CHECK_CONTENT_3G = booleanStrToInt(verifConfig.getAttribute('usimIn3GMode'))
+
+        if OPT_CHECK_CONTENT_3G:
+            OPT_SELECT3G_ADF = 1
+        else:
+            OPT_SELECT3G_ADF = 0
+        
+        ADF_AID = str(verifConfig.getElementsByTagName('usimAid')[0].childNodes[0].data)
+        ADF_AID_LENGTH = len(ADF_AID) / 2
 
         FileName = str(verifConfig.getElementsByTagName('pathToCsv')[0].childNodes[0].data)
         csvName = os.path.basename(FileName)
@@ -1763,6 +1816,10 @@ def parseConfigXml():
             print 'OPT_HEX_RECORDNUMBER: ' + str(OPT_HEX_RECORDNUMBER)
             print 'OPT_HEX_SFI: ' + str(OPT_HEX_SFI)
             print 'OPT_USE_VARIABLES: ' + str(OPT_USE_VARIABLES)
+            print 'OPT_CHECK_CONTENT_3G: ' + str(OPT_CHECK_CONTENT_3G)
+            print 'OPT_SELECT3G_ADF: ' + str(OPT_SELECT3G_ADF)
+            print 'ADF_AID: ' + ADF_AID
+            print 'ADF_AID_LENGTH: ' + str(ADF_AID_LENGTH)
 
             print 'ADM1: ' + str(ADM1)
             if OPT_USE_ADM2:
@@ -3950,290 +4007,294 @@ def run(useClient=False):
                 OutputFile.writelines('\n; ' + 'NoneType' + ': ' + curFileDescName + '\n')
             CmdSelect2G(file[fiFilePathID], expected, None)
             TempStatus2G = copy.deepcopy(response)  # to compare with linked file if needed
-        # -------------------------------------------------------------------------------
-        # Check File Content
-        # -------------------------------------------------------------------------------
-        # TODO HERE
-        # def CmdReadBinary2G(Offset, Le, expRes, expSw):
-        # def CmdUpdateBinary2G(Offset, Lc, Data, expSw):
-        # def CmdReadRecord2G(RecordNumber, Mode, Le, expRes, expSw):
-        # def CmdUpdateRecord2G(RecordNumber, Mode, Lc, Data, expSw):
+        
+        if not OPT_CHECK_CONTENT_3G:
+            # -------------------------------------------------------------------------------
+            # Check File Content
+            # -------------------------------------------------------------------------------
+            # TODO HERE
+            # def CmdReadBinary2G(Offset, Le, expRes, expSw):
+            # def CmdUpdateBinary2G(Offset, Lc, Data, expSw):
+            # def CmdReadRecord2G(RecordNumber, Mode, Le, expRes, expSw):
+            # def CmdUpdateRecord2G(RecordNumber, Mode, Lc, Data, expSw):
 
-        # Some DOC B does not define 2G access condition, so the 2G access condition are empty.
-        # The 2G content are always checked for now.
-        VarName = None
-        TempValue = []
-        # if True:
-        # if file[fiRead_ACC] != [] and file[fiRead_ACC][0] != iAccNEV:
-        if file[fiRead_ACC] == [] or file[fiRead_ACC][0] != iAccNEV:
+            # Some DOC B does not define 2G access condition, so the 2G access condition are empty.
+            # The 2G content are always checked for now.
+            VarName = None
+            TempValue = []
+            # if True:
+            # if file[fiRead_ACC] != [] and file[fiRead_ACC][0] != iAccNEV:
+            if file[fiRead_ACC] == [] or file[fiRead_ACC][0] != iAccNEV:
 
-            if file[fiContent].startswith('%'):
-                tempContent = file[fiContent]  # Handle variable name
-            else:
-                tempContent = FilterString(file[fiContent])  # Filter content
-
-            # if file[fiContent] != '':
-            if tempContent != '':
-                if OPT_USE_CLIENT:
-                    runlog_buffer.append("Test File Content for " + str(curFile))
+                if file[fiContent].startswith('%'):
+                    tempContent = file[fiContent]  # Handle variable name
                 else:
-                    print "Test File Content for " + curFile
-                    print "-----------------------------------------"
-                curOps = 'Test File Content'
-                if CheckList(file[fiFileType], sFileTypeMF) or \
-                        CheckList(file[fiFileType], sFileTypeDF) or \
-                        CheckList(file[fiFileType], sFileTypeADF):
-                    pass
-                else:
-                    # Only check content if the content is not empty and it is an EF.
-                    # Rule #1: length of the content reference is less than the actual length in the EF,
-                    #   The remaining value are not checked. (this already handled by SendAPDU function)
-                    # Rule #2: If length of the content reference is longer than the actual length in EF,
-                    #   the content reference shall be truncated up to the length in the EF.
-                    #   Warning shall be issued. (handle in SendAPDU)
+                    tempContent = FilterString(file[fiContent])  # Filter content
 
-                    # ExpectedResponse = file[fiContent]
-                    # ExpectedLength = len(file[fiContent])/2
-
-                    VarValue = None
-                    tempPercentOffset = tempContent.find('%')
-                    if tempPercentOffset != -1:
-                        tempSpaceOffset = tempContent.find(' ')
-                        if tempSpaceOffset != -1:
-                            # a variable name has been found
-                            VarName = tempContent[tempPercentOffset:tempSpaceOffset]
-                            DEBUGPRINT("VarName: " + str(VarName))
-
-                            if VarName[1:] in VarList:
-                                VarValue = VarList.get(VarName[1:])
-                            elif 'GSM_' + VarName[1:] in VarList:  # search GSM file in varList
-                                VarValue = VarList.get('GSM_' + VarName[1:])
-                            elif 'USIM_' + VarName[1:] in VarList:  # search USIM file in varList
-                                VarValue = VarList.get('USIM_' + VarName[1:])
-                            else:
-                                VarValue = ''
-                            if OPT_USE_CLIENT:
-                                runlog_buffer.append('VarValue: ' + str(VarValue))
-                            else:
-                                print('VarValue: ' + str(VarValue))
-                        else:
-                            # Ending space not found, assuming until end of the text
-                            VarName = tempContent[tempPercentOffset:]
-                            DEBUGPRINT("VarName: " + str(VarName))
-
-                            if VarName[1:] in VarList:
-                                VarValue = VarList.get(VarName[1:])
-                            elif 'GSM_' + VarName[1:] in VarList:
-                                VarValue = VarList.get('GSM_' + VarName[1:])
-                            elif 'USIM_' + VarName[1:] in VarList:
-                                VarValue = VarList.get('USIM_' + VarName[1:])
-                            else:
-                                VarValue = None
-
-                            if VarName == '': VarName = None  # Handle if text empty
-                            # VarValue = GetVarValue(VarName[1:])  # ignore the percent sign
-                            if OPT_USE_CLIENT:
-                                runlog_buffer.append('VarValue: ' + str(VarValue))
-                            else:
-                                print('VarValue: ' + str(VarValue))
-
-                    # Rule #3: if the content start with %, it means variable, and followed by variable name.
-                    #   The variable name are started with'%' (percent) sign followed by variable name and a space
-                    #   In example 1234 %VAR1 5678. The content of variable is mentioned in VarList()
-                    #   if the variable is at the end of the string, space is not required.
-                    #   For example: "123456 %VAR1"
-                    #   When variable is used, usually an exact value is expected. So, OPT_EXPECTED_PADDING
-                    #       is not supported when a variable exist in the expected data.
-
-                    if CheckList(file[fiFIleStruct], sFileStructLF) or \
-                            CheckList(file[fiFIleStruct], sFileStructCY):
-                        # Rule #4:
-                        # for Linear Fixed/Cyclic, First check the files with the record number, and keep the list.
-                        if VarValue == None:
-                            # Padding can only be done if there is no variable at the moment
-                            ExpectedResponse = tempContent
-                            ExpectedLength = len(tempContent) / 2
-                            if OPT_EXPECTED_PADDING:
-                                LastByte = ExpectedResponse[(ExpectedLength * 2) - 2:]
-                                while ExpectedLength < int(file[fiRecordSize]):
-                                    ExpectedResponse += LastByte
-                                    ExpectedLength += 1
-
-                            if VarName:  # handle case where CSV variable name is not found in AdvSave
-                                # Need to print the variable name to aid the modification of PCOM script.
-                                if OptWrite2File:
-                                    OutputFile.writelines(";; Variable Used. Original Value: ")
-                                    OutputFile.writelines(tempContent)
-                                    OutputFile.writelines('\n')
-
-                        else:
-                            # Replace with Value, no padding
-
-                            ExpectedResponse = tempContent[:tempPercentOffset]
-                            ExpectedResponse += VarValue
-                            if tempSpaceOffset != -1:
-                                ExpectedResponse += tempContent[tempSpaceOffset + 1:]
-                            ExpectedResponse = FilterString(ExpectedResponse)
-                            ExpectedLength = len(ExpectedResponse) / 2
-
-                            # Need to print the variable name to aid the modification of PCOM script.
-                            if OptWrite2File:
-                                OutputFile.writelines(";; Variable Used. Original Value: ")
-                                OutputFile.writelines(tempContent)
-                                OutputFile.writelines('\n')
-
-                        if file[fiRecordNumber] != '':
-                            RecordList.append(int(file[fiRecordNumber]))  # Content Record number always decimal
-                            curRec = int(file[fiRecordNumber])
-                            CmdReadRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]),
-                                            ExpectedResponse, "9000")
-                            TempValue = copy.deepcopy(response)
-                        # Rule #5: If a content found that is without a record number,
-                        #   all the record within the same file shall be checked (except those files that are already checked).
-                        #   For simplicity, such content (without record number) shall be the last content in the list for the same EF.
-                        #   All record content of an EF shall be in defined consecutively in the list.
-                        else:
-                            index = 1
-                            if OPT_USE_CLIENT:
-                                runlog_buffer.append('NumOfRec' + str(file[fiNumberOfRecord]))
-                                runlog_buffer.append('RecordList ' + str(RecordList))
-                            else:
-                                print('NumOfRec' + str(file[fiNumberOfRecord]))
-                                print('RecordList ' + str(RecordList))
-                            while index <= file[fiNumberOfRecord]:
-                                Found = 0
-                                for a in RecordList:
-                                    if a == index:
-                                        Found = 1
-                                        break
-                                if OPT_USE_CLIENT:
-                                    runlog_buffer.append('Found ' + str(Found))
-                                else:
-                                    print('Found ' + str(Found))
-                                if Found == 0:
-                                    # Not tested yet, read the content
-                                    curRec = index
-                                    CmdReadRecord2G(index, RECMODE2G_ABS, int(file[fiRecordSize]), ExpectedResponse,
-                                                    "9000")
-                                    TempValue = copy.deepcopy(response)
-                                index += 1
-                    else:
-                        # For Transparent, just check the file content
-                        if VarValue == None:
-                            ExpectedResponse = tempContent
-                            ExpectedLength = len(tempContent) / 2
-                            # Padding can only be done if there is no variable
-                            if OPT_EXPECTED_PADDING:
-                                LastByte = ExpectedResponse[(ExpectedLength * 2) - 2:]
-                                while ExpectedLength < int(file[fiFileSize]):
-                                    ExpectedResponse += LastByte
-                                    ExpectedLength += 1
-
-                            if VarName:  # handle case where CSV variable name is not found in AdvSave
-                                # Need to print the variable name to aid the modification of PCOM script.
-                                if OptWrite2File:
-                                    OutputFile.writelines(";; Variable Used. Original Value: ")
-                                    OutputFile.writelines(tempContent)
-                                    OutputFile.writelines('\n')
-
-                        else:
-                            # Replace with Value, no padding
-                            ExpectedResponse = tempContent[:tempPercentOffset]
-                            ExpectedResponse += VarValue
-                            if tempSpaceOffset != -1:
-                                ExpectedResponse += tempContent[tempSpaceOffset + 1:]
-                            ExpectedResponse = FilterString(ExpectedResponse)
-                            ExpectedLength = len(ExpectedResponse) / 2
-
-                            # Need to print the variable name to aid the modification of PCOM script.
-                            if OptWrite2File:
-                                OutputFile.writelines(";; Variable Used. Original Value: ")
-                                OutputFile.writelines(tempContent)
-                                OutputFile.writelines('\n')
-
-                        # Handle lenght more than 1 APDU
-                        index = 0
-                        while index < int(file[fiFileSize]):
-                            if OPT_USE_CLIENT:
-                                runlog_buffer.append('Index: {}, ExpectedLength {}'.format(index, ExpectedLength))
-                            else:
-                                print('Index: {}, ExpectedLength {}'.format(index, ExpectedLength))
-                            if index >= ExpectedLength:
-                                WARNING("Expected Length is longer than file size")
-                                break
-                            if (index + MAX_RESPONSE_LEN) > int(file[fiFileSize]):
-                                TempLen = int(file[fiFileSize]) - index
-                            else:
-                                TempLen = MAX_RESPONSE_LEN
-
-                            ##CmdReadBinary2G(index, TempLen, ExpectedResponse[(index*2):], "9000")
-
-                            # Fix the expected data of Binary file >128 issue
-                            # Method 1
-                            # Buffer = ''
-                            # i = 0
-                            # while i<TempLen and ((index+i)*2)< len(ExpectedResponse):
-                            #    #Buffer += ExpectedResponse[(index+i)*2] + ExpectedResponse[((index+i)*2)+1]
-                            #    Buffer += ExpectedResponse[(index+i)*2:(index+i+1)*2]
-                            #    i += 1
-                            # CmdReadBinary2G(index, TempLen, Buffer, "9000")
-
-                            # Method 2
-                            curRec = 0
-                            CmdReadBinary2G(index, TempLen, ExpectedResponse[(index * 2):((index + TempLen) * 2)],
-                                            "9000")
-
-                            TempValue += copy.deepcopy(response)
-                            index += TempLen
-            else:
-                # just read the content without checking the value
-                if curFile != prevFile:  # only check the first one for linear fixed
+                # if file[fiContent] != '':
+                if tempContent != '':
                     if OPT_USE_CLIENT:
-                        runlog_buffer.append("Read File Content for " + curFile)
+                        runlog_buffer.append("Test File Content for " + str(curFile))
                     else:
-                        print "Read File Content for " + curFile
+                        print "Test File Content for " + curFile
                         print "-----------------------------------------"
+                    curOps = 'Test File Content'
                     if CheckList(file[fiFileType], sFileTypeMF) or \
                             CheckList(file[fiFileType], sFileTypeDF) or \
                             CheckList(file[fiFileType], sFileTypeADF):
                         pass
                     else:
+                        # Only check content if the content is not empty and it is an EF.
+                        # Rule #1: length of the content reference is less than the actual length in the EF,
+                        #   The remaining value are not checked. (this already handled by SendAPDU function)
+                        # Rule #2: If length of the content reference is longer than the actual length in EF,
+                        #   the content reference shall be truncated up to the length in the EF.
+                        #   Warning shall be issued. (handle in SendAPDU)
+
+                        # ExpectedResponse = file[fiContent]
+                        # ExpectedLength = len(file[fiContent])/2
+
+                        VarValue = None
+                        tempPercentOffset = tempContent.find('%')
+                        if tempPercentOffset != -1:
+                            tempSpaceOffset = tempContent.find(' ')
+                            if tempSpaceOffset != -1:
+                                # a variable name has been found
+                                VarName = tempContent[tempPercentOffset:tempSpaceOffset]
+                                DEBUGPRINT("VarName: " + str(VarName))
+
+                                if VarName[1:] in VarList:
+                                    VarValue = VarList.get(VarName[1:])
+                                elif 'GSM_' + VarName[1:] in VarList:  # search GSM file in varList
+                                    VarValue = VarList.get('GSM_' + VarName[1:])
+                                elif 'USIM_' + VarName[1:] in VarList:  # search USIM file in varList
+                                    VarValue = VarList.get('USIM_' + VarName[1:])
+                                else:
+                                    VarValue = ''
+                                if OPT_USE_CLIENT:
+                                    runlog_buffer.append('VarValue: ' + str(VarValue))
+                                else:
+                                    print('VarValue: ' + str(VarValue))
+                            else:
+                                # Ending space not found, assuming until end of the text
+                                VarName = tempContent[tempPercentOffset:]
+                                DEBUGPRINT("VarName: " + str(VarName))
+
+                                if VarName[1:] in VarList:
+                                    VarValue = VarList.get(VarName[1:])
+                                elif 'GSM_' + VarName[1:] in VarList:
+                                    VarValue = VarList.get('GSM_' + VarName[1:])
+                                elif 'USIM_' + VarName[1:] in VarList:
+                                    VarValue = VarList.get('USIM_' + VarName[1:])
+                                else:
+                                    VarValue = None
+
+                                if VarName == '': VarName = None  # Handle if text empty
+                                # VarValue = GetVarValue(VarName[1:])  # ignore the percent sign
+                                if OPT_USE_CLIENT:
+                                    runlog_buffer.append('VarValue: ' + str(VarValue))
+                                else:
+                                    print('VarValue: ' + str(VarValue))
+
+                        # Rule #3: if the content start with %, it means variable, and followed by variable name.
+                        #   The variable name are started with'%' (percent) sign followed by variable name and a space
+                        #   In example 1234 %VAR1 5678. The content of variable is mentioned in VarList()
+                        #   if the variable is at the end of the string, space is not required.
+                        #   For example: "123456 %VAR1"
+                        #   When variable is used, usually an exact value is expected. So, OPT_EXPECTED_PADDING
+                        #       is not supported when a variable exist in the expected data.
+
                         if CheckList(file[fiFIleStruct], sFileStructLF) or \
                                 CheckList(file[fiFIleStruct], sFileStructCY):
-                            if file[fiRecordSize] != 0:
-                                if file[fiRecordNumber] != '':
-                                    curRec = int(file[fiRecordNumber])
-                                    # CmdReadRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]), None,
-                                    #                 "9000", NOT_SAVED)
-                                    CmdReadRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]),
-                                                    None,
-                                                    "9000")
-                                    TempValue = copy.deepcopy(response)
-                                else:
-                                    # Not defined? Only Read Record #1
-                                    curRec = 1
-                                    # CmdReadRecord2G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000", NOT_SAVED)
-                                    CmdReadRecord2G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000")
-                                    TempValue = copy.deepcopy(response)
+                            # Rule #4:
+                            # for Linear Fixed/Cyclic, First check the files with the record number, and keep the list.
+                            if VarValue == None:
+                                # Padding can only be done if there is no variable at the moment
+                                ExpectedResponse = tempContent
+                                ExpectedLength = len(tempContent) / 2
+                                if OPT_EXPECTED_PADDING:
+                                    LastByte = ExpectedResponse[(ExpectedLength * 2) - 2:]
+                                    while ExpectedLength < int(file[fiRecordSize]):
+                                        ExpectedResponse += LastByte
+                                        ExpectedLength += 1
+
+                                if VarName:  # handle case where CSV variable name is not found in AdvSave
+                                    # Need to print the variable name to aid the modification of PCOM script.
+                                    if OptWrite2File:
+                                        OutputFile.writelines(";; Variable Used. Original Value: ")
+                                        OutputFile.writelines(tempContent)
+                                        OutputFile.writelines('\n')
+
                             else:
-                                # zero record size
-                                pass
+                                # Replace with Value, no padding
+
+                                ExpectedResponse = tempContent[:tempPercentOffset]
+                                ExpectedResponse += VarValue
+                                if tempSpaceOffset != -1:
+                                    ExpectedResponse += tempContent[tempSpaceOffset + 1:]
+                                ExpectedResponse = FilterString(ExpectedResponse)
+                                ExpectedLength = len(ExpectedResponse) / 2
+
+                                # Need to print the variable name to aid the modification of PCOM script.
+                                if OptWrite2File:
+                                    OutputFile.writelines(";; Variable Used. Original Value: ")
+                                    OutputFile.writelines(tempContent)
+                                    OutputFile.writelines('\n')
+
+                            if file[fiRecordNumber] != '':
+                                RecordList.append(int(file[fiRecordNumber]))  # Content Record number always decimal
+                                curRec = int(file[fiRecordNumber])
+                                CmdReadRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]),
+                                                ExpectedResponse, "9000")
+                                TempValue = copy.deepcopy(response)
+                            # Rule #5: If a content found that is without a record number,
+                            #   all the record within the same file shall be checked (except those files that are already checked).
+                            #   For simplicity, such content (without record number) shall be the last content in the list for the same EF.
+                            #   All record content of an EF shall be in defined consecutively in the list.
+                            else:
+                                index = 1
+                                # if OPT_USE_CLIENT:
+                                #     runlog_buffer.append('NumOfRec' + str(file[fiNumberOfRecord]))
+                                #     runlog_buffer.append('RecordList ' + str(RecordList))
+                                # else:
+                                #     print('NumOfRec' + str(file[fiNumberOfRecord]))
+                                #     print('RecordList ' + str(RecordList))
+                                while index <= file[fiNumberOfRecord]:
+                                    Found = 0
+                                    for a in RecordList:
+                                        if a == index:
+                                            Found = 1
+                                            break
+                                    # if OPT_USE_CLIENT:
+                                    #     runlog_buffer.append('Found ' + str(Found))
+                                    # else:
+                                    #     print('Found ' + str(Found))
+                                    if Found == 0:
+                                        # Not tested yet, read the content
+                                        curRec = index
+                                        CmdReadRecord2G(index, RECMODE2G_ABS, int(file[fiRecordSize]), ExpectedResponse,
+                                                        "9000")
+                                        TempValue = copy.deepcopy(response)
+                                    index += 1
                         else:
                             # For Transparent, just check the file content
+                            if VarValue == None:
+                                ExpectedResponse = tempContent
+                                ExpectedLength = len(tempContent) / 2
+                                # Padding can only be done if there is no variable
+                                if OPT_EXPECTED_PADDING:
+                                    LastByte = ExpectedResponse[(ExpectedLength * 2) - 2:]
+                                    while ExpectedLength < int(file[fiFileSize]):
+                                        ExpectedResponse += LastByte
+                                        ExpectedLength += 1
+
+                                if VarName:  # handle case where CSV variable name is not found in AdvSave
+                                    # Need to print the variable name to aid the modification of PCOM script.
+                                    if OptWrite2File:
+                                        OutputFile.writelines(";; Variable Used. Original Value: ")
+                                        OutputFile.writelines(tempContent)
+                                        OutputFile.writelines('\n')
+
+                            else:
+                                # Replace with Value, no padding
+                                ExpectedResponse = tempContent[:tempPercentOffset]
+                                ExpectedResponse += VarValue
+                                if tempSpaceOffset != -1:
+                                    ExpectedResponse += tempContent[tempSpaceOffset + 1:]
+                                ExpectedResponse = FilterString(ExpectedResponse)
+                                ExpectedLength = len(ExpectedResponse) / 2
+
+                                # Need to print the variable name to aid the modification of PCOM script.
+                                if OptWrite2File:
+                                    OutputFile.writelines(";; Variable Used. Original Value: ")
+                                    OutputFile.writelines(tempContent)
+                                    OutputFile.writelines('\n')
+
                             # Handle lenght more than 1 APDU
                             index = 0
-                            while index < int(file[fiFileSize]):  # Todo: should check with real file size
+                            while index < int(file[fiFileSize]):
+                                if OPT_USE_CLIENT:
+                                    runlog_buffer.append('Index: {}, ExpectedLength {}'.format(index, ExpectedLength))
+                                else:
+                                    print('Index: {}, ExpectedLength {}'.format(index, ExpectedLength))
+                                if index >= ExpectedLength:
+                                    WARNING("Expected Length is longer than file size")
+                                    break
                                 if (index + MAX_RESPONSE_LEN) > int(file[fiFileSize]):
                                     TempLen = int(file[fiFileSize]) - index
                                 else:
                                     TempLen = MAX_RESPONSE_LEN
+
+                                ##CmdReadBinary2G(index, TempLen, ExpectedResponse[(index*2):], "9000")
+
+                                # Fix the expected data of Binary file >128 issue
+                                # Method 1
+                                # Buffer = ''
+                                # i = 0
+                                # while i<TempLen and ((index+i)*2)< len(ExpectedResponse):
+                                #    #Buffer += ExpectedResponse[(index+i)*2] + ExpectedResponse[((index+i)*2)+1]
+                                #    Buffer += ExpectedResponse[(index+i)*2:(index+i+1)*2]
+                                #    i += 1
+                                # CmdReadBinary2G(index, TempLen, Buffer, "9000")
+
+                                # Method 2
                                 curRec = 0
-                                # CmdReadBinary2G(index, TempLen, None, "9000", NOT_SAVED)
-                                CmdReadBinary2G(index, TempLen, None, "9000")
+                                CmdReadBinary2G(index, TempLen, ExpectedResponse[(index * 2):((index + TempLen) * 2)],
+                                                "9000")
+
                                 TempValue += copy.deepcopy(response)
                                 index += TempLen
                 else:
-                    pass
+                    # just read the content without checking the value
+                    if curFile != prevFile:  # only check the first one for linear fixed
+                        if OPT_USE_CLIENT:
+                            runlog_buffer.append("Read File Content for " + curFile)
+                        else:
+                            print "Read File Content for " + curFile
+                            print "-----------------------------------------"
+                        if CheckList(file[fiFileType], sFileTypeMF) or \
+                                CheckList(file[fiFileType], sFileTypeDF) or \
+                                CheckList(file[fiFileType], sFileTypeADF):
+                            pass
+                        else:
+                            if CheckList(file[fiFIleStruct], sFileStructLF) or \
+                                    CheckList(file[fiFIleStruct], sFileStructCY):
+                                if file[fiRecordSize] != 0:
+                                    if file[fiRecordNumber] != '':
+                                        curRec = int(file[fiRecordNumber])
+                                        # CmdReadRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]), None,
+                                        #                 "9000", NOT_SAVED)
+                                        CmdReadRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]),
+                                                        None,
+                                                        "9000")
+                                        TempValue = copy.deepcopy(response)
+                                    else:
+                                        # Not defined? Only Read Record #1
+                                        curRec = 1
+                                        # CmdReadRecord2G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000", NOT_SAVED)
+                                        CmdReadRecord2G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000")
+                                        TempValue = copy.deepcopy(response)
+                                else:
+                                    # zero record size
+                                    pass
+                            else:
+                                # For Transparent, just check the file content
+                                # Handle lenght more than 1 APDU
+                                index = 0
+                                while index < int(file[fiFileSize]):  # Todo: should check with real file size
+                                    if (index + MAX_RESPONSE_LEN) > int(file[fiFileSize]):
+                                        TempLen = int(file[fiFileSize]) - index
+                                    else:
+                                        TempLen = MAX_RESPONSE_LEN
+                                    curRec = 0
+                                    # CmdReadBinary2G(index, TempLen, None, "9000", NOT_SAVED)
+                                    CmdReadBinary2G(index, TempLen, None, "9000")
+                                    TempValue += copy.deepcopy(response)
+                                    index += TempLen
+                    else:
+                        pass
+
+                # check content (2g) ends here
 
         # -------------------------------------------------------------------------------
         # Check linked file in 2G mode
@@ -4462,7 +4523,7 @@ def run(useClient=False):
     InitSCard(ReaderNumber)
 
     if OPT_SELECT3G_ADF == 1:
-        CmdSelect3GADF()
+        CmdSelect3GADF(ADF_AID_LENGTH)
 
     # 3G Secret Code Verification
     PINVerification3G()
@@ -4484,7 +4545,8 @@ def run(useClient=False):
         if curFile != prevFile:
             if OPT_USE_CLIENT:
                 progress(FileList.index(file), len(FileList), status=str(formatFileId(curFile)))
-                runlog_buffer.append("Test Access Condition for " + curFile)
+                runlog_buffer.append("\nTesting " + curFile)
+                runlog_buffer.append("Test File Control Parameters for " + curFile)
             else:
                 print "Test Access Condition for " + curFile
                 print "-----------------------------------------"
@@ -4498,14 +4560,14 @@ def run(useClient=False):
             CmdSelect3G(file[fiFilePathID], None, None)
 
             FileDescriptor = SearchTLV(0x82, response[2:])
-            if OPT_USE_CLIENT:
-                runlog_buffer.append(str(FileDescriptor))
-                runlog_buffer.append(str(file))
-                runlog_buffer.append(str(response[2:]))
-            else:
-                print(FileDescriptor)
-                print(file)
-                print(response[2:])
+            # if OPT_USE_CLIENT:
+            #     runlog_buffer.append(str(FileDescriptor))
+            #     runlog_buffer.append(str(file))
+            #     runlog_buffer.append(str(response[2:]))
+            # else:
+            #     print(FileDescriptor)
+            #     print(file)
+            #     print(response[2:])
 
             if FileDescriptor == []:
                 ERROR("File Not found in the Card!!")
@@ -4544,10 +4606,10 @@ def run(useClient=False):
                 iARRID = "%0.2X" % ARRRef[2] + "%0.2X" % ARRRef[3]
                 iARRRec = ARRRef[4]
 
-            if OPT_USE_CLIENT:
-                runlog_buffer.append(str(FileDescriptor))
-            else:
-                print(FileDescriptor)
+            # if OPT_USE_CLIENT:
+            #     runlog_buffer.append(str(FileDescriptor))
+            # else:
+            #     print(FileDescriptor)
             if FileDescriptor[2] & 0xBF == 0x38:
                 # MF, DF, or ADF
                 if CheckList(file[fiFileType], sFileTypeMF) or \
@@ -4697,485 +4759,13 @@ def run(useClient=False):
                     if OPT_ERROR_FILE:
                         appendVerifError(curFile, '', curOps, 'Unidentified File Type', 1, '', 0, '', curFileDescName)
 
+            # check 3g status ends here
+
             READRECORD3G = [0x00, 0xB2, 0x00, 0x04, 0x02]
 
-            ############# Add Check Content 3G ####################
-
-            if OPT_CHECK_CONTENT_3G == 1:
-                # -------------------------------------------------------------------------------
-                # Check File Content 3G
-                # -------------------------------------------------------------------------------
-                TempValue = []
-                VarName = None
-                # if True:
-                # if file[fiRead_ACC] != [] and file[fiRead_ACC][0] != iAccNEV:
-                if file[fiRead_ACC] == [] or file[fiRead_ACC][0] != iAccNEV:
-
-                    if file[fiContent].startswith('%'):
-                        tempContent = file[fiContent]  # Handle variable name
-                    else:
-                        tempContent = FilterString(file[fiContent])  # Filter content
-
-                    # if file[fiContent] != '':
-                    if tempContent != '':
-                        if OPT_USE_CLIENT:
-                            runlog_buffer.append("Test File Content for " + str(curFile))
-                        else:
-                            print "Test File Content for " + curFile
-                            print "-----------------------------------------"
-                        if CheckList(file[fiFileType], sFileTypeMF) or \
-                                CheckList(file[fiFileType], sFileTypeDF) or \
-                                CheckList(file[fiFileType], sFileTypeADF):
-                            pass
-                        else:
-                            # Only check content if the content is not empty and it is an EF.
-                            # Rule #1: length of the content reference is less than the actual length in the EF,
-                            #   The remaining value are not checked. (this already handled by SendAPDU function)
-                            # Rule #2: If length of the content reference is longer than the actual length in EF,
-                            #   the content reference shall be truncated up to the length in the EF.
-                            #   Warning shall be issued. (handle in SendAPDU)
-
-                            # ExpectedResponse = file[fiContent]
-                            # ExpectedLength = len(file[fiContent])/2
-                            VarValue = None
-                            tempPercentOffset = tempContent.find('%')
-                            if tempPercentOffset != -1:
-                                tempSpaceOffset = tempContent.find(' ')
-                                if tempSpaceOffset != -1:
-                                    # a variable name has been found
-                                    VarName = tempContent[tempPercentOffset:tempSpaceOffset]
-                                    DEBUGPRINT("VarName: " + str(VarName))
-                                    if VarName[1:] in VarList:
-                                        VarValue = VarList.get(VarName[1:])
-                                    elif 'GSM_' + VarName[1:] in VarList:  # search GSM file in varList
-                                        VarValue = VarList.get('GSM_' + VarName[1:])
-                                    elif 'USIM_' + VarName[1:] in VarList:  # search USIM file in varList
-                                        VarValue = VarList.get('USIM_' + VarName[1:])
-                                    else:
-                                        VarValue = ''
-                                    if OPT_USE_CLIENT:
-                                        runlog_buffer.append('VarValue: ' + str(VarValue))
-                                    else:
-                                        print('VarValue: ' + str(VarValue))
-
-                                else:
-                                    # Ending space not found, assuming until end of the text
-                                    VarName = tempContent[tempPercentOffset:]
-                                    DEBUGPRINT("VarName: " + str(VarName))
-                                    if VarName[1:] in VarList:
-                                        VarValue = VarList.get(VarName[1:])
-                                    elif 'GSM_' + VarName[1:] in VarList:
-                                        VarValue = VarList.get('GSM_' + VarName[1:])
-                                    elif 'USIM_' + VarName[1:] in VarList:
-                                        VarValue = VarList.get('USIM_' + VarName[1:])
-                                    else:
-                                        VarValue = None
-
-                                    if VarName == '': VarName = None  # Handle if text empty
-                                    # VarValue = GetVarValue(VarName[1:])  # ignore the percent sign
-                                    if OPT_USE_CLIENT:
-                                        runlog_buffer.append('VarValue: ' + str(VarValue))
-                                    else:
-                                        print('VarValue: ' + str(VarValue))
-
-                            # Rule #3: if the content start with %, it means variable, and followed by variable name.
-                            #   The variable name are started with'%' (percent) sign followed by variable name and a space
-                            #   In example 1234 %VAR1 5678. The content of variable is mentioned in VarList()
-                            #   if the variable is at the end of the string, space is not required.
-                            #   For example: "123456 %VAR1"
-                            #   When variable is used, usually an exact value is expected. So, OPT_EXPECTED_PADDING
-                            #       is not supported when a variable exist in the expected data.
-
-                            if CheckList(file[fiFIleStruct], sFileStructLF) or \
-                                    CheckList(file[fiFIleStruct], sFileStructCY):
-                                # Rule #4:
-                                # for Linear Fixed/Cyclic, First check the files with the record number, and keep the list.
-                                if VarValue == None:
-                                    # Padding can only be done if there is no variable at the moment
-                                    ExpectedResponse = tempContent
-                                    ExpectedLength = len(tempContent) / 2
-                                    if OPT_EXPECTED_PADDING:
-                                        LastByte = ExpectedResponse[(ExpectedLength * 2) - 2:]
-                                        while ExpectedLength < int(file[fiRecordSize]):
-                                            ExpectedResponse += LastByte
-                                            ExpectedLength += 1
-
-                                    if VarName:  # handle case where CSV variable name is not found in AdvSave
-                                        # Need to print the variable name to aid the modification of PCOM script.
-                                        if OptWrite2File:
-                                            OutputFile.writelines(";; Variable Used. Original Value: ")
-                                            OutputFile.writelines(tempContent)
-                                            OutputFile.writelines('\n')
-
-                                else:
-                                    # Replace with Value, no padding
-                                    ExpectedResponse = tempContent[:tempPercentOffset]
-                                    ExpectedResponse += VarValue
-                                    if tempSpaceOffset != -1:
-                                        ExpectedResponse += tempContent[tempSpaceOffset + 1:]
-                                    ExpectedResponse = FilterString(ExpectedResponse)
-                                    ExpectedLength = len(ExpectedResponse) / 2
-
-                                    # Need to print the variable name to aid the modification of PCOM script.
-                                    if OptWrite2File:
-                                        OutputFile.writelines(";; Variable Used. Original Value: ")
-                                        OutputFile.writelines(tempContent)
-                                        OutputFile.writelines('\n')
-
-                                if file[fiRecordNumber] != '':
-                                    RecordList.append(int(file[fiRecordNumber]))  # Content Record number always decimal
-                                    curRec = int(file[fiRecordNumber])
-                                    CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]),
-                                                    ExpectedResponse, "9000")
-                                    TempValue = copy.deepcopy(response)
-                                # Rule #5: If a content found that is without a record number,
-                                #   all the record within the same file shall be checked (except those files that are already checked).
-                                #   For simplicity, such content (without record number) shall be the last content in the list for the same EF.
-                                #   All record content of an EF shall be in defined consecutively in the list.
-                                else:
-                                    index = 1
-                                    if OPT_USE_CLIENT:
-                                        runlog_buffer.append('NumOfRec' + str(file[fiNumberOfRecord]))
-                                        runlog_buffer.append('RecordList ' + str(RecordList))
-                                    else:
-                                        print('NumOfRec' + str(file[fiNumberOfRecord]))
-                                        print('RecordList ' + str(RecordList))
-                                    while index <= file[fiNumberOfRecord]:
-                                        Found = 0
-                                        for a in RecordList:
-                                            if a == index:
-                                                Found = 1
-                                                break
-                                        if OPT_USE_CLIENT:
-                                            runlog_buffer.append('Found ' + str(Found))
-                                        else:
-                                            print('Found ' + str(Found))
-                                        if Found == 0:
-                                            # Not tested yet, read the content
-                                            curRec = index
-                                            CmdReadRecord3G(index, RECMODE2G_ABS, int(file[fiRecordSize]),
-                                                            ExpectedResponse,
-                                                            "9000")
-                                            TempValue = copy.deepcopy(response)
-                                        index += 1
-                            else:
-                                # For Transparent, just check the file content
-                                if VarValue == None:
-                                    ExpectedResponse = tempContent
-                                    ExpectedLength = len(tempContent) / 2
-                                    # Padding can only be done if there is no variable
-                                    if OPT_EXPECTED_PADDING:
-                                        LastByte = ExpectedResponse[(ExpectedLength * 2) - 2:]
-                                        while ExpectedLength < int(file[fiFileSize]):
-                                            ExpectedResponse += LastByte
-                                            ExpectedLength += 1
-
-                                    if VarName:  # handle case where CSV variable name is not found in AdvSave
-                                        # Need to print the variable name to aid the modification of PCOM script.
-                                        if OptWrite2File:
-                                            OutputFile.writelines(";; Variable Used. Original Value: ")
-                                            OutputFile.writelines(tempContent)
-                                            OutputFile.writelines('\n')
-
-                                else:
-                                    # Replace with Value, no padding
-                                    ExpectedResponse = tempContent[:tempPercentOffset]
-                                    ExpectedResponse += VarValue
-                                    if tempSpaceOffset != -1:
-                                        ExpectedResponse += tempContent[tempSpaceOffset + 1:]
-                                    ExpectedResponse = FilterString(ExpectedResponse)
-                                    ExpectedLength = len(ExpectedResponse) / 2
-
-                                    # Need to print the variable name to aid the modification of PCOM script.
-                                    if OptWrite2File:
-                                        OutputFile.writelines(";; Variable Used. Original Value: ")
-                                        OutputFile.writelines(tempContent)
-                                        OutputFile.writelines('\n')
-                                # Handle lenght more than 1 APDU
-                                index = 0
-                                while index < int(file[fiFileSize]):
-                                    if index >= ExpectedLength:
-                                        WARNING("Expected Length is longer than file size")
-                                        break
-                                    if (index + MAX_RESPONSE_LEN) > int(file[fiFileSize]):
-                                        TempLen = int(file[fiFileSize]) - index
-                                    else:
-                                        TempLen = MAX_RESPONSE_LEN
-
-                                    ##CmdReadBinary2G(index, TempLen, ExpectedResponse[(index*2):], "9000")
-
-                                    # Fix the expected data of Binary file >128 issue
-                                    # Method 1
-                                    # Buffer = ''
-                                    # i = 0
-                                    # while i<TempLen and ((index+i)*2)< len(ExpectedResponse):
-                                    #    #Buffer += ExpectedResponse[(index+i)*2] + ExpectedResponse[((index+i)*2)+1]
-                                    #    Buffer += ExpectedResponse[(index+i)*2:(index+i+1)*2]
-                                    #    i += 1
-                                    # CmdReadBinary2G(index, TempLen, Buffer, "9000")
-
-                                    # Method 2
-                                    CmdReadBinary3G(index, TempLen,
-                                                    ExpectedResponse[(index * 2):((index + TempLen) * 2)],
-                                                    "9000")
-
-                                    TempValue += copy.deepcopy(response)
-                                    index += TempLen
-                    else:
-                        # just read the content without checking the value
-                        if curFile != prevFile:  # only check the first one for linear fixed
-                            if OPT_USE_CLIENT:
-                                runlog_buffer.append("Read File Content for " + str(curFile))
-                            else:
-                                print "Read File Content for " + curFile
-                                print "-----------------------------------------"
-                            if CheckList(file[fiFileType], sFileTypeMF) or \
-                                    CheckList(file[fiFileType], sFileTypeDF) or \
-                                    CheckList(file[fiFileType], sFileTypeADF):
-                                pass
-                            else:
-                                if CheckList(file[fiFIleStruct], sFileStructLF) or \
-                                        CheckList(file[fiFIleStruct], sFileStructCY):
-                                    if file[fiRecordSize] != 0:
-                                        if file[fiRecordNumber] != '':
-                                            # CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
-                                            #                 int(file[fiRecordSize]), None, "9000", NOT_SAVED)
-                                            CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
-                                                            int(file[fiRecordSize]), None, "9000")
-                                            TempValue = copy.deepcopy(response)
-                                        else:
-                                            # Not defined? Only Read Record #1
-                                            # CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",
-                                            #                 NOT_SAVED)
-                                            CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000")
-                                            TempValue = copy.deepcopy(response)
-                                    else:
-                                        # zero record size
-                                        pass
-                                else:
-                                    # For Transparent, just check the file content
-                                    # Handle lenght more than 1 APDU
-                                    index = 0
-                                    while index < int(file[fiFileSize]):  # Todo: should check with real file size
-                                        if (index + MAX_RESPONSE_LEN) > int(file[fiFileSize]):
-                                            TempLen = int(file[fiFileSize]) - index
-                                        else:
-                                            TempLen = MAX_RESPONSE_LEN
-                                        # CmdReadBinary3G(index, TempLen, None, "9000", NOT_SAVED)
-                                        CmdReadBinary3G(index, TempLen, None, "9000")
-                                        TempValue += copy.deepcopy(response)
-                                        index += TempLen
-                        else:
-                            pass
-                TempStatus3G = copy.deepcopy(response)  # to compare with linked file if needed
-            # Update Add Check Link 3G
-
-            # -------------------------------------------------------------------------------
-            # Check linked file in 3G mode
-            # -------------------------------------------------------------------------------
-            if OPT_CHECK_LINK3G == 1:
-                TempValue2 = []
-                if file[fiLinkTo] != '' and \
-                        (file[fiRead_ACC] == [] or file[fiRead_ACC][0] != iAccNEV) and \
-                                curFile != prevFile:  # only check the first one for linear fixed
-                    if OPT_USE_CLIENT:
-                        runlog_buffer.append("Check Linked File to : " + str(file[fiLinkTo]))
-                    else:
-                        print "Check Linked File to : " + file[fiLinkTo]
-                        print "-----------------------------------------"
-                    for file2 in FileList:
-                        # DEBUGPRINT("file2: " + str(file2))
-                        if file[fiLinkTo] == file2[fiFilePathID]:
-                            linkedfile = file2
-                            CmdSelect3G(file[fiFilePathID], None, None)
-                            # CmdSelect3G(file2[fiFilePathID], None, None,NOT_SAVED)
-                            if TempStatus3G != response:
-                                # Note: The file ID (or some other header) of the linked file could be different.
-                                #   Set as warning for now
-                                #   TODO: Check the difference: File Size, record size, number of record should be the same
-                                #           Access condition and File ID can be different does not need to be checked.
-                                WARNING(" Different Linked file Status !!")
-                            # break
-                            if CheckList(file2[fiFIleStruct], sFileStructLF) or \
-                                    CheckList(file2[fiFIleStruct], sFileStructCY):
-                                # need to handle the empty record number
-                                if file[fiRecordSize] != 0:
-                                    if file[fiRecordNumber] != '':
-                                        # Check the original file for record number, only check if the record number exist
-                                        CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
-                                                        int(file[fiRecordSize]),
-                                                        None, "9000", NOT_SAVED)
-                                        TempValue2 = copy.deepcopy(response)
-                                    else:
-                                        CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",
-                                                        NOT_SAVED)
-                                        TempValue2 = copy.deepcopy(response)
-                                        ##stop checking if no record number
-                                        # break
-                            else:
-                                index = 0
-                                while index < int(file2[fiFileSize]):
-                                    # if index >= ExpectedLength:
-                                    #    break
-                                    if (index + 128) > int(file2[fiFileSize]):
-                                        TempLen = int(file2[fiFileSize]) - index
-                                    else:
-                                        TempLen = 128
-                                    CmdReadBinary3G(index, TempLen, None, "9000")
-                                    # CmdReadBinary3G(index, TempLen, None, "9000",NOT_SAVED)
-                                    TempValue2 += copy.deepcopy(response)
-                                    index += TempLen
-                            if TempValue2 != TempValue:
-                                # For sure linked file must have same values. Error if not the same.
-                                ERROR(" Different Linked file Value !!")
-                            if OPT_CHECK_LINK_UPDATE:
-                                # The other file linked to shall be updated, and the current file to be selected and read again.
-                                #   The content should be updated in the current file.
-
-                                if OPT_USE_CLIENT:
-                                    runlog_buffer.append("Test UPDATE Linked File: " + str(file[fiLinkTo]))
-                                else:
-                                    print "Test UPDATE Linked File: " + file[fiLinkTo]
-                                    print "-----------------------------------------"
-                                # print "TempValue :" + toHexString(TempValue)
-                                # print "TempValue2 :" + toHexString(TempValue2)
-
-                                # invert all data
-                                # for a in TempValue2:   # Not working, value cannot be changed in for loop
-                                #    a = a^0xFF
-                                # for i, s in enumerate(TempValue2): TempValue2[i] = TempValue2[i]^0xFF  # This might also work
-                                TempValue2[:] = [a ^ 0xFF for a in TempValue2]
-                                # print toHexString(TempValue2)
-                                TempValue = []  # Reset TempValue
-                                if TempValue2 == []:
-                                    WARNING(" Linked file cannot be read/updated !!")
-                                else:
-                                    if CheckList(file2[fiFIleStruct], sFileStructLF):
-                                        if file[fiRecordSize] != 0:
-                                            if file[fiRecordNumber] != '':
-                                                CmdUpdateRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
-                                                                  int(file[fiRecordSize]), TempValue2, "9000")
-                                                # CmdUpdateRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]), TempValue2, "9000",NOT_SAVED)
-                                                CmdSelect3G(file[fiFilePathID], expected, "9000")
-                                                # CmdSelect3G(file[fiFilePathID], expected, "9000",NOT_SAVED) # Select back the original file
-                                                CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
-                                                                int(file[fiRecordSize]), None, "9000")
-                                                # CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",NOT_SAVED)
-                                                TempValue = copy.deepcopy(response)
-                                            else:
-                                                CmdUpdateRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), TempValue2,
-                                                                  "9000")
-                                                # CmdUpdateRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), TempValue2, "9000",NOT_SAVED)
-                                                CmdSelect3G(file[fiFilePathID], expected, "9000")
-                                                # CmdSelect3G(file[fiFilePathID], expected, "9000",NOT_SAVED) # Select back the original file
-                                                CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000")
-                                                # CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",NOT_SAVED)
-                                                TempValue = copy.deepcopy(response)
-                                                # break
-                                    elif CheckList(file2[fiFIleStruct], sFileStructCY):
-                                        if file[fiRecordSize] != 0:
-                                            # CmdUpdateRecord3G(0, RECMODE2G_PREV, int(file[fiRecordSize]), TempValue2, "9000")
-                                            CmdUpdateRecord3G(0, RECMODE2G_PREV, int(file[fiRecordSize]), TempValue2,
-                                                              "9000", NOT_SAVED)
-                                            CmdSelect3G(file[fiFilePathID], expected, "9000")
-                                            # CmdSelect3G(file[fiFilePathID], expected, "9000",NOT_SAVED) # Select back the original file
-                                            CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000")
-                                            # CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",NOT_SAVED)
-                                            TempValue = copy.deepcopy(response)
-                                            # break
-                                    else:
-                                        index = 0
-                                        while index < int(file2[fiFileSize]):
-                                            # if index >= ExpectedLength:
-                                            #    break
-                                            if (index + 128) > int(file2[fiFileSize]):
-                                                TempLen = int(file2[fiFileSize]) - index
-                                            else:
-                                                TempLen = 128
-                                            Buffer = []
-                                            i = 0
-                                            while i < TempLen and (index + i) < len(TempValue2):
-                                                Buffer.append(TempValue2[index + i])
-                                                i += 1
-                                            CmdUpdateBinary3G(index, TempLen, Buffer, "9000")
-                                            # CmdUpdateBinary3G(index, TempLen, Buffer, "9000",NOT_SAVED)
-                                            # CmdUpdateBinary2G(index, TempLen, TempValue2[index:], "9000")
-                                            index += TempLen
-
-                                        CmdSelect3G(file[fiFilePathID], expected, "9000")
-                                        # CmdSelect3G(file[fiFilePathID], expected, "9000",NOT_SAVED) # Select back the original file
-                                        index = 0
-                                        while index < int(file[fiFileSize]):
-                                            # if index >= ExpectedLength:
-                                            #    break
-                                            if (index + 128) > int(file[fiFileSize]):
-                                                TempLen = int(file[fiFileSize]) - index
-                                            else:
-                                                TempLen = 128
-                                            CmdReadBinary3G(index, TempLen, None, "9000")
-                                            # CmdReadBinary3G(index, TempLen, None, "9000",NOT_SAVED)
-                                            TempValue += copy.deepcopy(response)
-                                            index += TempLen
-
-                                    # if TempValue2 == [] or TempValue == []:    # Avoid error when the linked file cannot be updated (i.e. access condition never)
-                                    if TempValue == []:  # Avoid error when the linked file cannot be updated (i.e. access condition never)
-                                        WARNING(" Linked file cannot be read !!")
-                                    else:
-                                        if TempValue2 != TempValue:
-                                            ERROR(" Different UPDATED Linked file Value !!")
-
-                                    # Revert back the value to avoid issue when linked file read later
-                                    # -----------------------------------------------------
-                                    TempValue2[:] = [a ^ 0xFF for a in TempValue2]
-
-                                    TempValue = []  # Reset TempValue
-                                    CmdSelect3G(file2[fiFilePathID], None, "9000")
-                                    # CmdSelect3G(file2[fiFilePathID], None, "9000",NOT_SAVED) # Select The Linked File
-                                    if CheckList(file2[fiFIleStruct], sFileStructLF):
-                                        if file[fiRecordSize] != 0:
-                                            if file[fiRecordNumber] != '':
-                                                CmdUpdateRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
-                                                                  int(file2[fiRecordSize]), TempValue2, "9000",
-                                                                  NOT_SAVED)
-                                            else:
-                                                CmdUpdateRecord3G(1, RECMODE2G_ABS, int(file2[fiRecordSize]),
-                                                                  TempValue2,
-                                                                  "9000", NOT_SAVED)
-                                    elif CheckList(file2[fiFIleStruct], sFileStructCY):
-                                        # There is no point updating Cyclic file as it cannot be returned to original state without updating all record.
-                                        # CmdUpdateRecord2G(0, RECMODE2G_PREV, int(file[fiRecordSize]), TempValue2, "9000")
-                                        pass
-                                    else:
-                                        index = 0
-                                        while index < int(file2[fiFileSize]):
-                                            # if index >= ExpectedLength:
-                                            #    break
-                                            if (index + 128) > int(file2[fiFileSize]):
-                                                TempLen = int(file2[fiFileSize]) - index
-                                            else:
-                                                TempLen = 128
-                                            Buffer = []
-                                            i = 0
-                                            while i < TempLen and (index + i) < len(TempValue2):
-                                                Buffer.append(TempValue2[index + i])
-                                                i += 1
-                                            CmdUpdateBinary2G(index, TempLen, Buffer, "9000")
-                                            # CmdUpdateBinary2G(index, TempLen, Buffer, "9000",NOT_SAVED)
-                                            index += TempLen
-
-                            break;  # No need to check further if already found
-
-
-                            # TODO:
-                            # Check if the files is in header and mark the file (CardFileList)
-                            #   If the file is not found in the File List, Return Error
-
-                            # prevFile = curFile
-
-                            ############# End of Add Check Content 3G ####################
-
             curOps = 'Test 3G Access Condition'
-
+            runlog_buffer.append("Test access conditions for " + curFile)
+            runlog_buffer.append("[DEBUG] ARR reference: " + toHexString(ARRRef))
             if ARRRef == []:
                 # ERROR("No ARR reference specified in the file")
                 if SecurityExpanded == []:
@@ -5192,7 +4782,6 @@ def run(useClient=False):
                     # Expanded format
                     CurACC = ARR2ACC(ParseARRV2(FilterHex(toHexString(SecurityExpanded))), file[fiFileType])
 
-
             elif ARRRef[1] < 3:  # Minimum length of ARR reference: 3
                 ERROR("Bad ARR Reference TLV")
                 if OPT_ERROR_FILE:
@@ -5202,6 +4791,7 @@ def run(useClient=False):
                 ARRFound = False
                 # Need to select the correct EF ARR:
                 if ARRRef[2] == 0x2F:
+                    runlog_buffer.append('ARR is under MF..')
                     # if ARR is "2Fxx", select MF first
                     Header = copy.deepcopy(SELECT3G)
                     # SendAPDU2(Header, "3F00", None, "61xx")
@@ -5213,16 +4803,26 @@ def run(useClient=False):
                         ARRFound = True
                 else:
                     # otherwise, loop from current DF up:
+                    runlog_buffer.append('Searching for EF ARR..')
                     CurDFPathLen = len(curFile)
                     CurDFPathLen -= 4  # remove file ID
                     CurDFPath = curFile[:CurDFPathLen]
                     # ARRFound = False
                     while CurDFPathLen > 4 and not ARRFound:
                         Header = copy.deepcopy(SELECT3G)
-                        Header[2] = 0x08  # Select by path
-                        Header[4] = len(CurDFPath) / 2  # Select by path
+                        Header[2] = 0x00  
+                        Header[4] = 0x02
+                        CurDFPathSeparated = []
+                        idx1 = 0
+                        idx2 = 4
+                        for i in range(len(CurDFPath) / 4):
+                            CurDFPathSeparated.append(CurDFPath[idx1:idx2])
+                            idx1 += 4
+                            idx2 += 4
+                        for path_part in CurDFPathSeparated:
+                            SendAPDU(Header, path_part, None, "61xx", NOT_SAVED)
                         # SendAPDU2(Header, CurDFPath, None, "61xx")
-                        SendAPDU(Header, CurDFPath, None, "61xx", NOT_SAVED)
+                        #SendAPDU(Header, CurDFPath, None, "61xx", NOT_SAVED)
                         if sw1 != 0x61:
                             # if not found, it means that the file structure of the card is different than expected
                             ERROR("Bad File Structure!!")
@@ -5233,9 +4833,11 @@ def run(useClient=False):
                         SendAPDU(Header, iARRID, None, None,
                                  NOT_SAVED)  # Do not check the SW, as the ARR may not be in this level.
                         if sw1 == 0x61:
+                            runlog_buffer.append('EF ARR found..')
                             ARRFound = True
                             break;
                         CurDFPathLen -= 4  # Go up 1 level
+                        runlog_buffer.append('EF ARR not found; go up one level..')
                         CurDFPath = curFile[:CurDFPathLen]
 
                 # if sw1 != 0x61:
@@ -5821,7 +5423,494 @@ def run(useClient=False):
                 if not found:
                     ERROR("Create DF Access condition Not Correct")
 
-            prevFile = curFile
+            # access conditions testing ends here
+
+            
+            
+        ############# Add Check Content 3G ####################
+        CmdSelect3G_not_recorded(file[fiFilePathID], None, None)
+
+        if OPT_CHECK_CONTENT_3G == 1:
+            # -------------------------------------------------------------------------------
+            # Check File Content 3G
+            # -------------------------------------------------------------------------------
+            TempValue = []
+            VarName = None
+            # if True:
+            # if file[fiRead_ACC] != [] and file[fiRead_ACC][0] != iAccNEV:
+            if file[fiRead_ACC] == [] or file[fiRead_ACC][0] != iAccNEV:
+
+                if file[fiContent].startswith('%'):
+                    tempContent = file[fiContent]  # Handle variable name
+                else:
+                    tempContent = FilterString(file[fiContent])  # Filter content
+
+                # if file[fiContent] != '':
+                if tempContent != '':
+                    if OPT_USE_CLIENT:
+                        runlog_buffer.append("Test File Content for " + str(curFile))
+                    else:
+                        print "Test File Content for " + curFile
+                        print "-----------------------------------------"
+                    curOps = 'Test File Content'
+                    if CheckList(file[fiFileType], sFileTypeMF) or \
+                            CheckList(file[fiFileType], sFileTypeDF) or \
+                            CheckList(file[fiFileType], sFileTypeADF):
+                        pass
+                    else:
+                        # Only check content if the content is not empty and it is an EF.
+                        # Rule #1: length of the content reference is less than the actual length in the EF,
+                        #   The remaining value are not checked. (this already handled by SendAPDU function)
+                        # Rule #2: If length of the content reference is longer than the actual length in EF,
+                        #   the content reference shall be truncated up to the length in the EF.
+                        #   Warning shall be issued. (handle in SendAPDU)
+
+                        # ExpectedResponse = file[fiContent]
+                        # ExpectedLength = len(file[fiContent])/2
+                        VarValue = None
+                        tempPercentOffset = tempContent.find('%')
+                        if tempPercentOffset != -1:
+                            tempSpaceOffset = tempContent.find(' ')
+                            if tempSpaceOffset != -1:
+                                # a variable name has been found
+                                VarName = tempContent[tempPercentOffset:tempSpaceOffset]
+                                DEBUGPRINT("VarName: " + str(VarName))
+                                if VarName[1:] in VarList:
+                                    VarValue = VarList.get(VarName[1:])
+                                elif 'GSM_' + VarName[1:] in VarList:  # search GSM file in varList
+                                    VarValue = VarList.get('GSM_' + VarName[1:])
+                                elif 'USIM_' + VarName[1:] in VarList:  # search USIM file in varList
+                                    VarValue = VarList.get('USIM_' + VarName[1:])
+                                else:
+                                    VarValue = ''
+                                if OPT_USE_CLIENT:
+                                    runlog_buffer.append('VarValue: ' + str(VarValue))
+                                else:
+                                    print('VarValue: ' + str(VarValue))
+
+                            else:
+                                # Ending space not found, assuming until end of the text
+                                VarName = tempContent[tempPercentOffset:]
+                                DEBUGPRINT("VarName: " + str(VarName))
+                                if VarName[1:] in VarList:
+                                    VarValue = VarList.get(VarName[1:])
+                                elif 'GSM_' + VarName[1:] in VarList:
+                                    VarValue = VarList.get('GSM_' + VarName[1:])
+                                elif 'USIM_' + VarName[1:] in VarList:
+                                    VarValue = VarList.get('USIM_' + VarName[1:])
+                                else:
+                                    VarValue = None
+
+                                if VarName == '': VarName = None  # Handle if text empty
+                                # VarValue = GetVarValue(VarName[1:])  # ignore the percent sign
+                                if OPT_USE_CLIENT:
+                                    runlog_buffer.append('VarValue: ' + str(VarValue))
+                                else:
+                                    print('VarValue: ' + str(VarValue))
+
+                        # Rule #3: if the content start with %, it means variable, and followed by variable name.
+                        #   The variable name are started with'%' (percent) sign followed by variable name and a space
+                        #   In example 1234 %VAR1 5678. The content of variable is mentioned in VarList()
+                        #   if the variable is at the end of the string, space is not required.
+                        #   For example: "123456 %VAR1"
+                        #   When variable is used, usually an exact value is expected. So, OPT_EXPECTED_PADDING
+                        #       is not supported when a variable exist in the expected data.
+
+                        if CheckList(file[fiFIleStruct], sFileStructLF) or \
+                                CheckList(file[fiFIleStruct], sFileStructCY):
+                            # Rule #4:
+                            # for Linear Fixed/Cyclic, First check the files with the record number, and keep the list.
+                            if VarValue == None:
+                                # Padding can only be done if there is no variable at the moment
+                                ExpectedResponse = tempContent
+                                ExpectedLength = len(tempContent) / 2
+                                if OPT_EXPECTED_PADDING:
+                                    LastByte = ExpectedResponse[(ExpectedLength * 2) - 2:]
+                                    while ExpectedLength < int(file[fiRecordSize]):
+                                        ExpectedResponse += LastByte
+                                        ExpectedLength += 1
+
+                                if VarName:  # handle case where CSV variable name is not found in AdvSave
+                                    # Need to print the variable name to aid the modification of PCOM script.
+                                    if OptWrite2File:
+                                        OutputFile.writelines(";; Variable Used. Original Value: ")
+                                        OutputFile.writelines(tempContent)
+                                        OutputFile.writelines('\n')
+
+                            else:
+                                # Replace with Value, no padding
+                                ExpectedResponse = tempContent[:tempPercentOffset]
+                                ExpectedResponse += VarValue
+                                if tempSpaceOffset != -1:
+                                    ExpectedResponse += tempContent[tempSpaceOffset + 1:]
+                                ExpectedResponse = FilterString(ExpectedResponse)
+                                ExpectedLength = len(ExpectedResponse) / 2
+
+                                # Need to print the variable name to aid the modification of PCOM script.
+                                if OptWrite2File:
+                                    OutputFile.writelines(";; Variable Used. Original Value: ")
+                                    OutputFile.writelines(tempContent)
+                                    OutputFile.writelines('\n')
+
+                            if file[fiRecordNumber] != '':
+                                RecordList.append(int(file[fiRecordNumber]))  # Content Record number always decimal
+                                curRec = int(file[fiRecordNumber])
+                                CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]),
+                                                ExpectedResponse, "9000")
+                                TempValue = copy.deepcopy(response)
+                            # Rule #5: If a content found that is without a record number,
+                            #   all the record within the same file shall be checked (except those files that are already checked).
+                            #   For simplicity, such content (without record number) shall be the last content in the list for the same EF.
+                            #   All record content of an EF shall be in defined consecutively in the list.
+                            else:
+                                index = 1
+                                # if OPT_USE_CLIENT:
+                                #     runlog_buffer.append('NumOfRec' + str(file[fiNumberOfRecord]))
+                                #     runlog_buffer.append('RecordList ' + str(RecordList))
+                                # else:
+                                #     print('NumOfRec' + str(file[fiNumberOfRecord]))
+                                #     print('RecordList ' + str(RecordList))
+                                while index <= file[fiNumberOfRecord]:
+                                    Found = 0
+                                    for a in RecordList:
+                                        if a == index:
+                                            Found = 1
+                                            break
+                                    # if OPT_USE_CLIENT:
+                                    #     runlog_buffer.append('Found ' + str(Found))
+                                    # else:
+                                    #     print('Found ' + str(Found))
+                                    if Found == 0:
+                                        # Not tested yet, read the content
+                                        curRec = index
+                                        CmdReadRecord3G(index, RECMODE2G_ABS, int(file[fiRecordSize]),
+                                                        ExpectedResponse,
+                                                        "9000")
+                                        TempValue = copy.deepcopy(response)
+                                    index += 1
+                        else:
+                            # For Transparent, just check the file content
+                            if VarValue == None:
+                                ExpectedResponse = tempContent
+                                ExpectedLength = len(tempContent) / 2
+                                # Padding can only be done if there is no variable
+                                if OPT_EXPECTED_PADDING:
+                                    LastByte = ExpectedResponse[(ExpectedLength * 2) - 2:]
+                                    while ExpectedLength < int(file[fiFileSize]):
+                                        ExpectedResponse += LastByte
+                                        ExpectedLength += 1
+
+                                if VarName:  # handle case where CSV variable name is not found in AdvSave
+                                    # Need to print the variable name to aid the modification of PCOM script.
+                                    if OptWrite2File:
+                                        OutputFile.writelines(";; Variable Used. Original Value: ")
+                                        OutputFile.writelines(tempContent)
+                                        OutputFile.writelines('\n')
+
+                            else:
+                                # Replace with Value, no padding
+                                ExpectedResponse = tempContent[:tempPercentOffset]
+                                ExpectedResponse += VarValue
+                                if tempSpaceOffset != -1:
+                                    ExpectedResponse += tempContent[tempSpaceOffset + 1:]
+                                ExpectedResponse = FilterString(ExpectedResponse)
+                                ExpectedLength = len(ExpectedResponse) / 2
+
+                                # Need to print the variable name to aid the modification of PCOM script.
+                                if OptWrite2File:
+                                    OutputFile.writelines(";; Variable Used. Original Value: ")
+                                    OutputFile.writelines(tempContent)
+                                    OutputFile.writelines('\n')
+                            # Handle lenght more than 1 APDU
+                            index = 0
+                            while index < int(file[fiFileSize]):
+                                if index >= ExpectedLength:
+                                    WARNING("Expected Length is longer than file size")
+                                    break
+                                if (index + MAX_RESPONSE_LEN) > int(file[fiFileSize]):
+                                    TempLen = int(file[fiFileSize]) - index
+                                else:
+                                    TempLen = MAX_RESPONSE_LEN
+
+                                ##CmdReadBinary2G(index, TempLen, ExpectedResponse[(index*2):], "9000")
+
+                                # Fix the expected data of Binary file >128 issue
+                                # Method 1
+                                # Buffer = ''
+                                # i = 0
+                                # while i<TempLen and ((index+i)*2)< len(ExpectedResponse):
+                                #    #Buffer += ExpectedResponse[(index+i)*2] + ExpectedResponse[((index+i)*2)+1]
+                                #    Buffer += ExpectedResponse[(index+i)*2:(index+i+1)*2]
+                                #    i += 1
+                                # CmdReadBinary2G(index, TempLen, Buffer, "9000")
+
+                                # Method 2
+                                curRec = 0
+                                CmdReadBinary3G(index, TempLen,
+                                                ExpectedResponse[(index * 2):((index + TempLen) * 2)],
+                                                "9000")
+
+                                TempValue += copy.deepcopy(response)
+                                index += TempLen
+                else:
+                    # just read the content without checking the value
+                    if curFile != prevFile:  # only check the first one for linear fixed
+                        if OPT_USE_CLIENT:
+                            runlog_buffer.append("Read File Content for " + str(curFile))
+                        else:
+                            print "Read File Content for " + curFile
+                            print "-----------------------------------------"
+                        if CheckList(file[fiFileType], sFileTypeMF) or \
+                                CheckList(file[fiFileType], sFileTypeDF) or \
+                                CheckList(file[fiFileType], sFileTypeADF):
+                            pass
+                        else:
+                            if CheckList(file[fiFIleStruct], sFileStructLF) or \
+                                    CheckList(file[fiFIleStruct], sFileStructCY):
+                                if file[fiRecordSize] != 0:
+                                    if file[fiRecordNumber] != '':
+                                        # CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
+                                        #                 int(file[fiRecordSize]), None, "9000", NOT_SAVED)
+                                        CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
+                                                        int(file[fiRecordSize]), None, "9000")
+                                        TempValue = copy.deepcopy(response)
+                                    else:
+                                        # Not defined? Only Read Record #1
+                                        # CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",
+                                        #                 NOT_SAVED)
+                                        CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000")
+                                        TempValue = copy.deepcopy(response)
+                                else:
+                                    # zero record size
+                                    pass
+                            else:
+                                # For Transparent, just check the file content
+                                # Handle lenght more than 1 APDU
+                                index = 0
+                                while index < int(file[fiFileSize]):  # Todo: should check with real file size
+                                    if (index + MAX_RESPONSE_LEN) > int(file[fiFileSize]):
+                                        TempLen = int(file[fiFileSize]) - index
+                                    else:
+                                        TempLen = MAX_RESPONSE_LEN
+                                    # CmdReadBinary3G(index, TempLen, None, "9000", NOT_SAVED)
+                                    CmdReadBinary3G(index, TempLen, None, "9000")
+                                    TempValue += copy.deepcopy(response)
+                                    index += TempLen
+                    else:
+                        pass
+            TempStatus3G = copy.deepcopy(response)  # to compare with linked file if needed
+        
+            # check content 3g ends here
+
+        # Update Add Check Link 3G
+
+        # -------------------------------------------------------------------------------
+        # Check linked file in 3G mode
+        # -------------------------------------------------------------------------------
+        if OPT_CHECK_LINK3G == 1:
+            TempValue2 = []
+            if file[fiLinkTo] != '' and \
+                    (file[fiRead_ACC] == [] or file[fiRead_ACC][0] != iAccNEV) and \
+                            curFile != prevFile:  # only check the first one for linear fixed
+                if OPT_USE_CLIENT:
+                    runlog_buffer.append("Check Linked File to : " + str(file[fiLinkTo]))
+                else:
+                    print "Check Linked File to : " + file[fiLinkTo]
+                    print "-----------------------------------------"
+                for file2 in FileList:
+                    # DEBUGPRINT("file2: " + str(file2))
+                    if file[fiLinkTo] == file2[fiFilePathID]:
+                        linkedfile = file2
+                        CmdSelect3G(file[fiFilePathID], None, None)
+                        # CmdSelect3G(file2[fiFilePathID], None, None,NOT_SAVED)
+                        if TempStatus3G != response:
+                            # Note: The file ID (or some other header) of the linked file could be different.
+                            #   Set as warning for now
+                            #   TODO: Check the difference: File Size, record size, number of record should be the same
+                            #           Access condition and File ID can be different does not need to be checked.
+                            WARNING(" Different Linked file Status !!")
+                        # break
+                        if CheckList(file2[fiFIleStruct], sFileStructLF) or \
+                                CheckList(file2[fiFIleStruct], sFileStructCY):
+                            # need to handle the empty record number
+                            if file[fiRecordSize] != 0:
+                                if file[fiRecordNumber] != '':
+                                    # Check the original file for record number, only check if the record number exist
+                                    CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
+                                                    int(file[fiRecordSize]),
+                                                    None, "9000", NOT_SAVED)
+                                    TempValue2 = copy.deepcopy(response)
+                                else:
+                                    CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",
+                                                    NOT_SAVED)
+                                    TempValue2 = copy.deepcopy(response)
+                                    ##stop checking if no record number
+                                    # break
+                        else:
+                            index = 0
+                            while index < int(file2[fiFileSize]):
+                                # if index >= ExpectedLength:
+                                #    break
+                                if (index + 128) > int(file2[fiFileSize]):
+                                    TempLen = int(file2[fiFileSize]) - index
+                                else:
+                                    TempLen = 128
+                                CmdReadBinary3G(index, TempLen, None, "9000")
+                                # CmdReadBinary3G(index, TempLen, None, "9000",NOT_SAVED)
+                                TempValue2 += copy.deepcopy(response)
+                                index += TempLen
+                        if TempValue2 != TempValue:
+                            # For sure linked file must have same values. Error if not the same.
+                            ERROR(" Different Linked file Value !!")
+                        if OPT_CHECK_LINK_UPDATE:
+                            # The other file linked to shall be updated, and the current file to be selected and read again.
+                            #   The content should be updated in the current file.
+
+                            if OPT_USE_CLIENT:
+                                runlog_buffer.append("Test UPDATE Linked File: " + str(file[fiLinkTo]))
+                            else:
+                                print "Test UPDATE Linked File: " + file[fiLinkTo]
+                                print "-----------------------------------------"
+                            # print "TempValue :" + toHexString(TempValue)
+                            # print "TempValue2 :" + toHexString(TempValue2)
+
+                            # invert all data
+                            # for a in TempValue2:   # Not working, value cannot be changed in for loop
+                            #    a = a^0xFF
+                            # for i, s in enumerate(TempValue2): TempValue2[i] = TempValue2[i]^0xFF  # This might also work
+                            TempValue2[:] = [a ^ 0xFF for a in TempValue2]
+                            # print toHexString(TempValue2)
+                            TempValue = []  # Reset TempValue
+                            if TempValue2 == []:
+                                WARNING(" Linked file cannot be read/updated !!")
+                            else:
+                                if CheckList(file2[fiFIleStruct], sFileStructLF):
+                                    if file[fiRecordSize] != 0:
+                                        if file[fiRecordNumber] != '':
+                                            CmdUpdateRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
+                                                                int(file[fiRecordSize]), TempValue2, "9000")
+                                            # CmdUpdateRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]), TempValue2, "9000",NOT_SAVED)
+                                            CmdSelect3G(file[fiFilePathID], expected, "9000")
+                                            # CmdSelect3G(file[fiFilePathID], expected, "9000",NOT_SAVED) # Select back the original file
+                                            CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
+                                                            int(file[fiRecordSize]), None, "9000")
+                                            # CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",NOT_SAVED)
+                                            TempValue = copy.deepcopy(response)
+                                        else:
+                                            CmdUpdateRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), TempValue2,
+                                                                "9000")
+                                            # CmdUpdateRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), TempValue2, "9000",NOT_SAVED)
+                                            CmdSelect3G(file[fiFilePathID], expected, "9000")
+                                            # CmdSelect3G(file[fiFilePathID], expected, "9000",NOT_SAVED) # Select back the original file
+                                            CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000")
+                                            # CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",NOT_SAVED)
+                                            TempValue = copy.deepcopy(response)
+                                            # break
+                                elif CheckList(file2[fiFIleStruct], sFileStructCY):
+                                    if file[fiRecordSize] != 0:
+                                        # CmdUpdateRecord3G(0, RECMODE2G_PREV, int(file[fiRecordSize]), TempValue2, "9000")
+                                        CmdUpdateRecord3G(0, RECMODE2G_PREV, int(file[fiRecordSize]), TempValue2,
+                                                            "9000", NOT_SAVED)
+                                        CmdSelect3G(file[fiFilePathID], expected, "9000")
+                                        # CmdSelect3G(file[fiFilePathID], expected, "9000",NOT_SAVED) # Select back the original file
+                                        CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000")
+                                        # CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",NOT_SAVED)
+                                        TempValue = copy.deepcopy(response)
+                                        # break
+                                else:
+                                    index = 0
+                                    while index < int(file2[fiFileSize]):
+                                        # if index >= ExpectedLength:
+                                        #    break
+                                        if (index + 128) > int(file2[fiFileSize]):
+                                            TempLen = int(file2[fiFileSize]) - index
+                                        else:
+                                            TempLen = 128
+                                        Buffer = []
+                                        i = 0
+                                        while i < TempLen and (index + i) < len(TempValue2):
+                                            Buffer.append(TempValue2[index + i])
+                                            i += 1
+                                        CmdUpdateBinary3G(index, TempLen, Buffer, "9000")
+                                        # CmdUpdateBinary3G(index, TempLen, Buffer, "9000",NOT_SAVED)
+                                        # CmdUpdateBinary2G(index, TempLen, TempValue2[index:], "9000")
+                                        index += TempLen
+
+                                    CmdSelect3G(file[fiFilePathID], expected, "9000")
+                                    # CmdSelect3G(file[fiFilePathID], expected, "9000",NOT_SAVED) # Select back the original file
+                                    index = 0
+                                    while index < int(file[fiFileSize]):
+                                        # if index >= ExpectedLength:
+                                        #    break
+                                        if (index + 128) > int(file[fiFileSize]):
+                                            TempLen = int(file[fiFileSize]) - index
+                                        else:
+                                            TempLen = 128
+                                        CmdReadBinary3G(index, TempLen, None, "9000")
+                                        # CmdReadBinary3G(index, TempLen, None, "9000",NOT_SAVED)
+                                        TempValue += copy.deepcopy(response)
+                                        index += TempLen
+
+                                # if TempValue2 == [] or TempValue == []:    # Avoid error when the linked file cannot be updated (i.e. access condition never)
+                                if TempValue == []:  # Avoid error when the linked file cannot be updated (i.e. access condition never)
+                                    WARNING(" Linked file cannot be read !!")
+                                else:
+                                    if TempValue2 != TempValue:
+                                        ERROR(" Different UPDATED Linked file Value !!")
+
+                                # Revert back the value to avoid issue when linked file read later
+                                # -----------------------------------------------------
+                                TempValue2[:] = [a ^ 0xFF for a in TempValue2]
+
+                                TempValue = []  # Reset TempValue
+                                CmdSelect3G(file2[fiFilePathID], None, "9000")
+                                # CmdSelect3G(file2[fiFilePathID], None, "9000",NOT_SAVED) # Select The Linked File
+                                if CheckList(file2[fiFIleStruct], sFileStructLF):
+                                    if file[fiRecordSize] != 0:
+                                        if file[fiRecordNumber] != '':
+                                            CmdUpdateRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
+                                                                int(file2[fiRecordSize]), TempValue2, "9000",
+                                                                NOT_SAVED)
+                                        else:
+                                            CmdUpdateRecord3G(1, RECMODE2G_ABS, int(file2[fiRecordSize]),
+                                                                TempValue2,
+                                                                "9000", NOT_SAVED)
+                                elif CheckList(file2[fiFIleStruct], sFileStructCY):
+                                    # There is no point updating Cyclic file as it cannot be returned to original state without updating all record.
+                                    # CmdUpdateRecord2G(0, RECMODE2G_PREV, int(file[fiRecordSize]), TempValue2, "9000")
+                                    pass
+                                else:
+                                    index = 0
+                                    while index < int(file2[fiFileSize]):
+                                        # if index >= ExpectedLength:
+                                        #    break
+                                        if (index + 128) > int(file2[fiFileSize]):
+                                            TempLen = int(file2[fiFileSize]) - index
+                                        else:
+                                            TempLen = 128
+                                        Buffer = []
+                                        i = 0
+                                        while i < TempLen and (index + i) < len(TempValue2):
+                                            Buffer.append(TempValue2[index + i])
+                                            i += 1
+                                        CmdUpdateBinary2G(index, TempLen, Buffer, "9000")
+                                        # CmdUpdateBinary2G(index, TempLen, Buffer, "9000",NOT_SAVED)
+                                        index += TempLen
+
+                        break;  # No need to check further if already found
+
+
+                        # TODO:
+                        # Check if the files is in header and mark the file (CardFileList)
+                        #   If the file is not found in the File List, Return Error
+
+                        # prevFile = curFile
+
+                        ############# End of Add Check Content 3G ####################
+
+            # check link 3g ends here
+
+        prevFile = curFile
 
     # ErrorFile.writelines(str(verificationErrors)) # raw error
 
@@ -6220,9 +6309,8 @@ def run(useClient=False):
 
         # Write Full Script
         with open(FullScriptFileName, 'w+') as f:
-            f.write(
-                ';----- Generated with Python FileVerif {version} -----\n\n.CALL Mapping.txt\n.CALL Options.txt\n\n'.format(
-                    version=FILE_VERIF_VERSION))
+            generation_date = datetime.now().strftime("%Y-%m-%d %H:%M")
+            f.write('; Generated with VerifClient v{} on {}\n\n.CALL Mapping.txt\n.CALL Options.txt\n\n'.format(FILE_VERIF_VERSION, generation_date))
             for i in lines: f.write(i)
 
     ###############################################
@@ -6243,7 +6331,7 @@ def run(useClient=False):
 
     return True, 'Verification success'
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 def proceed():
     parseOk, parseMsg = parseConfigXml()
