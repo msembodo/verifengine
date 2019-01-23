@@ -80,7 +80,7 @@ opt_debugprint_client_variables = False
 
 OPT_USE_VARIABLES = True # use Variables.txt generated from Adv Save
 OPT_CREATE_FULL_SCRIPT = True # create full script
-FILE_VERIF_VERSION = '0.0.4'
+FILE_VERIF_VERSION = '0.0.5'
 
 # list of possible value. Be careful that the list should be mutually exclusive
 # for example, if linear fixed are ['LF', 'L'] but linked file as ['LK',], linked file can be detected as Linear Fixed.
@@ -1692,8 +1692,9 @@ def parseConfigXml():
         OPT_USE_ADM4 = booleanStrToInt(verifConfig.getAttribute('useAdm4'))
         OPT_CHECK_CONTENT_3G = booleanStrToInt(verifConfig.getAttribute('usimIn3GMode'))
 
+        # hotfix in verifclient v0.0.5: this option will be kept 'false'
         if OPT_CHECK_CONTENT_3G:
-            OPT_SELECT3G_ADF = 1
+            OPT_SELECT3G_ADF = 0
         else:
             OPT_SELECT3G_ADF = 0
         
