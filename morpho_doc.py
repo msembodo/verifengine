@@ -726,6 +726,8 @@ def runAsModule(docPath):
         logger.info('destination: %s' % (destinationPath))
         return True, 'ex-Morpho doc converted successfully', destinationPath
     except Exception, e:
+        for line in converter._converter_log_buffer:
+            print(line)
         logger.error(str(e))
         return False, 'ERROR: %s' % (str(e)), ''
 

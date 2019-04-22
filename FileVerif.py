@@ -1879,6 +1879,38 @@ def createDocumentHeader():
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <title>Error Report</title>
+        <script>
+		    function doCount(text) {
+		        var sel = window.getSelection();
+				sel.collapse(document.body, 0);
+		        var cnt = 0;
+		        while (window.find(text)) {
+		            cnt = cnt + 1;
+		        }
+		        sel.collapse(document.body, 0);
+		        return cnt;
+		    }
+
+			function doSearch(text) {
+				document.designMode = "on";
+				window.find(text);
+				document.execCommand("HiliteColor", false, "yellow");
+				document.designMode = "off";
+			}
+
+			function doClear(text) {
+				if (window.find) {
+				    var sel = window.getSelection();
+					sel.collapse(document.body, 0);
+					document.designMode = "on";
+					while (window.find(text)) {
+						document.execCommand("HiliteColor", false, "transparent");
+					}
+					document.designMode = "off";
+					sel.collapse(document.body, 0);
+				}
+			}
+        </script>
         <style type="text/css">
         html,
         body {
