@@ -27,6 +27,8 @@ class Verification(Resource):
         verifOk, verifMsg = FileVerif.proceed()
         if verifOk:
             verificationResult['verificationSuccess'] = True
+        else:
+            verificationResult['verificationSuccess'] = False
 
         verificationResult['message'] = verifMsg
 

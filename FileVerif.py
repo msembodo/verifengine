@@ -619,15 +619,18 @@ def InitSCard(RNumber):
             else:
                 print(reader, toHexString(connection.getATR()))
         except NoCardException:
-            print(reader, 'no card inserted')
-            if 'win32' == sys.platform:
+            return -1
+            # print(reader, 'no card inserted')
+            # if 'win32' == sys.platform:
                 # print('press Enter to continue')
                 # sys.stdin.read(1)
-                sys.exit()
+                # sys.exit()
 
     if OptWrite2File:
         OutputFile.writelines("\n.POWER_ON")
         OutputFile.writelines('\n')
+    
+    return 0
 
 response = []
 sw1 = 0
@@ -2275,8 +2278,9 @@ def run(useClient=False):
             CurFile = []
 
             if not row.has_key(fFileType):
-                ERROR("File TypeDoes Not Exist!!")  # File Type is Mandatory
-                sys.exit()
+                ERROR("FileType Does Not Exist!!")  # File Type is Mandatory
+                return False, 'FileType field (mandatory) does not exist'
+                # sys.exit()
 
             # Get File Type (Mandatory to have File Type)
             curFileType = CheckPrev(FilterString(row[fFileType]), prevFileType)
@@ -3441,7 +3445,9 @@ def run(useClient=False):
         print "-----------------------------------------"
         print "Test on 2G Context ..."
         print "-----------------------------------------"
-    InitSCard(ReaderNumber)
+    
+    if InitSCard(ReaderNumber) != 0:
+        return False, 'Card not inserted'
 
     # 2G Secret Code Verification
     PINVerification2G()
@@ -4553,7 +4559,8 @@ def run(useClient=False):
     
     EXP_FROM_CARD = 1
 
-    InitSCard(ReaderNumber)
+    if InitSCard(ReaderNumber) != 0:
+        return False, 'Card not inserted'
 
     if OPT_SELECT3G_ADF == 1:
         CmdSelect3GADF(ADF_AID_LENGTH)
@@ -6385,8 +6392,8 @@ def proceed():
         return verifStat, verifMsg
 
     else:
-        logger.error('FileVerif aborted: ' + parseMsg)
-        return False, parseMsg
+        logger.error('FileVerif aborted while parsing configuration: ' + parseMsg)
+        return False, 'FileVerif aborted while parsing configuration: ' + parseMsg
 
 if __name__ == '__main__':
     run()
