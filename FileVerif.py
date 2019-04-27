@@ -80,7 +80,7 @@ opt_debugprint_client_variables = False
 
 OPT_USE_VARIABLES = True # use Variables.txt generated from Adv Save
 OPT_CREATE_FULL_SCRIPT = True # create full script
-FILE_VERIF_VERSION = '0.0.5'
+FILE_VERIF_VERSION = '0.0.6'
 
 # list of possible value. Be careful that the list should be mutually exclusive
 # for example, if linear fixed are ['LF', 'L'] but linked file as ['LK',], linked file can be detected as Linear Fixed.
@@ -1670,6 +1670,7 @@ def parseConfigXml():
     global verify3gLocalPin1p3
     global OPT_SELECT3G_ADF
     global OPT_CHECK_CONTENT_3G
+    global OPT_CHECK_LINK3G
     global ADF_AID
     global ADF_AID_LENGTH
 
@@ -1698,8 +1699,10 @@ def parseConfigXml():
         # hotfix in verifclient v0.0.5: this option will be kept 'false'
         if OPT_CHECK_CONTENT_3G:
             OPT_SELECT3G_ADF = 0
+            OPT_CHECK_LINK3G = 1
         else:
             OPT_SELECT3G_ADF = 0
+            OPT_CHECK_LINK3G = 0
         
         ADF_AID = str(verifConfig.getElementsByTagName('usimAid')[0].childNodes[0].data)
         ADF_AID_LENGTH = len(ADF_AID) / 2
@@ -4335,207 +4338,208 @@ def run(useClient=False):
 
                 # check content (2g) ends here
 
-        # -------------------------------------------------------------------------------
-        # Check linked file in 2G mode
-        # -------------------------------------------------------------------------------
-        # TODO HERE
-        # If the file is linked to other files, read the current file and the other file. The content shall be the same.
-        TempValue2 = []
-        if file[fiLinkTo] != '' and \
-                (file[fiRead_ACC] == [] or file[fiRead_ACC][0] != iAccNEV) and \
-                        curFile != prevFile:  # only check the first one for linear fixed
-            if OPT_USE_CLIENT:
-                runlog_buffer.append("Check Linked File to : " + str(file[fiLinkTo]))
-            else:
-                print "Check Linked File to : " + file[fiLinkTo]
-                print "-----------------------------------------"
-            curOps = 'Check Linked File'
-            curLinkedFile = file[fiLinkTo]
-            for file2 in FileList:
-                # DEBUGPRINT("file2: " + str(file2))
-                if file[fiLinkTo] == file2[fiFilePathID]:
-                    linkedfile = file2
-                    CmdSelect2G(file2[fiFilePathID], None, None, NOT_SAVED)
-                    if TempStatus2G != response:
-                        # Note: The file ID (or some other header) of the linked file could be different.
-                        #   Set as warning for now
-                        #   TODO: Check the difference: File Size, record size, number of record should be the same
-                        #           Access condition and File ID can be different does not need to be checked.
-                        WARNING(" Different Linked file Status !!")
-                        # if OPT_ERROR_FILE:
-                        # appendVerifError(curFile, curLinkedFile, curOps, 'Different Linked file Status', 0, '', 0, '', curFileDescName)
-                        # break
-                    if CheckList(file2[fiFIleStruct], sFileStructLF) or \
-                            CheckList(file2[fiFIleStruct], sFileStructCY):
-                        # need to handle the empty record number
-                        if file[fiRecordSize] != 0:
-                            if file[fiRecordNumber] != '':
-                                # Check the original file for record number, only check if the record number exist
-                                CmdReadRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]), None,
-                                                "9000", NOT_SAVED)
-                                TempValue2 = copy.deepcopy(response)
-                            else:
-                                CmdReadRecord2G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000", NOT_SAVED)
-                                TempValue2 = copy.deepcopy(response)
-                                ##stop checking if no record number
-                                # break
-                    else:
-                        index = 0
-                        while index < int(file2[fiFileSize]):
-                            # if index >= ExpectedLength:
-                            #    break
-                            if (index + MAX_RESPONSE_LEN) > int(file2[fiFileSize]):
-                                TempLen = int(file2[fiFileSize]) - index
-                            else:
-                                TempLen = MAX_RESPONSE_LEN
-                            CmdReadBinary2G(index, TempLen, None, "9000", NOT_SAVED)
-                            TempValue2 += copy.deepcopy(response)
-                            index += TempLen
-                    if TempValue2 != TempValue:
-                        # For sure linked file must have same values. Error if not the same.
-                        ERROR(" Different Linked file Value !!")
-                        if OPT_ERROR_FILE:
-                            appendVerifError(curFile, curLinkedFile, curOps, 'Different Linked file Value', 0, '', 0,
-                                             '', curFileDescName)
-                    if OPT_CHECK_LINK_UPDATE:
-                        # The other file linked to shall be updated, and the current file to be selected and read again.
-                        #   The content should be updated in the current file.
-
-                        if OPT_USE_CLIENT:
-                            runlog_buffer.append("Test UPDATE Linked File: " + str(file[fiLinkTo]))
+        if not OPT_CHECK_LINK3G:
+            # -------------------------------------------------------------------------------
+            # Check linked file in 2G mode
+            # -------------------------------------------------------------------------------
+            # TODO HERE
+            # If the file is linked to other files, read the current file and the other file. The content shall be the same.
+            TempValue2 = []
+            if file[fiLinkTo] != '' and \
+                    (file[fiRead_ACC] == [] or file[fiRead_ACC][0] != iAccNEV) and \
+                            curFile != prevFile:  # only check the first one for linear fixed
+                if OPT_USE_CLIENT:
+                    runlog_buffer.append("Check Linked File to : " + str(file[fiLinkTo]))
+                else:
+                    print "Check Linked File to : " + file[fiLinkTo]
+                    print "-----------------------------------------"
+                curOps = 'Check Linked File'
+                curLinkedFile = file[fiLinkTo]
+                for file2 in FileList:
+                    # DEBUGPRINT("file2: " + str(file2))
+                    if file[fiLinkTo] == file2[fiFilePathID]:
+                        linkedfile = file2
+                        CmdSelect2G(file2[fiFilePathID], None, None, NOT_SAVED)
+                        if TempStatus2G != response:
+                            # Note: The file ID (or some other header) of the linked file could be different.
+                            #   Set as warning for now
+                            #   TODO: Check the difference: File Size, record size, number of record should be the same
+                            #           Access condition and File ID can be different does not need to be checked.
+                            WARNING(" Different Linked file Status !!")
+                            # if OPT_ERROR_FILE:
+                            # appendVerifError(curFile, curLinkedFile, curOps, 'Different Linked file Status', 0, '', 0, '', curFileDescName)
+                            # break
+                        if CheckList(file2[fiFIleStruct], sFileStructLF) or \
+                                CheckList(file2[fiFIleStruct], sFileStructCY):
+                            # need to handle the empty record number
+                            if file[fiRecordSize] != 0:
+                                if file[fiRecordNumber] != '':
+                                    # Check the original file for record number, only check if the record number exist
+                                    CmdReadRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]), None,
+                                                    "9000", NOT_SAVED)
+                                    TempValue2 = copy.deepcopy(response)
+                                else:
+                                    CmdReadRecord2G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000", NOT_SAVED)
+                                    TempValue2 = copy.deepcopy(response)
+                                    ##stop checking if no record number
+                                    # break
                         else:
-                            print "Test UPDATE Linked File: " + file[fiLinkTo]
-                            print "-----------------------------------------"
-                        curOps = 'Test UPDATE Linked File'
-                        # print "TempValue :" + toHexString(TempValue)
-                        # print "TempValue2 :" + toHexString(TempValue2)
-
-                        # invert all data
-                        # for a in TempValue2:   # Not working, value cannot be changed in for loop
-                        #    a = a^0xFF
-                        # for i, s in enumerate(TempValue2): TempValue2[i] = TempValue2[i]^0xFF  # This might also work
-                        TempValue2[:] = [a ^ 0xFF for a in TempValue2]
-                        # print toHexString(TempValue2)
-                        TempValue = []  # Reset TempValue
-                        if TempValue2 == []:
-                            WARNING(" Linked file cannot be read/updated !!")
+                            index = 0
+                            while index < int(file2[fiFileSize]):
+                                # if index >= ExpectedLength:
+                                #    break
+                                if (index + MAX_RESPONSE_LEN) > int(file2[fiFileSize]):
+                                    TempLen = int(file2[fiFileSize]) - index
+                                else:
+                                    TempLen = MAX_RESPONSE_LEN
+                                CmdReadBinary2G(index, TempLen, None, "9000", NOT_SAVED)
+                                TempValue2 += copy.deepcopy(response)
+                                index += TempLen
+                        if TempValue2 != TempValue:
+                            # For sure linked file must have same values. Error if not the same.
+                            ERROR(" Different Linked file Value !!")
                             if OPT_ERROR_FILE:
-                                appendVerifError(curFile, curLinkedFile, curOps, 'Linked file cannot be read/updated',
-                                                 0, '', 0, '', curFileDescName)
-                        else:
-                            if CheckList(file2[fiFIleStruct], sFileStructLF):
-                                if file[fiRecordSize] != 0:
-                                    if file[fiRecordNumber] != '':
-                                        CmdUpdateRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS,
-                                                          int(file[fiRecordSize]),
-                                                          TempValue2, "9000", NOT_SAVED)
-                                        CmdSelect2G(file[fiFilePathID], expected, "9000",
-                                                    NOT_SAVED)  # Select back the original file
-                                        CmdReadRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS,
-                                                        int(file[fiRecordSize]),
-                                                        None, "9000", NOT_SAVED)
-                                        TempValue = copy.deepcopy(response)
-                                    else:
-                                        CmdUpdateRecord2G(1, RECMODE2G_ABS, int(file[fiRecordSize]), TempValue2, "9000",
-                                                          NOT_SAVED)
-                                        CmdSelect2G(file[fiFilePathID], expected, "9000",
-                                                    NOT_SAVED)  # Select back the original file
-                                        CmdReadRecord2G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",
+                                appendVerifError(curFile, curLinkedFile, curOps, 'Different Linked file Value', 0, '', 0,
+                                                '', curFileDescName)
+                        if OPT_CHECK_LINK_UPDATE:
+                            # The other file linked to shall be updated, and the current file to be selected and read again.
+                            #   The content should be updated in the current file.
+
+                            if OPT_USE_CLIENT:
+                                runlog_buffer.append("Test UPDATE Linked File: " + str(file[fiLinkTo]))
+                            else:
+                                print "Test UPDATE Linked File: " + file[fiLinkTo]
+                                print "-----------------------------------------"
+                            curOps = 'Test UPDATE Linked File'
+                            # print "TempValue :" + toHexString(TempValue)
+                            # print "TempValue2 :" + toHexString(TempValue2)
+
+                            # invert all data
+                            # for a in TempValue2:   # Not working, value cannot be changed in for loop
+                            #    a = a^0xFF
+                            # for i, s in enumerate(TempValue2): TempValue2[i] = TempValue2[i]^0xFF  # This might also work
+                            TempValue2[:] = [a ^ 0xFF for a in TempValue2]
+                            # print toHexString(TempValue2)
+                            TempValue = []  # Reset TempValue
+                            if TempValue2 == []:
+                                WARNING(" Linked file cannot be read/updated !!")
+                                if OPT_ERROR_FILE:
+                                    appendVerifError(curFile, curLinkedFile, curOps, 'Linked file cannot be read/updated',
+                                                    0, '', 0, '', curFileDescName)
+                            else:
+                                if CheckList(file2[fiFIleStruct], sFileStructLF):
+                                    if file[fiRecordSize] != 0:
+                                        if file[fiRecordNumber] != '':
+                                            CmdUpdateRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS,
+                                                            int(file[fiRecordSize]),
+                                                            TempValue2, "9000", NOT_SAVED)
+                                            CmdSelect2G(file[fiFilePathID], expected, "9000",
+                                                        NOT_SAVED)  # Select back the original file
+                                            CmdReadRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS,
+                                                            int(file[fiRecordSize]),
+                                                            None, "9000", NOT_SAVED)
+                                            TempValue = copy.deepcopy(response)
+                                        else:
+                                            CmdUpdateRecord2G(1, RECMODE2G_ABS, int(file[fiRecordSize]), TempValue2, "9000",
+                                                            NOT_SAVED)
+                                            CmdSelect2G(file[fiFilePathID], expected, "9000",
+                                                        NOT_SAVED)  # Select back the original file
+                                            CmdReadRecord2G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",
+                                                            NOT_SAVED)
+                                            TempValue = copy.deepcopy(response)
+                                            # break
+                                elif CheckList(file2[fiFIleStruct], sFileStructCY):
+                                    if file[fiRecordSize] != 0:
+                                        CmdUpdateRecord2G(0, RECMODE2G_PREV, int(file[fiRecordSize]), TempValue2, "9000",
                                                         NOT_SAVED)
+                                        CmdSelect2G(file[fiFilePathID], expected, "9000",
+                                                    NOT_SAVED)  # Select back the original file
+                                        CmdReadRecord2G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000", NOT_SAVED)
                                         TempValue = copy.deepcopy(response)
                                         # break
-                            elif CheckList(file2[fiFIleStruct], sFileStructCY):
-                                if file[fiRecordSize] != 0:
-                                    CmdUpdateRecord2G(0, RECMODE2G_PREV, int(file[fiRecordSize]), TempValue2, "9000",
-                                                      NOT_SAVED)
+                                else:
+                                    index = 0
+                                    while index < int(file2[fiFileSize]):
+                                        # if index >= ExpectedLength:
+                                        #    break
+                                        if (index + 255) > int(file2[fiFileSize]):
+                                            TempLen = int(file2[fiFileSize]) - index
+                                        else:
+                                            TempLen = 255
+                                        Buffer = []
+                                        i = 0
+                                        while i < TempLen and (index + i) < len(TempValue2):
+                                            Buffer.append(TempValue2[index + i])
+                                            i += 1
+                                        CmdUpdateBinary2G(index, TempLen, Buffer, "9000", NOT_SAVED)
+                                        # CmdUpdateBinary2G(index, TempLen, TempValue2[index:], "9000")
+                                        index += TempLen
+
                                     CmdSelect2G(file[fiFilePathID], expected, "9000",
                                                 NOT_SAVED)  # Select back the original file
-                                    CmdReadRecord2G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000", NOT_SAVED)
-                                    TempValue = copy.deepcopy(response)
-                                    # break
-                            else:
-                                index = 0
-                                while index < int(file2[fiFileSize]):
-                                    # if index >= ExpectedLength:
-                                    #    break
-                                    if (index + 255) > int(file2[fiFileSize]):
-                                        TempLen = int(file2[fiFileSize]) - index
-                                    else:
-                                        TempLen = 255
-                                    Buffer = []
-                                    i = 0
-                                    while i < TempLen and (index + i) < len(TempValue2):
-                                        Buffer.append(TempValue2[index + i])
-                                        i += 1
-                                    CmdUpdateBinary2G(index, TempLen, Buffer, "9000", NOT_SAVED)
-                                    # CmdUpdateBinary2G(index, TempLen, TempValue2[index:], "9000")
-                                    index += TempLen
+                                    index = 0
+                                    while index < int(file[fiFileSize]):
+                                        # if index >= ExpectedLength:
+                                        #    break
+                                        if (index + 255) > int(file[fiFileSize]):
+                                            TempLen = int(file[fiFileSize]) - index
+                                        else:
+                                            TempLen = 255
+                                        CmdReadBinary2G(index, TempLen, None, "9000", NOT_SAVED)
+                                        TempValue += copy.deepcopy(response)
+                                        index += TempLen
 
-                                CmdSelect2G(file[fiFilePathID], expected, "9000",
-                                            NOT_SAVED)  # Select back the original file
-                                index = 0
-                                while index < int(file[fiFileSize]):
-                                    # if index >= ExpectedLength:
-                                    #    break
-                                    if (index + 255) > int(file[fiFileSize]):
-                                        TempLen = int(file[fiFileSize]) - index
-                                    else:
-                                        TempLen = 255
-                                    CmdReadBinary2G(index, TempLen, None, "9000", NOT_SAVED)
-                                    TempValue += copy.deepcopy(response)
-                                    index += TempLen
-
-                            # if TempValue2 == [] or TempValue == []:    # Avoid error when the linked file cannot be updated (i.e. access condition never)
-                            if TempValue == []:  # Avoid error when the linked file cannot be updated (i.e. access condition never)
-                                WARNING(" Linked file cannot be read !!")
-                                if OPT_ERROR_FILE:
-                                    appendVerifError(curFile, curLinkedFile, curOps, 'Linked file cannot be read', 0,
-                                                     '', 0, '', curFileDescName)
-                            else:
-                                if TempValue2 != TempValue:
-                                    ERROR(" Different UPDATED Linked file Value !!")
+                                # if TempValue2 == [] or TempValue == []:    # Avoid error when the linked file cannot be updated (i.e. access condition never)
+                                if TempValue == []:  # Avoid error when the linked file cannot be updated (i.e. access condition never)
+                                    WARNING(" Linked file cannot be read !!")
                                     if OPT_ERROR_FILE:
-                                        appendVerifError(curFile, curLinkedFile, curOps,
-                                                         'Different UPDATED Linked file Value', 1, '', 0, '',
-                                                         curFileDescName)
+                                        appendVerifError(curFile, curLinkedFile, curOps, 'Linked file cannot be read', 0,
+                                                        '', 0, '', curFileDescName)
+                                else:
+                                    if TempValue2 != TempValue:
+                                        ERROR(" Different UPDATED Linked file Value !!")
+                                        if OPT_ERROR_FILE:
+                                            appendVerifError(curFile, curLinkedFile, curOps,
+                                                            'Different UPDATED Linked file Value', 1, '', 0, '',
+                                                            curFileDescName)
 
-                            # Revert back the value to avoid issue when linked file read later
-                            # -----------------------------------------------------
-                            TempValue2[:] = [a ^ 0xFF for a in TempValue2]
+                                # Revert back the value to avoid issue when linked file read later
+                                # -----------------------------------------------------
+                                TempValue2[:] = [a ^ 0xFF for a in TempValue2]
 
-                            TempValue = []  # Reset TempValue
-                            CmdSelect2G(file2[fiFilePathID], None, "9000", NOT_SAVED)  # Select The Linked File
-                            if CheckList(file2[fiFIleStruct], sFileStructLF):
-                                if file[fiRecordSize] != 0:
-                                    if file[fiRecordNumber] != '':
-                                        CmdUpdateRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS,
-                                                          int(file2[fiRecordSize]), TempValue2, "9000", NOT_SAVED)
-                                    else:
-                                        CmdUpdateRecord2G(1, RECMODE2G_ABS, int(file2[fiRecordSize]), TempValue2,
-                                                          "9000",
-                                                          NOT_SAVED)
-                            elif CheckList(file2[fiFIleStruct], sFileStructCY):
-                                # There is no point updating Cyclic file as it cannot be returned to original state without updating all record.
-                                # CmdUpdateRecord2G(0, RECMODE2G_PREV, int(file[fiRecordSize]), TempValue2, "9000")
-                                pass
-                            else:
-                                index = 0
-                                while index < int(file2[fiFileSize]):
-                                    # if index >= ExpectedLength:
-                                    #    break
-                                    if (index + 128) > int(file2[fiFileSize]):
-                                        TempLen = int(file2[fiFileSize]) - index
-                                    else:
-                                        TempLen = 128
-                                    Buffer = []
-                                    i = 0
-                                    while i < TempLen and (index + i) < len(TempValue2):
-                                        Buffer.append(TempValue2[index + i])
-                                        i += 1
-                                    CmdUpdateBinary2G(index, TempLen, Buffer, "9000", NOT_SAVED)
-                                    index += TempLen
+                                TempValue = []  # Reset TempValue
+                                CmdSelect2G(file2[fiFilePathID], None, "9000", NOT_SAVED)  # Select The Linked File
+                                if CheckList(file2[fiFIleStruct], sFileStructLF):
+                                    if file[fiRecordSize] != 0:
+                                        if file[fiRecordNumber] != '':
+                                            CmdUpdateRecord2G(int(file[fiRecordNumber]), RECMODE2G_ABS,
+                                                            int(file2[fiRecordSize]), TempValue2, "9000", NOT_SAVED)
+                                        else:
+                                            CmdUpdateRecord2G(1, RECMODE2G_ABS, int(file2[fiRecordSize]), TempValue2,
+                                                            "9000",
+                                                            NOT_SAVED)
+                                elif CheckList(file2[fiFIleStruct], sFileStructCY):
+                                    # There is no point updating Cyclic file as it cannot be returned to original state without updating all record.
+                                    # CmdUpdateRecord2G(0, RECMODE2G_PREV, int(file[fiRecordSize]), TempValue2, "9000")
+                                    pass
+                                else:
+                                    index = 0
+                                    while index < int(file2[fiFileSize]):
+                                        # if index >= ExpectedLength:
+                                        #    break
+                                        if (index + 128) > int(file2[fiFileSize]):
+                                            TempLen = int(file2[fiFileSize]) - index
+                                        else:
+                                            TempLen = 128
+                                        Buffer = []
+                                        i = 0
+                                        while i < TempLen and (index + i) < len(TempValue2):
+                                            Buffer.append(TempValue2[index + i])
+                                            i += 1
+                                        CmdUpdateBinary2G(index, TempLen, Buffer, "9000", NOT_SAVED)
+                                        index += TempLen
 
-                    break;  # No need to check further if already found
+                        break;  # No need to check further if already found
 
         # TODO:
         # Check if the files is in header and mark the file (CardFileList)
@@ -5757,11 +5761,13 @@ def run(useClient=False):
                 else:
                     print "Check Linked File to : " + file[fiLinkTo]
                     print "-----------------------------------------"
+                curOps = 'Check Linked File'
+                curLinkedFile = file[fiLinkTo]
                 for file2 in FileList:
                     # DEBUGPRINT("file2: " + str(file2))
                     if file[fiLinkTo] == file2[fiFilePathID]:
                         linkedfile = file2
-                        CmdSelect3G(file[fiFilePathID], None, None)
+                        CmdSelect3G_not_recorded(file2[fiFilePathID], None, None)
                         # CmdSelect3G(file2[fiFilePathID], None, None,NOT_SAVED)
                         if TempStatus3G != response:
                             # Note: The file ID (or some other header) of the linked file could be different.
@@ -5791,17 +5797,21 @@ def run(useClient=False):
                             while index < int(file2[fiFileSize]):
                                 # if index >= ExpectedLength:
                                 #    break
-                                if (index + 128) > int(file2[fiFileSize]):
+                                if (index + MAX_RESPONSE_LEN) > int(file2[fiFileSize]):
                                     TempLen = int(file2[fiFileSize]) - index
                                 else:
-                                    TempLen = 128
-                                CmdReadBinary3G(index, TempLen, None, "9000")
-                                # CmdReadBinary3G(index, TempLen, None, "9000",NOT_SAVED)
+                                    TempLen = MAX_RESPONSE_LEN
+                                # CmdReadBinary3G(index, TempLen, None, "9000")
+                                CmdReadBinary3G(index, TempLen, None, "9000", NOT_SAVED)
                                 TempValue2 += copy.deepcopy(response)
                                 index += TempLen
                         if TempValue2 != TempValue:
                             # For sure linked file must have same values. Error if not the same.
                             ERROR(" Different Linked file Value !!")
+                            if OPT_ERROR_FILE:
+					            appendVerifError(curFile, curLinkedFile, curOps, 'Different Linked file Value', 0, '', 0,
+									            '', curFileDescName)
+                        
                         if OPT_CHECK_LINK_UPDATE:
                             # The other file linked to shall be updated, and the current file to be selected and read again.
                             #   The content should be updated in the current file.
@@ -5811,6 +5821,7 @@ def run(useClient=False):
                             else:
                                 print "Test UPDATE Linked File: " + file[fiLinkTo]
                                 print "-----------------------------------------"
+                            curOps = 'Test UPDATE Linked File'
                             # print "TempValue :" + toHexString(TempValue)
                             # print "TempValue2 :" + toHexString(TempValue2)
 
@@ -5823,26 +5834,29 @@ def run(useClient=False):
                             TempValue = []  # Reset TempValue
                             if TempValue2 == []:
                                 WARNING(" Linked file cannot be read/updated !!")
+                                if OPT_ERROR_FILE:
+						            appendVerifError(curFile, curLinkedFile, curOps, 'Linked file cannot be read/updated',
+										            0, '', 0, '', curFileDescName)
                             else:
                                 if CheckList(file2[fiFIleStruct], sFileStructLF):
                                     if file[fiRecordSize] != 0:
                                         if file[fiRecordNumber] != '':
                                             CmdUpdateRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
-                                                                int(file[fiRecordSize]), TempValue2, "9000")
+                                                                int(file[fiRecordSize]), TempValue2, "9000", NOT_SAVED)
                                             # CmdUpdateRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]), TempValue2, "9000",NOT_SAVED)
-                                            CmdSelect3G(file[fiFilePathID], expected, "9000")
+                                            CmdSelect3G_not_recorded(file[fiFilePathID], None, "9000")
                                             # CmdSelect3G(file[fiFilePathID], expected, "9000",NOT_SAVED) # Select back the original file
                                             CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS,
-                                                            int(file[fiRecordSize]), None, "9000")
+                                                            int(file[fiRecordSize]), None, "9000", NOT_SAVED)
                                             # CmdReadRecord3G(int(file[fiRecordNumber]), RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",NOT_SAVED)
                                             TempValue = copy.deepcopy(response)
                                         else:
                                             CmdUpdateRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), TempValue2,
-                                                                "9000")
+                                                                "9000", NOT_SAVED)
                                             # CmdUpdateRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), TempValue2, "9000",NOT_SAVED)
-                                            CmdSelect3G(file[fiFilePathID], expected, "9000")
+                                            CmdSelect3G_not_recorded(file[fiFilePathID], None, "9000")
                                             # CmdSelect3G(file[fiFilePathID], expected, "9000",NOT_SAVED) # Select back the original file
-                                            CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000")
+                                            CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000", NOT_SAVED)
                                             # CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",NOT_SAVED)
                                             TempValue = copy.deepcopy(response)
                                             # break
@@ -5851,9 +5865,9 @@ def run(useClient=False):
                                         # CmdUpdateRecord3G(0, RECMODE2G_PREV, int(file[fiRecordSize]), TempValue2, "9000")
                                         CmdUpdateRecord3G(0, RECMODE2G_PREV, int(file[fiRecordSize]), TempValue2,
                                                             "9000", NOT_SAVED)
-                                        CmdSelect3G(file[fiFilePathID], expected, "9000")
+                                        CmdSelect3G_not_recorded(file[fiFilePathID], None, "9000")
                                         # CmdSelect3G(file[fiFilePathID], expected, "9000",NOT_SAVED) # Select back the original file
-                                        CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000")
+                                        CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000", NOT_SAVED)
                                         # CmdReadRecord3G(1, RECMODE2G_ABS, int(file[fiRecordSize]), None, "9000",NOT_SAVED)
                                         TempValue = copy.deepcopy(response)
                                         # break
@@ -5862,31 +5876,31 @@ def run(useClient=False):
                                     while index < int(file2[fiFileSize]):
                                         # if index >= ExpectedLength:
                                         #    break
-                                        if (index + 128) > int(file2[fiFileSize]):
+                                        if (index + 255) > int(file2[fiFileSize]):
                                             TempLen = int(file2[fiFileSize]) - index
                                         else:
-                                            TempLen = 128
+                                            TempLen = 255
                                         Buffer = []
                                         i = 0
                                         while i < TempLen and (index + i) < len(TempValue2):
                                             Buffer.append(TempValue2[index + i])
                                             i += 1
-                                        CmdUpdateBinary3G(index, TempLen, Buffer, "9000")
+                                        CmdUpdateBinary3G(index, TempLen, Buffer, "9000", NOT_SAVED)
                                         # CmdUpdateBinary3G(index, TempLen, Buffer, "9000",NOT_SAVED)
                                         # CmdUpdateBinary2G(index, TempLen, TempValue2[index:], "9000")
                                         index += TempLen
 
-                                    CmdSelect3G(file[fiFilePathID], expected, "9000")
+                                    CmdSelect3G_not_recorded(file[fiFilePathID], None, "9000")
                                     # CmdSelect3G(file[fiFilePathID], expected, "9000",NOT_SAVED) # Select back the original file
                                     index = 0
                                     while index < int(file[fiFileSize]):
                                         # if index >= ExpectedLength:
                                         #    break
-                                        if (index + 128) > int(file[fiFileSize]):
+                                        if (index + 255) > int(file[fiFileSize]):
                                             TempLen = int(file[fiFileSize]) - index
                                         else:
-                                            TempLen = 128
-                                        CmdReadBinary3G(index, TempLen, None, "9000")
+                                            TempLen = 255
+                                        CmdReadBinary3G(index, TempLen, None, "9000", NOT_SAVED)
                                         # CmdReadBinary3G(index, TempLen, None, "9000",NOT_SAVED)
                                         TempValue += copy.deepcopy(response)
                                         index += TempLen
@@ -5894,16 +5908,23 @@ def run(useClient=False):
                                 # if TempValue2 == [] or TempValue == []:    # Avoid error when the linked file cannot be updated (i.e. access condition never)
                                 if TempValue == []:  # Avoid error when the linked file cannot be updated (i.e. access condition never)
                                     WARNING(" Linked file cannot be read !!")
+                                    if OPT_ERROR_FILE:
+							            appendVerifError(curFile, curLinkedFile, curOps, 'Linked file cannot be read', 0,
+											            '', 0, '', curFileDescName)
                                 else:
                                     if TempValue2 != TempValue:
                                         ERROR(" Different UPDATED Linked file Value !!")
+                                        if OPT_ERROR_FILE:
+								            appendVerifError(curFile, curLinkedFile, curOps,
+												            'Different UPDATED Linked file Value', 1, '', 0, '',
+												            curFileDescName)
 
                                 # Revert back the value to avoid issue when linked file read later
                                 # -----------------------------------------------------
                                 TempValue2[:] = [a ^ 0xFF for a in TempValue2]
 
                                 TempValue = []  # Reset TempValue
-                                CmdSelect3G(file2[fiFilePathID], None, "9000")
+                                CmdSelect3G_not_recorded(file2[fiFilePathID], None, "9000")
                                 # CmdSelect3G(file2[fiFilePathID], None, "9000",NOT_SAVED) # Select The Linked File
                                 if CheckList(file2[fiFIleStruct], sFileStructLF):
                                     if file[fiRecordSize] != 0:
@@ -5933,7 +5954,7 @@ def run(useClient=False):
                                         while i < TempLen and (index + i) < len(TempValue2):
                                             Buffer.append(TempValue2[index + i])
                                             i += 1
-                                        CmdUpdateBinary2G(index, TempLen, Buffer, "9000")
+                                        CmdUpdateBinary3G(index, TempLen, Buffer, "9000", NOT_SAVED)
                                         # CmdUpdateBinary2G(index, TempLen, Buffer, "9000",NOT_SAVED)
                                         index += TempLen
 
