@@ -1,8 +1,17 @@
 from flask import Flask
+from flask import request
 from flask_restful import reqparse, abort, Api, Resource
 import FileVerif
 import spml2csv
 import morpho_doc
+import sys
+import logging
+
+logging.basicConfig(level=logging.INFO,
+                    format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
+                    datefmt="%H:%M:%S", stream=sys.stdout)
+
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 api = Api(app)
@@ -22,6 +31,12 @@ converterResult = {
 
 # parser = reqparse.RequestParser()
 
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
 class Verification(Resource):
     def get(self):
         verifOk, verifMsg = FileVerif.proceed()
@@ -37,6 +52,12 @@ class Verification(Resource):
 class ServerStat(Resource):
     def get(self):
         return { 'serverUp' : True }
+
+class ServerKill(Resource):
+    def get(self):
+        logger.info('Shutting down verification engine..')
+        shutdown_server()
+        # return { 'killStatus' : True }
 
 class SimpmlConverter(Resource):
     def __init__(self):
@@ -71,6 +92,7 @@ class ExMorphoDocConverter(Resource):
 # setup API resource mapping
 api.add_resource(Verification, '/run')
 api.add_resource(ServerStat, '/getServerStatus')
+api.add_resource(ServerKill, '/killVerifServer')
 api.add_resource(SimpmlConverter, '/convertUxp')
 api.add_resource(ExMorphoDocConverter, '/convertExMorphoDoc')
 
