@@ -77,6 +77,7 @@ OPT_USE_CLIENT = False
 runlog_buffer = []
 runlogFileName = 'run.log'
 opt_debugprint_client_variables = False
+verifcode_log_buffer = None
 
 OPT_USE_VARIABLES = True # use Variables.txt generated from Adv Save
 OPT_CREATE_FULL_SCRIPT = True # create full script
@@ -222,39 +223,64 @@ VERIFPIN2G = [0xA0, 0x20, 0x00, 0x00, 0x00]
 VERIFPIN3G = [0x00, 0x20, 0x00, 0x00, 0x00]
 SELECT3GADF = [0x00, 0xA4, 0x04, 0x04, 0x10]
 
+def initialize_verifcode_log_buffer(verifcode_msg):
+    global verifcode_log_buffer, runlog_buffer
+    verifcode_log_buffer = {'verifcode_msg': verifcode_msg, 'apdu_string': '', 'verifcode_success': True, 'status_word': ''}
+    runlog_buffer.append(verifcode_msg)
+
 def PINVerification2G():
     global OutputFile
 
-    runlog_buffer.append('Verify ADM1..')
+    initialize_verifcode_log_buffer('Verify ADM1..')
+    # runlog_buffer.append('Verify ADM1..')
     Header = copy.deepcopy(VERIFPIN2G)
     Header[2] = verify2gAdm1p1
     Header[3] = verify2gAdm1p2
     Header[4] = verify2gAdm1p3
     SendAPDU(Header, ADM1, None, "9000")
+    if verifcode_log_buffer['verifcode_success']:
+        logger.info('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
+    else:
+        logger.error('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
 
     if OPT_USE_ADM2:
-        runlog_buffer.append('Verify ADM2..')
+        initialize_verifcode_log_buffer('Verify ADM2..')
+        # runlog_buffer.append('Verify ADM2..')
         Header = copy.deepcopy(VERIFPIN2G)
         Header[2] = verify2gAdm2p1
         Header[3] = verify2gAdm2p2
         Header[4] = verify2gAdm2p3
         SendAPDU(Header, ADM2, None, "9000")
+        if verifcode_log_buffer['verifcode_success']:
+            logger.info('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
+        else:
+            logger.error('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
 
     if OPT_USE_ADM3:
-        runlog_buffer.append('Verify ADM3..')
+        initialize_verifcode_log_buffer('Verify ADM3..')
+        # runlog_buffer.append('Verify ADM3..')
         Header = copy.deepcopy(VERIFPIN2G)
         Header[2] = verify2gAdm3p1
         Header[3] = verify2gAdm3p2
         Header[4] = verify2gAdm3p3
         SendAPDU(Header, ADM3, None, "9000")
+        if verifcode_log_buffer['verifcode_success']:
+            logger.info('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
+        else:
+            logger.error('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
 
     if OPT_USE_ADM4:
-        runlog_buffer.append('Verify ADM4..')
+        initialize_verifcode_log_buffer('Verify ADM4..')
+        # runlog_buffer.append('Verify ADM4..')
         Header = copy.deepcopy(VERIFPIN2G)
         Header[2] = verify2gAdm4p1
         Header[3] = verify2gAdm4p2
         Header[4] = verify2gAdm4p3
         SendAPDU(Header, ADM4, None, "9000")
+        if verifcode_log_buffer['verifcode_success']:
+            logger.info('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
+        else:
+            logger.error('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
     
     if not OPT_CHV1_DISABLED:
         # enable CHV1
@@ -262,57 +288,87 @@ def PINVerification2G():
         # Header = copy.deepcopy(ENABLECHV1)
         # SendAPDU(Header, CHV1, None, "9000")
 
-        runlog_buffer.append('Verify CHV1..')
+        initialize_verifcode_log_buffer('Verify CHV1..')
+        # runlog_buffer.append('Verify CHV1..')
         Header = copy.deepcopy(VERIFPIN2G)
         Header[2] = verify2gChv1p1
         Header[3] = verify2gChv1p2
         Header[4] = verify2gChv1p3
         SendAPDU(Header, CHV1, None, "9000")
+        if verifcode_log_buffer['verifcode_success']:
+            logger.info('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
+        else:
+            logger.error('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
     else:
         OutputFile.writelines('; CHV1 is disabled. No CHV1 verification required.\n')
 
-    runlog_buffer.append('Verify CHV2..')
+    initialize_verifcode_log_buffer('Verify CHV2..')
+    # runlog_buffer.append('Verify CHV2..')
     Header = copy.deepcopy(VERIFPIN2G)
     Header[2] = verify2gChv2p1
     Header[3] = verify2gChv2p2
     Header[4] = verify2gChv2p3
     SendAPDU(Header, CHV2, None, "9000")
+    if verifcode_log_buffer['verifcode_success']:
+        logger.info('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
+    else:
+        logger.error('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
 
     return
 
 def PINVerification3G():
     global OutputFile
 
-    runlog_buffer.append('Verify ADM1..')
+    initialize_verifcode_log_buffer('Verify ADM1..')
+    # runlog_buffer.append('Verify ADM1..')
     Header = copy.deepcopy(VERIFPIN3G)
     Header[2] = verify3gAdm1p1
     Header[3] = verify3gAdm1p2
     Header[4] = verify3gAdm1p3
     SendAPDU(Header, ADM1, None, "9000")
+    if verifcode_log_buffer['verifcode_success']:
+        logger.info('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
+    else:
+        logger.error('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
 
     if OPT_USE_ADM2:
-        runlog_buffer.append('Verify ADM2..')
+        initialize_verifcode_log_buffer('Verify ADM2..')
+        # runlog_buffer.append('Verify ADM2..')
         Header = copy.deepcopy(VERIFPIN3G)
         Header[2] = verify3gAdm2p1
         Header[3] = verify3gAdm2p2
         Header[4] = verify3gAdm2p3
         SendAPDU(Header, ADM2, None, "9000")
+        if verifcode_log_buffer['verifcode_success']:
+            logger.info('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
+        else:
+            logger.error('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
 
     if OPT_USE_ADM3:
-        runlog_buffer.append('Verify ADM3..')
+        initialize_verifcode_log_buffer('Verify ADM3..')
+        # runlog_buffer.append('Verify ADM3..')
         Header = copy.deepcopy(VERIFPIN3G)
         Header[2] = verify3gAdm3p1
         Header[3] = verify3gAdm3p2
         Header[4] = verify3gAdm3p3
         SendAPDU(Header, ADM3, None, "9000")
+        if verifcode_log_buffer['verifcode_success']:
+            logger.info('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
+        else:
+            logger.error('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
 
     if OPT_USE_ADM4:
-        runlog_buffer.append('Verify ADM4..')
+        initialize_verifcode_log_buffer('Verify ADM4..')
+        # runlog_buffer.append('Verify ADM4..')
         Header = copy.deepcopy(VERIFPIN3G)
         Header[2] = verify3gAdm4p1
         Header[3] = verify3gAdm4p2
         Header[4] = verify3gAdm4p3
         SendAPDU(Header, ADM4, None, "9000")
+        if verifcode_log_buffer['verifcode_success']:
+            logger.info('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
+        else:
+            logger.error('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
 
     if not OPT_CHV1_DISABLED:
         # enable CHV1
@@ -320,21 +376,31 @@ def PINVerification3G():
         # Header = copy.deepcopy(ENABLECHV1)
         # SendAPDU(Header, CHV1, None, "9000")
 
-        runlog_buffer.append('Verify Global PIN..')
+        initialize_verifcode_log_buffer('Verify Global PIN..')
+        # runlog_buffer.append('Verify Global PIN..')
         Header = copy.deepcopy(VERIFPIN3G)
         Header[2] = verify3gGlobalPin1p1
         Header[3] = verify3gGlobalPin1p2
         Header[4] = verify3gGlobalPin1p3
         SendAPDU(Header, CHV1, None, "9000")
+        if verifcode_log_buffer['verifcode_success']:
+            logger.info('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
+        else:
+            logger.error('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
     else:
         OutputFile.writelines('; GPIN is disabled. No GPIN verification required.\n')
-
-    runlog_buffer.append('Verify Local PIN..')
+    
+    initialize_verifcode_log_buffer('Verify Local PIN..')
+    # runlog_buffer.append('Verify Local PIN..')
     Header = copy.deepcopy(VERIFPIN3G)
     Header[2] = verify3gLocalPin1p1
     Header[3] = verify3gLocalPin1p2
     Header[4] = verify3gLocalPin1p3
     SendAPDU(Header, CHV2, None, "9000")
+    if verifcode_log_buffer['verifcode_success']:
+        logger.info('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
+    else:
+        logger.error('%s %s <- %s' % (verifcode_log_buffer['verifcode_msg'], verifcode_log_buffer['apdu_string'], verifcode_log_buffer['status_word']))
 
     return
 
@@ -641,7 +707,7 @@ sw2 = 0
 # APDU Header in text or in list of hexadecimal
 # APDU data in text (to add support in list)
 def SendAPDU(apduheader, apdudata, expResp, expSW, *Condition):
-    global response, sw1, sw2, OutputFile, runlog_buffer
+    global response, sw1, sw2, OutputFile, runlog_buffer, verifcode_log_buffer
 
     if apdudata != None:
         if type(apdudata) == str:
@@ -659,6 +725,8 @@ def SendAPDU(apduheader, apdudata, expResp, expSW, *Condition):
 
     if apdudata:
         apduString = apduString + ' ' + FilterHex(apdudata)
+
+    verifcode_log_buffer['apdu_string'] = apduString
 
     if SEND_TO_CARD:
         if type(apduheader) == str:
@@ -683,6 +751,8 @@ def SendAPDU(apduheader, apdudata, expResp, expSW, *Condition):
         if apdudata:
             apdu = apdu + HexString2Bytes(apdudata)
         response, sw1, sw2 = connection.transmit(apdu)
+
+    verifcode_log_buffer['status_word'] = '%.2X%.2X' % (sw1, sw2)
 
     # if EXP_FROM_CARD == 1 and expResp == None and SEND_TO_CARD:
     if EXP_FROM_CARD == 1 and SEND_TO_CARD:
@@ -820,6 +890,7 @@ def SendAPDU(apduheader, apdudata, expResp, expSW, *Condition):
                 IndexResponse += 1
 
             if Diff:
+                verifcode_log_buffer['verifcode_success'] = False
                 ERROR("Wrong Expected SW!")
                 output = ""
                 # print "Expected SW     :",
