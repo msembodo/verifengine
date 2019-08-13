@@ -9,8 +9,12 @@ import logging
 from datetime import datetime
 from xml.dom.minidom import parse
 
+# logging.basicConfig(level=logging.INFO,
+#                     format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
+#                     datefmt="%H:%M:%S", stream=sys.stdout)
+
 logging.basicConfig(level=logging.INFO,
-                    format="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s",
+                    format="[%(asctime)s] [%(levelname)s] %(message)s",
                     datefmt="%H:%M:%S", stream=sys.stdout)
 
 logger = logging.getLogger(__name__)
@@ -2009,7 +2013,7 @@ def createDocumentHeader():
             font-smoothing: antialiased;
         }
         div {
-            margin-top: 20px;
+            margin-top: 10px;
             margin-left: 40px;
             margin-right: 40px;
         }
@@ -2029,8 +2033,8 @@ def createDocumentHeader():
         }
         th,
         td {
-            border: 1px solid gray;
-            padding: 5px;
+            border: 2px solid black;
+            padding: 4px;
         }
         th.error {
             background-color: firebrick;
@@ -2048,6 +2052,14 @@ def createDocumentHeader():
             background-color: #FEF9E7;
             color: #17202A;
         }
+        td.summary {
+            background-color: #e3f2fd;
+            color: #17202A;
+        }
+        td.summaryheader {
+            background-color: #ffc4ff;
+            color: #17202A;
+        }
         td.data {
             font-family: consolas;
             font-size: 11px;
@@ -2058,21 +2070,25 @@ def createDocumentHeader():
             font-family:consolas;
             font-size: 11px;
         }
+        ul {
+			margin: 0px;
+			padding: 15px;
+		}
         </style>
         </head>
         <body>""")
 
 def createDocumentFooter():
     global ErrorFile
-    ErrorFile.writelines('</body></html>')
+    ErrorFile.writelines('\n</body></html>')
 
 def createTableHeader():
     global ErrorFile
-    ErrorFile.writelines('<div><table><tbody>')
+    ErrorFile.writelines('\n<div><table><tbody>')
 
 def createTableFooter():
     global ErrorFile
-    ErrorFile.writelines('</tbody></table></div>')
+    ErrorFile.writelines('\n</tbody></table></div>')
 
 # highlight error bytes with red
 def markErrorByte(out, exp):
@@ -6049,7 +6065,7 @@ def run(useClient=False):
     error_list = verificationErrors
 
     # print 'DEBUG ERROR LIST\n' + str(error_list) # debug
-    runlog_buffer.append('DEBUG ERROR LIST\n' + str(error_list))
+    # runlog_buffer.append('DEBUG ERROR LIST\n' + str(error_list))
 
     # build list of file id
     ef_list_tmp = []
@@ -6084,6 +6100,7 @@ def run(useClient=False):
         print ""
 
     # print 'DEBUG ORGANIZED ERROR\n' + str(organized_errors) # debug
+    runlog_buffer.append('DEBUG ORGANIZED ERROR\n' + str(organized_errors))
 
     if OPT_PRINT_ERROR:
         for ef_error in organized_errors:
@@ -6158,25 +6175,225 @@ def run(useClient=False):
 
     if OPT_ERROR_FILE:
         createDocumentHeader()
-        ErrorFile.writelines('<div>' + str(ef_list.__len__()) + ' file(s) with errors/warnings:</div>')
-        ErrorFile.writelines('<div>')
+        ErrorFile.writelines('\n<div>' + str(ef_list.__len__()) + ' file(s) with errors/warnings (click <a href="#summary">here</a> for summary):</div>')
+        
+        # ErrorFile.writelines('<div>')
+        # for ef in ef_list:
+        #     for error in error_list:
+        #         if error.get('fileId') == ef:
+        #             fileName = error.get('fileName')
+        #             break
+        #     if not formatFileId(ef) == None:
+        #         ErrorFile.writelines('<a href="#' + ef + '">' + formatFileId(ef) + ': ' + fileName + '</a><br>')
+        #     else:
+        #         ErrorFile.writelines('<a href="#' + ef + '">' + 'NoneType' + '</a><br>')
+        # ErrorFile.writelines('</div>')
+
+        # create list of errors with table
+        # ErrorFile.writelines('<div>')
+        WARNING_LINKED_EF_DIFFERENT_VALUE = 0
+        ERROR_2G_RESPONSE = 0
+        ERROR_CONTENT = 0
+        ERROR_FILE_NOT_FOUND = 0
+        ERROR_FILE_TYPE = 0
+        ERROR_FILE_SIZE = 0
+        ERROR_SFI_NOT_SET = 0
+        ERROR_WRONG_SFI = 0
+        ERROR_FILE_STRUCTURE = 0
+        ERROR_RECORD_SIZE = 0
+        ERROR_NUMBER_OF_RECORD = 0
+        ERROR_FILE_TYPE_UNINDENTIFIED = 0
+        ERROR_ACCESS_CONDITION = 0
+        ERROR_LINKED_FILE_UNABLE_READ_UPDATE = 0
+        ERROR_LINKED_FILE_UNABLE_READ = 0
+        ERROR_LINK_BREAK = 0
+
+        createTableHeader()
         for ef in ef_list:
+            severity = 0
+            current_errors = []
+            for ef_error in organized_errors:
+                if ef_error.get('errorFileId') == ef:
+                    for i in ef_error.get('errors'):
+                        if i.get('operation') == 'Check Linked File':
+                            current_errors.append('WARNING_LINKED_EF_DIFFERENT_VALUE')
+                            WARNING_LINKED_EF_DIFFERENT_VALUE += 1
+                        if i.get('operation') == 'Test Access Condition':
+                            current_errors.append('ERROR_2G_RESPONSE')
+                            ERROR_2G_RESPONSE += 1
+                            severity += 1
+                        if i.get('operation') == 'Test File Content':
+                            current_errors.append('ERROR_CONTENT')
+                            ERROR_CONTENT += 1
+                            severity += 1
+                        if i.get('operation') == ('Test 3G Status'):
+                            if i.get('errMsg') == 'File Not found in the Card':
+                                current_errors.append('ERROR_FILE_NOT_FOUND')
+                                ERROR_FILE_NOT_FOUND += 1
+                                severity += 1
+                            if i.get('errMsg') == 'Wrong File Type':
+                                current_errors.append('ERROR_FILE_TYPE')
+                                ERROR_FILE_TYPE += 1
+                                severity += 1
+                            if i.get('errMsg') == 'Wrong File Size':
+                                current_errors.append('ERROR_FILE_SIZE')
+                                ERROR_FILE_SIZE += 1
+                                severity += 1
+                            if i.get('errMsg') == 'SFI Not Present on Card':
+                                current_errors.append('ERROR_SFI_NOT_SET')
+                                ERROR_SFI_NOT_SET += 1
+                                severity += 1
+                            if i.get('errMsg') == 'Wrong SFI':
+                                current_errors.append('ERROR_WRONG_SFI')
+                                ERROR_WRONG_SFI += 1
+                                severity += 1
+                            if i.get('errMsg') == 'File Structure Incorrect':
+                                current_errors.append('ERROR_FILE_STRUCTURE')
+                                ERROR_FILE_STRUCTURE += 1
+                                severity += 1
+                            if i.get('errMsg') == 'Wrong File Record Size':
+                                current_errors.append('ERROR_RECORD_SIZE')
+                                ERROR_RECORD_SIZE += 1
+                                severity += 1
+                            if i.get('errMsg') == 'Wrong Number of Record':
+                                current_errors.append('ERROR_NUMBER_OF_RECORD')
+                                ERROR_NUMBER_OF_RECORD += 1
+                                severity += 1
+                            if i.get('errMsg') == 'Unidentified File Type':
+                                current_errors.append('ERROR_FILE_TYPE_UNINDENTIFIED')
+                                ERROR_FILE_TYPE_UNINDENTIFIED += 1
+                                severity += 1
+                        if i.get('operation') == 'Test 3G Access Condition':
+                            current_errors.append('ERROR_ACCESS_CONDITION')
+                            ERROR_ACCESS_CONDITION += 1
+                            severity += 1
+                        if i.get('operation') == 'Test UPDATE Linked File':
+                            if i.get('errMsg') == 'Linked file cannot be read/updated':
+                                current_errors.append('ERROR_LINKED_FILE_UNABLE_READ_UPDATE')
+                                ERROR_LINKED_FILE_UNABLE_READ_UPDATE += 1
+                                severity += 1
+                            if i.get('errMsg') == 'Linked file cannot be read':
+                                current_errors.append('ERROR_LINKED_FILE_UNABLE_READ')
+                                ERROR_LINKED_FILE_UNABLE_READ += 1
+                                severity += 1
+                            if i.get('errMsg') == 'Different UPDATED Linked file Value':
+                                current_errors.append('ERROR_LINK_BREAK')
+                                ERROR_LINK_BREAK += 1
+                                severity += 1
+                    break
+            
+            current_errors_set = set(current_errors)
+            current_errors_str = '<ul>'
+            for i in current_errors_set:
+                current_errors_str += '<li>' + i + '</li>'
+            current_errors_str += '</ul>'
             for error in error_list:
                 if error.get('fileId') == ef:
                     fileName = error.get('fileName')
                     break
             if not formatFileId(ef) == None:
-                ErrorFile.writelines('<a href="#' + ef + '">' + formatFileId(ef) + ': ' + fileName + '</a><br>')
+                if severity > 0:
+                    ErrorFile.writelines('<tr><td class="error"><a href="#' + ef + '">' + formatFileId(ef) + ': ' + fileName + '</a></td>')
+                else:
+                    ErrorFile.writelines('<tr><td class="warning"><a href="#' + ef + '">' + formatFileId(ef) + ': ' + fileName + '</a></td>')
+                ErrorFile.writelines('<td>' + current_errors_str + '</td></tr>')
             else:
                 ErrorFile.writelines('<a href="#' + ef + '">' + 'NoneType' + '</a><br>')
-        ErrorFile.writelines('</div>')
+        createTableFooter()
+        # ErrorFile.writelines('</div>')
+        
+        ErrorFile.writelines('\n<div id="summary">Summary of errors:</div>')
+        createTableHeader()
+        ErrorFile.writelines('<tr><td class="summaryheader"><b>Error type</b></td><td class="summaryheader"><b>Occurence</b></td></tr>')
+        if WARNING_LINKED_EF_DIFFERENT_VALUE > 0:
+            ErrorFile.writelines('<tr><td class="error">WARNING_LINKED_EF_DIFFERENT_VALUE</td><td>' + str(WARNING_LINKED_EF_DIFFERENT_VALUE) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">WARNING_LINKED_EF_DIFFERENT_VALUE</td><td>' + str(WARNING_LINKED_EF_DIFFERENT_VALUE) + '</td></tr>')
+        
+        if ERROR_2G_RESPONSE > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_2G_RESPONSE</td><td>' + str(ERROR_2G_RESPONSE) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_2G_RESPONSE</td><td>' + str(ERROR_2G_RESPONSE) + '</td></tr>')
+        
+        if ERROR_CONTENT > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_CONTENT</td><td>' + str(ERROR_CONTENT) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_CONTENT</td><td>' + str(ERROR_CONTENT) + '</td></tr>')
+        
+        if ERROR_FILE_NOT_FOUND > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_FILE_NOT_FOUND</td><td>' + str(ERROR_FILE_NOT_FOUND) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_FILE_NOT_FOUND</td><td>' + str(ERROR_FILE_NOT_FOUND) + '</td></tr>')
+        
+        if ERROR_FILE_TYPE > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_FILE_TYPE</td><td>' + str(ERROR_FILE_TYPE) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_FILE_TYPE</td><td>' + str(ERROR_FILE_TYPE) + '</td></tr>')
+        
+        if ERROR_FILE_SIZE > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_FILE_SIZE</td><td>' + str(ERROR_FILE_SIZE) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_FILE_SIZE</td><td>' + str(ERROR_FILE_SIZE) + '</td></tr>')
+        
+        if ERROR_SFI_NOT_SET > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_SFI_NOT_SET</td><td>' + str(ERROR_SFI_NOT_SET) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_SFI_NOT_SET</td><td>' + str(ERROR_SFI_NOT_SET) + '</td></tr>')
+        
+        if ERROR_WRONG_SFI > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_WRONG_SFI</td><td>' + str(ERROR_WRONG_SFI) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_WRONG_SFI</td><td>' + str(ERROR_WRONG_SFI) + '</td></tr>')
+        
+        if ERROR_FILE_STRUCTURE > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_FILE_STRUCTURE</td><td>' + str(ERROR_FILE_STRUCTURE) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_FILE_STRUCTURE</td><td>' + str(ERROR_FILE_STRUCTURE) + '</td></tr>')
+        
+        if ERROR_RECORD_SIZE > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_RECORD_SIZE</td><td>' + str(ERROR_RECORD_SIZE) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_RECORD_SIZE</td><td>' + str(ERROR_RECORD_SIZE) + '</td></tr>')
+        
+        if ERROR_NUMBER_OF_RECORD > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_NUMBER_OF_RECORD</td><td>' + str(ERROR_NUMBER_OF_RECORD) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_NUMBER_OF_RECORD</td><td>' + str(ERROR_NUMBER_OF_RECORD) + '</td></tr>')
+        
+        if ERROR_FILE_TYPE_UNINDENTIFIED > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_FILE_TYPE_UNINDENTIFIED</td><td>' + str(ERROR_FILE_TYPE_UNINDENTIFIED) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_FILE_TYPE_UNINDENTIFIED</td><td>' + str(ERROR_FILE_TYPE_UNINDENTIFIED) + '</td></tr>')
+        
+        if ERROR_ACCESS_CONDITION > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_ACCESS_CONDITION</td><td>' + str(ERROR_ACCESS_CONDITION) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_ACCESS_CONDITION</td><td>' + str(ERROR_ACCESS_CONDITION) + '</td></tr>')
+        
+        if ERROR_LINKED_FILE_UNABLE_READ_UPDATE > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_LINKED_FILE_UNABLE_READ_UPDATE</td><td>' + str(ERROR_LINKED_FILE_UNABLE_READ_UPDATE) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_LINKED_FILE_UNABLE_READ_UPDATE</td><td>' + str(ERROR_LINKED_FILE_UNABLE_READ_UPDATE) + '</td></tr>')
+        
+        if ERROR_LINKED_FILE_UNABLE_READ > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_LINKED_FILE_UNABLE_READ</td><td>' + str(ERROR_LINKED_FILE_UNABLE_READ) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_LINKED_FILE_UNABLE_READ</td><td>' + str(ERROR_LINKED_FILE_UNABLE_READ) + '</td></tr>')
+        
+        if ERROR_LINK_BREAK > 0:
+            ErrorFile.writelines('<tr><td class="error">ERROR_LINK_BREAK</td><td>' + str(ERROR_LINK_BREAK) + '</td></tr>')
+        else:
+            ErrorFile.writelines('<tr><td class="summary">ERROR_LINK_BREAK</td><td>' + str(ERROR_LINK_BREAK) + '</td></tr>')
+        
+        createTableFooter()
 
         for ef_error in organized_errors:
             errors = ef_error.get('errors')
             if not formatFileId(ef_error.get('errorFileId')) == None:
-                ErrorFile.writelines('<div><h2 id="' + ef_error.get('errorFileId') + '">' + formatFileId(ef_error.get('errorFileId')) + ': ' + errors[0].get('fileName') + '</h2></div>')
+                ErrorFile.writelines('\n<div><h2 id="' + ef_error.get('errorFileId') + '">' + formatFileId(ef_error.get('errorFileId')) + ': ' + errors[0].get('fileName') + '</h2></div>')
             else:
-                ErrorFile.writelines('<div><h2 id="' + ef_error.get('errorFileId') + '">' + 'NoneType' + ': ' + errors[0].get('fileName') + '</h2></div>')
+                ErrorFile.writelines('\n<div><h2 id="' + ef_error.get('errorFileId') + '">' + 'NoneType' + ': ' + errors[0].get('fileName') + '</h2></div>')
+
             operation_check_link_printed = False
             operation_test_update_link_printed = False
             operation_test_content_printed = False
@@ -6371,7 +6588,7 @@ def run(useClient=False):
                     ErrorFile.writelines('NoneType' + '<br>')
             ErrorFile.writelines('</div>')
 
-        ErrorFile.writelines('<div><i>Created on ' + datetime.now().strftime("%Y-%m-%d %H:%M") + '</i></div>')
+        ErrorFile.writelines('\n<div><i>Created on ' + datetime.now().strftime("%Y-%m-%d %H:%M") + '</i></div>')
         createDocumentFooter()
 
     if OptWrite2File:
