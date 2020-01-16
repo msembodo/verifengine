@@ -104,6 +104,7 @@ sMandatoryNo = ['O', 'NO', 'N']
 
 sShareableYes = ['YES', 'Y']
 sUpdateActivityHigh = ['High', 'HIGH', 'Y']
+sRUWhenInvalidated = ['YES', 'Y']
 
 sAccALW = ['Always', 'ALW']
 sAccCHV1 = ['GPIN1', 'CHV1','APIN1']
@@ -604,6 +605,7 @@ fRecordNumber = "RecordNumber"
 fContent = "Content"
 fADN_AlphaID = "ADN_AlphaID"
 fADNNumber = "ADNNumber"
+fRUInvalidated = "ReadableUpdatableWhenInvalidated"
 
 # 2G ACC
 fRead_ACC = "Read_ACC"
@@ -935,6 +937,9 @@ def formatFileId(fileId):
         return formatted
     if len(fileId) == 16:
         formatted = fileId[:4] + '/' + fileId[4:8] + '/' + fileId[8:12] + '/' + fileId[12:]
+        return formatted
+    if len(fileId) == 20:
+        formatted = fileId[:4] + '/' + fileId[4:8] + '/' + fileId[8:12] + '/' + fileId[12:16] + '/' + fileId[16:]
         return formatted
 
 def lineno():
@@ -2218,6 +2223,7 @@ def run(useClient=False):
     fiRecordNumber = 32
     fiContent = 33
     fiFileName = 34
+    fiRUInvalidated = 35
 
     ##############  DATA STRUCTURE  ###############
 
@@ -2345,6 +2351,8 @@ def run(useClient=False):
         curADF_AID = ''
         prevFileName = ''
         curFileName = ''
+        prevRUWhenInvalidated = ''
+        curRUWhenInvalidated = ''
 
         prevARRRecordNumber = ''
         curARRRecordNumber = ''
@@ -3041,15 +3049,26 @@ def run(useClient=False):
 
             # ---------------------Content END ---------------------------
 
+            # file name
             if row.has_key(fFileName):
-                curFileName = row[fFileName]  # working
-
-                #         if row.has_key(fFileName):
-                #             curFileName = CheckPrevIfNew(FilterString(row[fFileName]), prevFileName)
+                curFileName = row[fFileName]
 
             if index == 0: FieldList.append(fFileName)
             CurFile.append(curFileName)
 
+            # readable / updatable when invalidated
+            if index == 0: FieldList.append(fRUInvalidated)
+            if row.has_key(fRUInvalidated):
+                curRUWhenInvalidated = CheckPrevIfNew(FilterString(row[fRUInvalidated]), prevRUWhenInvalidated)
+                # convert to boolean
+                if CheckList(curRUWhenInvalidated, sRUWhenInvalidated):
+                    CurFile.append(True)
+                else:
+                    CurFile.append(False)
+            else:
+                # default
+                CurFile.append(True)
+            
             # Stop if the current file is considered empty
             if curFilePath == prevFilePath and curContent == '':
                 break
@@ -3166,8 +3185,11 @@ def run(useClient=False):
             prevFilePath = curFilePath
             curFilePath = ''
 
-            prevFileName = curFileName  # experimental
-            curFileName = ''  # experimental
+            prevFileName = curFileName 
+            curFileName = ''
+
+            prevRUWhenInvalidated = curRUWhenInvalidated # experimental
+            curRUWhenInvalidated = '' # experimental
 
         # DEBUGPRINT("FieldList" + str(FieldList))
         DEBUGPRINT("FileList before ARR: " + str(FileList))
