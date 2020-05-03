@@ -4,6 +4,7 @@ from flask_restful import reqparse, abort, Api, Resource
 import FileVerif
 import spml2csv
 import morpho_doc
+from scanner import CardScanner
 import sys
 import logging
 
@@ -29,6 +30,12 @@ converterResult = {
     'generatedCsv' : ''
 }
 
+# CardScanner response
+scannerResult = {
+    'generationSuccess': False,
+    'message': ''
+}
+
 # parser = reqparse.RequestParser()
 
 def shutdown_server():
@@ -48,6 +55,28 @@ class Verification(Resource):
         verificationResult['message'] = verifMsg
 
         return verificationResult
+
+class LightScanner(Resource):
+    def get(self):
+        cScanner = CardScanner(runAsModule=True, fullScript=False)
+        scanOk, scanMsg = cScanner.proceed()
+        if scanOk:
+            scannerResult['generationSuccess'] = True
+        else:
+            scannerResult['generationSuccess'] = False
+        scannerResult['message'] = scanMsg
+        return scannerResult
+
+class FullScanner(Resource):
+    def get(self):
+        cScanner = CardScanner(runAsModule=True, fullScript=True)
+        scanOk, scanMsg = cScanner.proceed()
+        if scanOk:
+            scannerResult['generationSuccess'] = True
+        else:
+            scannerResult['generationSuccess'] = False
+        scannerResult['message'] = scanMsg
+        return scannerResult
 
 class ServerStat(Resource):
     def get(self):
@@ -91,6 +120,8 @@ class ExMorphoDocConverter(Resource):
 
 # setup API resource mapping
 api.add_resource(Verification, '/run')
+api.add_resource(LightScanner, '/scanlight')
+api.add_resource(FullScanner, '/scanfull')
 api.add_resource(ServerStat, '/getServerStatus')
 api.add_resource(ServerKill, '/killVerifServer')
 api.add_resource(SimpmlConverter, '/convertUxp')
